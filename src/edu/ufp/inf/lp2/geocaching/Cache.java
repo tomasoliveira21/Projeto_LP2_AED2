@@ -10,6 +10,8 @@ public class Cache{
 
   private String nameCache;
   private String serialNumber;
+  private String mudancaRbn34g123123;
+
 
   public Cache(String name, String serialNumber) {
     this.nameCache = name;

@@ -19,6 +19,7 @@ public class UserBasic {
 
   public double coordenadas;
 
+  private String exemplo;
 
   public String getName() {
     return name;

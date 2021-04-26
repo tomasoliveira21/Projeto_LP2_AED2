@@ -2,19 +2,16 @@ package edu.ufp.inf.lp2.geocaching;
 
 import edu.princeton.cs.algs4.ST;
 
-public class Cache{
+import java.util.ArrayList;
 
-  public static ST<String, UserBasic> userST = new ST<>();
+public class Cache {
+
   public static ST<String, Cache> cacheST = new ST<>();
-  public static ST<String, Objeto> itemC = new ST<>(); // muito provavelmente mal 🤡🤡🤡🤡🤡🤡🤡
+  public ArrayList<Objeto> objetos = new ArrayList<>();
 
-  private String nameCache;
   private String serialNumber;
-  private String mudancaRbn34g123123;
-
 
   public Cache(String name, String serialNumber) {
-    this.nameCache = name;
     this.serialNumber = serialNumber;
   }
 
@@ -23,10 +20,10 @@ public class Cache{
   }
 
   public boolean iscacheEscondida(Cache c) {
-  return false;
+    return false;
   }
 
-
+/*
   public void insertCache(){
     cacheST.put(this.nameCache,this);
   }
@@ -34,7 +31,31 @@ public class Cache{
   public void removeCache(){
     cacheST.remove(this.serialNumber);
   }
+*/
 
-  //coordenadas da cache ... help 🤡🤡🤡🤡🤡🤡🤡
+  public void addObjectToCache(Objeto objeto) throws AlreadyRegisteredObjectException {
+    if (!objetos.contains(objeto)) {
+      objetos.add(objeto);
+    }
+    throw new AlreadyRegisteredObjectException("Object already registered!");
+  }
+
+  public boolean removeObjectFromCache(String nameItem) {
+    for (int i = 0; i < objetos.size(); i++) {
+      objetos.get(i).nameItem.equals(nameItem);
+      if (objetos.get(i).nameItem.equals(nameItem)) {
+        return objetos.remove(objetos.get(i));
+      }
+    }
+    return false;
+  }
+
+  public void printObjetoFromCache(){
+    System.out.println("Item da Lista de objetos: ");
+    for (int i = 0; i < objetos.size(); i++){
+      System.out.println(objetos.get(i).nameItem);
+    }
+  }
 
 }
+

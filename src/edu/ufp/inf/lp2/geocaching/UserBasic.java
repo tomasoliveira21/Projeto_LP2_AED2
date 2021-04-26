@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.ST;
 public class UserBasic {
 
   public static ST<String, UserBasic> userST = new ST<>();
-  public static ST<String, Cache> cacheST = new ST<>();
+
 
 
   public String name;

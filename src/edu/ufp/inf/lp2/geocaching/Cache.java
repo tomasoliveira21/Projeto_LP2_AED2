@@ -9,21 +9,13 @@ public class Cache {
   public static ST<String, Cache> cacheST = new ST<>();
   public ArrayList<Objeto> objetos = new ArrayList<>();
 
-  private String serialNumber;
+  public String serialNumber;
 
-  public Cache(String name, String serialNumber) {
-    this.serialNumber = serialNumber;
-  }
+  public int x;
+  public int y;
 
-  public boolean iscacheVisitada(Cache c) {
-    return false;
-  }
 
-  public boolean iscacheEscondida(Cache c) {
-    return false;
-  }
-
-/*
+  /*
   public void insertCache(){
     cacheST.put(this.nameCache,this);
   }
@@ -31,7 +23,11 @@ public class Cache {
   public void removeCache(){
     cacheST.remove(this.serialNumber);
   }
+
+  metodos para ver se a cache ja foi vizitada pelo user
 */
+
+
 
   public void addObjectToCache(Objeto objeto) throws AlreadyRegisteredObjectException {
     if (!objetos.contains(objeto)) {

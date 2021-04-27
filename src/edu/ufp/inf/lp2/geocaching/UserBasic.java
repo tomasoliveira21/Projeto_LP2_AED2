@@ -11,13 +11,14 @@ public class UserBasic {
 
   public String id;
 
-  public int age;
+  public int x;
+
+  public int y;
+
 
   public double cachesVisitadas;
 
   public double cachesEscondidas;
-
-  public double coordenadas;
 
   private String exemplo;
 
@@ -37,12 +38,20 @@ public class UserBasic {
     this.id = id;
   }
 
-  public int getAge() {
-    return age;
+  public int getX() {
+    return x;
   }
 
-  public void setAge(int age) {
-    this.age = age;
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  public int getY() {
+    return y;
+  }
+
+  public void setY(int y) {
+    this.y = y;
   }
 
   public double getCachesVisitadas() {
@@ -61,12 +70,12 @@ public class UserBasic {
     this.cachesEscondidas = cachesEscondidas;
   }
 
-  public double getCoordenadas() {
-    return coordenadas;
-  }
 
-  public void setCoordenadas(double coordenadas) {
-    this.coordenadas = coordenadas;
+  public UserBasic(String id, String name, int x, int y) {
+    this.id = id;
+    this.name = name;
+    this.x = x;
+    this.y = y;
   }
 
   public void progress() {
@@ -79,11 +88,20 @@ public class UserBasic {
     userST.put(this.id, this);
   }
 
-  public void editUser(String name, int age){
+  public void editUser(String name, int x, int y){
     this.name=name;
-    this.age=age;
-    this.cachesVisitadas = 2;
+    this.x=x;
+    this.y=y;
     userST.put(this.id,this);
+  }
+
+  public void printUser(){
+    System.out.println("Lista Utilizadores: ");
+    for (String name: userST.keys()){
+      UserBasic user = userST.get(name);
+      System.out.println(userST.get(name));
+    }
+    System.out.println("\n");
   }
 
   public void removeUser(String id){

@@ -4,11 +4,11 @@ public class Objeto extends TravelBugs {
 
 
   public String nameItem;
-  public String type;
+  public String id;
 
-  public Objeto(String nameItem, String type) {
+  public Objeto(String id, String nameItem) {
+    this.id=id;
     this.nameItem = nameItem;
-    this.type = type;
   }
 
 

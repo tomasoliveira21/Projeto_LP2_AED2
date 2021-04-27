@@ -1,15 +1,20 @@
 package edu.ufp.inf.lp2.geocaching;
 
-import java.util.Vector;
-
 enum CacheDiff {
 
-  Easy,
+  Easy("The difficulty is easy!"),
 
-  Medium,
+  Medium("The difficulty is medium!"),
 
-  Hard;
+  Hard("The difficulty is hard!");
 
-    public Vector  myCaches;
+  private final String cacheDiff;
 
+  CacheDiff(String cacheDiff) {
+    this.cacheDiff = cacheDiff;
+  }
+
+  public String getCacheDiff() {
+    return cacheDiff;
+  }
 }

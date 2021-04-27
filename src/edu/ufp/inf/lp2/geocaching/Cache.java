@@ -6,13 +6,23 @@ import java.util.ArrayList;
 
 public class Cache {
 
+  public static ST<String, UserBasic> userST = new ST<>();
   public static ST<String, Cache> cacheST = new ST<>();
   public ArrayList<Objeto> objetos = new ArrayList<>();
 
   public String serialNumber;
 
+  CacheDiff cacheEasy = CacheDiff.Easy;
+  //se quiser dizer que uma cache é facil é so fazer   System.out.println(cacheEasy.CacheDiff());
+
+  CacheDiff cacheMedium = CacheDiff.Medium;
+
+  CacheDiff cacheHard = CacheDiff.Hard;
+
+  //User
   public int x;
   public int y;
+
 
 
   /*
@@ -53,6 +63,8 @@ public class Cache {
       System.out.println(objetos.get(i).nameItem);
     }
   }
+
+
 
 }
 

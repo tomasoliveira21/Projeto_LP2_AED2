@@ -20,7 +20,6 @@ public class UserBasic {
 
   public double cachesEscondidas;
 
-  private String exemplo;
 
   public String getName() {
     return name;
@@ -108,4 +107,15 @@ public class UserBasic {
     userST.remove(this.id);
   }
 
+  @Override
+  public String toString() {
+    return "Aventureiro{" +
+            "name='" + name + '\'' +
+            ", id='" + id + '\'' +
+            ", x=" + x +
+            ", y=" + y +
+            ", cachesVisitadas=" + cachesVisitadas +
+            ", cachesEscondidas=" + cachesEscondidas +
+            '}';
+  }
 }

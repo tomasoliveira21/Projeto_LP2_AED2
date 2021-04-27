@@ -1,6 +1,14 @@
 package edu.ufp.inf.lp2.geocaching;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Out;
+import edu.princeton.cs.algs4.ST;
+
+import static edu.ufp.inf.lp2.geocaching.UserBasic.userST;
+
 public class Main {
+
+    private static final String FILE_DELIMETER = ";";
 
     public static void main(String[] args) {
 
@@ -23,6 +31,7 @@ public class Main {
         //---------[Print Utilizadores]---------
         u1.printUser();
 
+/*
         //---------[Editar Utilizador da ST]---------
         u1.editUser("TomasEditado",12,55);
         u2.editUser("RubenEditado", 66,77);
@@ -40,6 +49,14 @@ public class Main {
         //---------[Print Utilizadores]---------
         u1.printUser();
 
+        */
+
+        //---------[Escrever e Ler Utilizadores do ficheiro]---------
+        writeUser_txt(userST,".//data/user.txt");
+        //readUser_txt(userST, ".//data/user.txt");
+        printUsers(userST);
+
+
         //---------[Caches]---------
         Objeto rato = new Objeto("44","rato");
         Objeto teclado= new Objeto("55", "teclado");
@@ -48,4 +65,36 @@ public class Main {
 
     }
 
+    private static void readUser_txt(ST<String, UserBasic> userST, String path){
+        In in = new In(path);
+        in.readLine();
+
+        while (!in.isEmpty()){
+            String line = in.readLine();
+            String [] fields = line. split(FILE_DELIMETER);
+
+            UserBasic u = new UserBasic(fields[0], fields[1], Integer.parseInt(fields[2]), Integer.parseInt(fields[3]));
+            userST.put(u.getName(),u);
+        }
+    }
+
+    private static void printUsers(ST<String, UserBasic> userST){
+        for (String name : userST.keys()){
+            UserBasic u = userST.get(name);
+            System.out.println(userST.get(name));
+        }
+        System.out.println("\n");
+    }
+
+    private static void writeUser_txt(ST<String, UserBasic> userST, String path){
+        Out out = new Out(path);
+
+        for (String u: userST.keys()){
+            out.println( userST.get(u).getId() + " " + userST.get(u).getName() + " " + userST.get(u).getX() + " " +userST.get(u).getY());
+        }
+        System.out.println("\n");
+    }
+
+
 }
+

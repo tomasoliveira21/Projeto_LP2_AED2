@@ -57,10 +57,20 @@ public class Main {
         printUsers(userST);
 
 
-        //---------[Caches]---------
+        //---------[Caches de objetos e Caches]---------
         Objeto rato = new Objeto("44","rato");
         Objeto teclado= new Objeto("55", "teclado");
         Objeto monitor = new Objeto("66", "monitor");
+
+        Cache c1= new Cache("1",u1,CacheDiff.Easy,11,22);
+        Cache c2= new Cache("2",u2,CacheDiff.Medium,33,44);
+        Cache c3= new Cache("3",u3,CacheDiff.Hard,55,66);
+        Cache c4= new Cache("4",u4,CacheDiff.Easy,77,88);
+        Cache c5= new Cache("5",u5,CacheDiff.Medium,99,110);
+        Cache c6= new Cache("6",u6,CacheDiff.Hard,55,66);
+
+        //---------[Inserção de Caches na ST]---------
+
 
 
     }

@@ -9,6 +9,8 @@ public class Cache {
   public static ST<String, UserBasic> userST = new ST<>();
   public static ST<String, Cache> cacheST = new ST<>();
   public ArrayList<Objeto> objetos = new ArrayList<>();
+  public UserBasic usercreator;
+  public CacheDiff type;
 
   public String serialNumber;
 
@@ -19,11 +21,16 @@ public class Cache {
 
   CacheDiff cacheHard = CacheDiff.Hard;
 
-  //User
   public int x;
   public int y;
 
-
+  public Cache(String serialNumber, UserBasic usercreator, CacheDiff type , int x, int y) {
+    this.usercreator = usercreator;
+    this.serialNumber = serialNumber;
+    this.type=type;
+    this.x = x;
+    this.y = y;
+  }
 
   /*
   public void insertCache(){

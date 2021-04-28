@@ -109,7 +109,7 @@ public class UserBasic {
 
   @Override
   public String toString() {
-    return "Aventureiro{" +
+    return "UserBasic{" +
             "name='" + name + '\'' +
             ", id='" + id + '\'' +
             ", x=" + x +

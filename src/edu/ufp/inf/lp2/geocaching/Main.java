@@ -14,7 +14,7 @@ public class Main {
 
         //---------[Criação de utilizadores]---------
         UserBasic u1= new UserBasic("40097", "Tomas", 1,2);
-        UserBasic u2= new UserBasic("3999", "Ruben", 3,4);
+        UserBasic u2= new UserBasic("39917", "Ruben", 3,4);
         UserPremium u3= new UserPremium("1904", "Leticia", 5,6);
         UserPremium u4= new UserPremium("5555", "Leonor", 7,8);
         UserAdmin u5= new UserAdmin("1001", "Ivone", 9, 10 );

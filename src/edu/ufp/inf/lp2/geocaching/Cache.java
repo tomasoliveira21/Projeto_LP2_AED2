@@ -4,49 +4,66 @@ import edu.princeton.cs.algs4.ST;
 
 import java.util.ArrayList;
 
-public class Cache {
+public class Cache{ // é necessario fazer extends do userBasic (?)
 
-  public static ST<String, UserBasic> userST = new ST<>();
-  public static ST<String, Cache> cacheST = new ST<>();
-  public ArrayList<Objeto> objetos = new ArrayList<>();
-  public UserBasic usercreator;
+
+  public ST<String, UserBasic> hUsers= new ST<>();
+  public ArrayList<CacheLogs> cacheLogs= new ArrayList<>();
+
+  public UserBasic userCreator;
   public CacheDiff type;
-
   public String serialNumber;
-
-  CacheDiff cacheEasy = CacheDiff.Easy;
-  //se quiser dizer que uma cache é facil é so fazer   System.out.println(cacheEasy.CacheDiff());
-
-  CacheDiff cacheMedium = CacheDiff.Medium;
-
-  CacheDiff cacheHard = CacheDiff.Hard;
+  public Objeto obj;
 
   public int x;
   public int y;
+  public String regiao;
 
-  public Cache(String serialNumber, UserBasic usercreator, CacheDiff type , int x, int y) {
-    this.usercreator = usercreator;
+  public String getRegiao() {
+    return regiao;
+  }
+
+  public void setRegiao(String regiao) {
+    this.regiao = regiao;
+  }
+
+  public String getSerialNumber() {
+    return serialNumber;
+  }
+
+  public void setSerialNumber(String serialNumber) {
     this.serialNumber = serialNumber;
-    this.type=type;
+  }
+
+  public int getX() {
+    return x;
+  }
+
+  public void setX(int x) {
     this.x = x;
+  }
+
+  public int getY() {
+    return y;
+  }
+
+  public void setY(int y) {
     this.y = y;
   }
 
+
+  public Cache(String serialNumber, CacheDiff type , UserBasic userCreator, Objeto obj , int x, int y, String regiao) {
+    this.serialNumber = serialNumber;
+    this.type=type;
+    this.userCreator = userCreator;
+    this.obj=obj;
+    this.x = x;
+    this.y = y;
+    this.regiao=regiao;
+  }
+
   /*
-  public void insertCache(){
-    cacheST.put(this.nameCache,this);
-  }
-
-  public void removeCache(){
-    cacheST.remove(this.serialNumber);
-  }
-
-  metodos para ver se a cache ja foi vizitada pelo user
-*/
-
-
-
-  public void addObjectToCache(Objeto objeto) throws AlreadyRegisteredObjectException {
+  public void addObjectToArrayList(Objeto objeto) throws AlreadyRegisteredObjectException {
     if (!objetos.contains(objeto)) {
       objetos.add(objeto);
     }
@@ -71,7 +88,19 @@ public class Cache {
     }
   }
 
+*/
 
-
+  @Override
+  public String toString() {
+    return "Cache{" +
+            "userCreator=" + userCreator.name +
+            ", type=" + type +
+            ", serialNumber='" + serialNumber + '\'' +
+            ", obj=" + obj.nameItem +
+            ", x=" + x +
+            ", y=" + y +
+            ", regiao='" + regiao + '\'' +
+            '}';
+  }
 }
 

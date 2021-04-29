@@ -11,6 +11,11 @@ public class Objeto extends TravelBugs {
     this.nameItem = nameItem;
   }
 
-
-
+  @Override
+  public String toString() {
+    return "Objeto{" +
+            "nameItem='" + nameItem + '\'' +
+            ", id='" + id + '\'' +
+            '}';
+  }
 }

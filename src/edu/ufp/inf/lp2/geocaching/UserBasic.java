@@ -1,10 +1,7 @@
 package edu.ufp.inf.lp2.geocaching;
 import edu.princeton.cs.algs4.ST;
 
-public class UserBasic {
-
-  public static ST<String, UserBasic> userST = new ST<>();
-
+public class UserBasic{
 
 
   public String name;
@@ -19,6 +16,9 @@ public class UserBasic {
   public double cachesVisitadas;
 
   public double cachesEscondidas;
+
+  public ST<String , Cache> hCaches = new ST<>();
+  //sempre que um user visitar uma cache adiciono na Hcache
 
 
   public String getName() {
@@ -83,29 +83,7 @@ public class UserBasic {
   public void locatetravelBugs() {
   }
 
-  public void insertUser(){
-    userST.put(this.id, this);
-  }
 
-  public void editUser(String name, int x, int y){
-    this.name=name;
-    this.x=x;
-    this.y=y;
-    userST.put(this.id,this);
-  }
-
-  public void printUser(){
-    System.out.println("Lista Utilizadores: ");
-    for (String name: userST.keys()){
-      UserBasic user = userST.get(name);
-      System.out.println(userST.get(name));
-    }
-    System.out.println("\n");
-  }
-
-  public void removeUser(String id){
-    userST.remove(this.id);
-  }
 
   @Override
   public String toString() {

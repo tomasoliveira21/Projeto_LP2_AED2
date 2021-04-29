@@ -2,9 +2,9 @@ package edu.ufp.inf.lp2.geocaching;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
-import edu.princeton.cs.algs4.ST;
 
-import static edu.ufp.inf.lp2.geocaching.UserBasic.userST;
+import static edu.ufp.inf.lp2.geocaching.UserAdmin.cacheST;
+import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
 
 public class Main {
 
@@ -21,15 +21,17 @@ public class Main {
         UserAdmin u6= new UserAdmin("7004", "Arriscado", 11,12);
 
         //---------[Inserção de Utilizadores na ST]---------
-        u1.insertUser();
-        u2.insertUser();
-        u3.insertUser();
-        u4.insertUser();
-        u5.insertUser();
-        u6.insertUser();
+
+
+        u5.insertUser(u1);
+        u6.insertUser(u2);
+        u5.insertUser(u3);
+        u6.insertUser(u4);
+        u5.insertUser(u5);
+        u6.insertUser(u6);
 
         //---------[Print Utilizadores]---------
-        u1.printUser();
+        printUsers();
 
 /*
         //---------[Editar Utilizador da ST]---------
@@ -39,22 +41,18 @@ public class Main {
         u4.editUser("LeonorEditada", 22, 55);
         u5.editUser("IvoneEditada", 66,88);
         u6.editUser("ArriscadoEditada", 78, 32);
-
-        //---------[Print Utilizadores]---------
         u1.printUser();
 
         //---------[Remover Utilizador]---------
         u6.removeUser("7004");
-
-        //---------[Print Utilizadores]---------
         u1.printUser();
 
         */
 
         //---------[Escrever e Ler Utilizadores do ficheiro]---------
-        writeUser_txt(userST,".//data/user.txt");
+        //writeUser_txt(".//data/user.txt");
         //readUser_txt(userST, ".//data/user.txt");
-        printUsers(userST);
+        //printUsers();
 
 
         //---------[Caches de objetos e Caches]---------
@@ -62,20 +60,36 @@ public class Main {
         Objeto teclado= new Objeto("55", "teclado");
         Objeto monitor = new Objeto("66", "monitor");
 
-        Cache c1= new Cache("1",u1,CacheDiff.Easy,11,22);
-        Cache c2= new Cache("2",u2,CacheDiff.Medium,33,44);
-        Cache c3= new Cache("3",u3,CacheDiff.Hard,55,66);
-        Cache c4= new Cache("4",u4,CacheDiff.Easy,77,88);
-        Cache c5= new Cache("5",u5,CacheDiff.Medium,99,110);
-        Cache c6= new Cache("6",u6,CacheDiff.Hard,55,66);
+        Cache c1= new Cache("11",CacheDiff.Easy,u1, rato ,1,3,"Lisboa");
+        Cache c2= new Cache("21",CacheDiff.Medium,u2, teclado ,6,8,"Porto");
+        Cache c3= new Cache("31",CacheDiff.Hard,u3, monitor ,7,4,"Cardielos");
 
-        //---------[Inserção de Caches na ST]---------
+        //---------[Inserção de Cache na ST]---------
+        u5.insertCache(c1);
+        u6.insertCache(c2);
+/*
+        //---------[Print Caches]---------
+        u5.printCache();
 
+        //---------[Editar Caches da ST]---------
+        u5.editCache(c1,"33",CacheDiff.Hard,u1,8,9,"Viana");
+        u5.printCache();
+
+        //---------[Remover Caches da ST]---------
+        u5.removeCache(c1);
+        u5.removeCache(c2);
+        u5.printCache();
+*/
+
+        //---------[Escrever e Ler Utilizadores do ficheiro]---------
+        writeCache_txt(".//data/cache.txt");
+        //falta ler da cache
+        u5.printCache();
 
 
     }
 
-    private static void readUser_txt(ST<String, UserBasic> userST, String path){
+    private static void readUser_txt(String path){
         In in = new In(path);
         in.readLine();
 
@@ -88,7 +102,7 @@ public class Main {
         }
     }
 
-    private static void printUsers(ST<String, UserBasic> userST){
+    private static void printUsers(){
         for (String name : userST.keys()){
             UserBasic u = userST.get(name);
             System.out.println(userST.get(name));
@@ -96,11 +110,20 @@ public class Main {
         System.out.println("\n");
     }
 
-    private static void writeUser_txt(ST<String, UserBasic> userST, String path){
+    private static void writeUser_txt(String path){
         Out out = new Out(path);
 
         for (String u: userST.keys()){
             out.println( userST.get(u).getId() + " " + userST.get(u).getName() + " " + userST.get(u).getX() + " " +userST.get(u).getY());
+        }
+        System.out.println("\n");
+    }
+
+    private static void writeCache_txt(String path){
+        Out out = new Out(path);
+
+        for (String u: cacheST.keys()){
+            out.println(cacheST.get(u).getSerialNumber() + " " + cacheST.get(u).type + " " + cacheST.get(u).obj.nameItem + " " + cacheST.get(u).getX() + " " + cacheST.get(u).getY() + " " + cacheST.get(u).getRegiao() );
         }
         System.out.println("\n");
     }

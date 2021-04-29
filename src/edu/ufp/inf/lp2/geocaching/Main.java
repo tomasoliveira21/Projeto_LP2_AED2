@@ -28,14 +28,17 @@ public class Main {
         //---------[Inserção de Utilizadores na ST]---------
 
         insertUser(u1);
+        insertUser(u2);
         insertUser(u3);
+        insertUser(u4);
         insertUser(u5);
+        insertUser(u6);
 
 
-//        //---------[Print Utilizadores]---------
-//        printUsers();
-//
-//
+        //---------[Print Utilizadores]---------
+        printUsers();
+
+
 //        //---------[Editar Utilizador da ST]---------
 //        editUser(u1,"TomasEditado");
 //        editUser(u3,"LeticiaEditado");
@@ -45,10 +48,10 @@ public class Main {
 //
 //        printUsers();
 //
-//        //---------[Escrever e Ler Utilizadores do ficheiro]---------
-//        //writeUser_txt(".//data/user.txt");
-//        //readUser_txt(userST, ".//data/user.txt");
-//        //printUsers();
+//       // ---------[Escrever e Ler Utilizadores do ficheiro]---------
+//        writeUser_txt(".//data/user.txt");
+//        readUser_txt(".//data/user.txt");
+//        printUsers();
 
 
         //---------[Caches de objetos e Caches]---------
@@ -66,38 +69,54 @@ public class Main {
         Cache c1= new Cache("11",CacheDiff.Easy,u1, lista1 ,1,3,"Lisboa");
         Cache c2= new Cache("21",CacheDiff.Medium,u2, lista2 ,6,8,"Porto");
         Cache c3= new Cache("31",CacheDiff.Hard,u3, lista1 ,7,4,"Cardielos");
+        Cache c4= new Cache("33",CacheDiff.Medium,u4, lista2 ,9,6,"Torre");
+        Cache c5= new Cache("55",CacheDiff.Hard,u5, lista1 ,12,55,"Ponte de Lima");
+        Cache c6= new Cache("66",CacheDiff.Easy,u6, lista2 ,43,76,"Braga");
 
-        //---------[Inserção de Cache na ST]---------
-        u5.insertCache(c1);
-        //u5.insertCache(c2);
-        u6.insertCache(c2);
-
-        //---------[Print Caches]---------
-        u5.printCaches();
-        u6.printCaches();
+        //---------[Inserção na ST de Caches]---------
+        insertCache(c3,"Leticia");
+        insertCache(c4,"Leonor");
+        insertCache(c5,"Ivone");
+        insertCache(c6,"Arriscado");
         printCaches();
 
-        //---------[Editar Caches da ST]---------
-        //u5.editCache(c1,"33",CacheDiff.Hard,u1,8,9,"Viana");
-        //u5.printCache();
+//        //---------[Inserção de Caches no ArrayList de UserAdmin --> Caches Premium]---------
+//        u5.insertCache(c1);
+//        u6.insertCache(c2);
+//        u5.printCaches();
+//        u6.printCaches();
+//
+//
+//        //---------[Editar Caches da ST]---------
+//        editCache(c3,"99",CacheDiff.Easy,u3,8,55,"Viana");
+//        printCaches();
+//
+//        //---------[Remover Caches da ST]---------
+//        removeCache(c5);
+//        removeCache(c6);
+//        printCaches();
+//        c3.printObjetoFromCache();
+//        c4.printObjetoFromCache();
+//
+//
+//     /*  //---------[Escrever e Ler Caches e Objetos do ficheiro]---------
+//        writeCache_txt(".//data/cache.txt");
+//        writeObjeto_txt(".//data/objeto.txt");
+//        //falta ler da cache e do objeto
+//        u5.printCache();
+//*/
+//           ---------[Inserção de Caches no ArrayList de UserAdmin --> Caches Premium]---------
+//        u5.insertCache(c1);
+//        u6.insertCache(c2);
+//        u5.printCaches();
+//        u6.printCaches();
 
-        //---------[Remover Caches da ST]---------
-        u5.removeCache(c1);
-        u5.removeCache(c2);
-        u5.printCaches();
-        c1.printObjetoFromCache();
 
 
-       /* //---------[Escrever e Ler Caches e Objetos do ficheiro]---------
-        writeCache_txt(".//data/cache.txt");
-        writeObjeto_txt(".//data/objeto.txt");
-        //falta ler da cache e do objeto
-        u5.printCache();
-*/
 
     }
 
-    private void readUser_txt(String path){
+    private static void readUser_txt(String path){
         In in = new In(path);
         in.readLine();
 
@@ -125,7 +144,7 @@ public class Main {
         }
     }
 
-     private static   void printUsers(){
+    private static void printUsers(){
         for (String name : userST.keys()){
             UserBasic u = userST.get(name);
             System.out.println(userST.get(name));
@@ -140,7 +159,7 @@ public class Main {
         System.out.println("\n");
     }
 
-    private  void writeUser_txt(String path){
+    private static void writeUser_txt(String path){
         Out out = new Out(path);
 
         for (String u: userST.keys()){
@@ -216,7 +235,6 @@ public class Main {
         cache.x = x;
         cache.y = y;
         cache.regiao=regiao;
-        cacheST.put(cache.serialNumber,cache);
     }
 
 }

@@ -33,15 +33,15 @@ public class UserAdmin extends UserPremium {
     arrayListCache.remove(cache);
   }
 
-    public void printCaches(){
-        System.out.println("Lista Caches: ");
+  public void printCaches(){
+        System.out.println("[----- UM ADMIN INSERIU UMA CACHE NO ARRAYLIST DE CACHES -----]");
         for (Cache cache: arrayListCache){
             System.out.println(cache.toString());
         }
         System.out.println("\n");
     }
 
-    public void editCache(Cache cache, String serialNumber, CacheDiff type , UserBasic usercreator, int x, int y, String regiao){
+  public void editCache(Cache cache, String serialNumber, CacheDiff type , UserBasic usercreator, int x, int y, String regiao){
         cache.serialNumber = serialNumber;
         cache.type=type;
         cache.userCreator = usercreator;

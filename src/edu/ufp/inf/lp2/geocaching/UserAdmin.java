@@ -38,18 +38,6 @@ public class UserAdmin extends UserPremium {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   public void insertCache(Cache cache){
     cacheST.put(cache.serialNumber,cache);
   }

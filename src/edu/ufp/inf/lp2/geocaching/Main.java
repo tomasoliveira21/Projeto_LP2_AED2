@@ -81,9 +81,10 @@ public class Main {
         u5.printCache();
 */
 
-        //---------[Escrever e Ler Utilizadores do ficheiro]---------
+        //---------[Escrever e Ler Caches e Objetos do ficheiro]---------
         writeCache_txt(".//data/cache.txt");
-        //falta ler da cache
+        writeObjeto_txt(".//data/objeto.txt");
+        //falta ler da cache e do objeto
         u5.printCache();
 
 
@@ -128,6 +129,14 @@ public class Main {
         System.out.println("\n");
     }
 
+    private static void writeObjeto_txt(String path){
+        Out out = new Out(path);
+
+        for (String u: cacheST.keys()){
+            out.println(cacheST.get(u).getSerialNumber() + " " + cacheST.get(u).obj.nameItem );
+        }
+        System.out.println("\n");
+    }
 
 }
 

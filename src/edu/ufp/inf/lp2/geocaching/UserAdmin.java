@@ -1,55 +1,42 @@
 package edu.ufp.inf.lp2.geocaching;
 
-import edu.princeton.cs.algs4.ST;
+import java.util.ArrayList;
 
 public class UserAdmin extends UserPremium {
 
-    public static ST<String, UserBasic> userST = new ST<>();
+   private ArrayList<Cache> arrayListCache= new ArrayList<>();
 
-    public static ST<String, Cache> cacheST = new ST<>();
-
-    public UserAdmin(String id, String name, int x, int y) {
-        super(id, name, x, y);
+    public UserAdmin(String id, String name) {
+        super(id, name);
     }
 
-
-
-    public void insertUser(UserBasic user){
-        userST.put(user.id, user);
-    }
-
-    public void editUser(UserBasic user, String name, int x, int y){
-        user.name=name;
-        user.x=x;
-        user.y=y;
-        userST.put(user.id,user);
-    }
-
-    public void printUser(UserBasic user){
-        System.out.println("Lista Utilizadores: ");
-        for (String name: userST.keys()){
-            System.out.println(userST.get(name));
+    
+    public UserBasic createUser(String id, String name, UserType t){
+        switch (t){
+            case Basic:  return new UserBasic(id,name);
+            case Premium: return new UserPremium(id,name);
+            case Admin: return new UserAdmin(id,name);
         }
-        System.out.println("\n");
+        return null;
     }
 
-    public void removeUser(UserBasic user,String id){
-        userST.remove(user.id);
+    public void editUser(UserBasic user, String name){
+        user.name=name;
     }
 
 
   public void insertCache(Cache cache){
-    cacheST.put(cache.serialNumber,cache);
+    arrayListCache.add(cache);
   }
 
   public void removeCache(Cache cache){
-    cacheST.remove(cache.serialNumber);
+    arrayListCache.remove(cache);
   }
 
-    public void printCache(){
+    public void printCaches(){
         System.out.println("Lista Caches: ");
-        for (String cacheName: cacheST.keys()){
-            System.out.println(cacheST.get(cacheName));
+        for (Cache cache: arrayListCache){
+            System.out.println(cache.toString());
         }
         System.out.println("\n");
     }
@@ -61,7 +48,6 @@ public class UserAdmin extends UserPremium {
         cache.x = x;
         cache.y = y;
         cache.regiao=regiao;
-        cacheST.put(cache.serialNumber,cache);
     }
 
 
@@ -70,8 +56,6 @@ public class UserAdmin extends UserPremium {
         return "UserAdmin{" +
                 "name='" + name + '\'' +
                 ", id='" + id + '\'' +
-                ", x=" + x +
-                ", y=" + y +
                 ", cachesVisitadas=" + cachesVisitadas +
                 ", cachesEscondidas=" + cachesEscondidas +
                 '}';

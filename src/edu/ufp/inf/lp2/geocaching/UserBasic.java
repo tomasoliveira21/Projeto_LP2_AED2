@@ -1,6 +1,8 @@
 package edu.ufp.inf.lp2.geocaching;
 import edu.princeton.cs.algs4.ST;
 
+import java.util.ArrayList;
+
 public class UserBasic{
 
 
@@ -8,9 +10,6 @@ public class UserBasic{
 
   public String id;
 
-  public int x;
-
-  public int y;
 
 
   public double cachesVisitadas;
@@ -37,21 +36,7 @@ public class UserBasic{
     this.id = id;
   }
 
-  public int getX() {
-    return x;
-  }
 
-  public void setX(int x) {
-    this.x = x;
-  }
-
-  public int getY() {
-    return y;
-  }
-
-  public void setY(int y) {
-    this.y = y;
-  }
 
   public double getCachesVisitadas() {
     return cachesVisitadas;
@@ -70,11 +55,10 @@ public class UserBasic{
   }
 
 
-  public UserBasic(String id, String name, int x, int y) {
+  public UserBasic(String id, String name) {
     this.id = id;
     this.name = name;
-    this.x = x;
-    this.y = y;
+
   }
 
   public void progress() {
@@ -83,6 +67,11 @@ public class UserBasic{
   public void locatetravelBugs() {
   }
 
+public void visitCache(Cache cache, ArrayList objetosretirados, ArrayList objetoscolocados){
+    hCaches.put(""+System.currentTimeMillis(), cache);
+    cache.addVisitante(this);
+}
+
 
 
   @Override
@@ -90,8 +79,6 @@ public class UserBasic{
     return "UserBasic{" +
             "name='" + name + '\'' +
             ", id='" + id + '\'' +
-            ", x=" + x +
-            ", y=" + y +
             ", cachesVisitadas=" + cachesVisitadas +
             ", cachesEscondidas=" + cachesEscondidas +
             '}';

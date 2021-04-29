@@ -9,11 +9,13 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
 
   public ST<String, UserBasic> hUsers= new ST<>();
   public ArrayList<CacheLogs> cacheLogs= new ArrayList<>();
+  public ArrayList<Objeto> arrayListObjeto=new ArrayList<>();
 
   public UserBasic userCreator;
   public CacheDiff type;
   public String serialNumber;
-  public Objeto obj;
+
+
 
   public int x;
   public int y;
@@ -52,43 +54,45 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   }
 
 
-  public Cache(String serialNumber, CacheDiff type , UserBasic userCreator, Objeto obj , int x, int y, String regiao) {
+  public Cache(String serialNumber, CacheDiff type , UserBasic userCreator, ArrayList arrayListObjeto , int x, int y, String regiao) {
     this.serialNumber = serialNumber;
     this.type=type;
     this.userCreator = userCreator;
-    this.obj=obj;
+    this.arrayListObjeto=arrayListObjeto;
     this.x = x;
     this.y = y;
     this.regiao=regiao;
   }
 
-  /*
+
   public void addObjectToArrayList(Objeto objeto) throws AlreadyRegisteredObjectException {
-    if (!objetos.contains(objeto)) {
-      objetos.add(objeto);
+    if (!arrayListObjeto.contains(objeto)) {
+      arrayListObjeto.add(objeto);
     }
     throw new AlreadyRegisteredObjectException("Object already registered!");
   }
 
   public boolean removeObjectFromCache(String nameItem) {
-    for (int i = 0; i < objetos.size(); i++) {
-      objetos.get(i).nameItem.equals(nameItem);
-      if (objetos.get(i).nameItem.equals(nameItem)) {
-        return objetos.remove(objetos.get(i));
+    for (int i = 0; i < arrayListObjeto.size(); i++) {
+      arrayListObjeto.get(i).nameItem.equals(nameItem);
+      if (arrayListObjeto.get(i).nameItem.equals(nameItem)) {
+        return arrayListObjeto.remove(arrayListObjeto.get(i));
       }
     }
     return false;
 
   }
 
-  public void printObjetoFromCache(){
+  public void printObjetoFromCache(){ //printa todos os objetos da cache
     System.out.println("Item da Lista de objetos: ");
-    for (int i = 0; i < objetos.size(); i++){
-      System.out.println(objetos.get(i).nameItem);
+    for (int i = 0; i < arrayListObjeto.size(); i++){
+      System.out.println(arrayListObjeto.get(i).nameItem);
     }
   }
 
-*/
+  public void addVisitante(UserBasic u1){
+    hUsers.put(""+System.currentTimeMillis(),u1);
+  }
 
   @Override
   public String toString() {
@@ -96,7 +100,7 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
             "userCreator=" + userCreator.name +
             ", type=" + type +
             ", serialNumber='" + serialNumber + '\'' +
-            ", obj=" + obj.nameItem +
+           //precisar do for
             ", x=" + x +
             ", y=" + y +
             ", regiao='" + regiao + '\'' +

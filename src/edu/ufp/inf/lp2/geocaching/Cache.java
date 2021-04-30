@@ -94,6 +94,13 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     hUsers.put(""+System.currentTimeMillis(),u1);
   }
 
+  public void printhUsers(){
+    for (String user : hUsers.keys()){
+      System.out.println(hUsers.get(user));
+    }
+    System.out.println("\n");
+  }
+
   @Override
   public String toString() {
     return "Cache{" +

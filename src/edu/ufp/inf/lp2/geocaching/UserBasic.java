@@ -61,17 +61,19 @@ public class UserBasic{
 
   }
 
-  public void progress() {
-  }
-
-  public void locatetravelBugs() {
-  }
 
 public void visitCache(Cache cache, ArrayList objetosretirados, ArrayList objetoscolocados){
     hCaches.put(""+System.currentTimeMillis(), cache);
     cache.addVisitante(this);
+
 }
 
+  public void printhCaches(){
+    for (String cache : hCaches.keys()){
+      System.out.println(hCaches.get(cache));
+    }
+    System.out.println("\n");
+  }
 
 
   @Override

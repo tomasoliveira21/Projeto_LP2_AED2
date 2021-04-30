@@ -1,7 +1,6 @@
 package edu.ufp.inf.lp2.geocaching;
 import edu.princeton.cs.algs4.ST;
-
-import java.util.ArrayList;
+import java.util.Date;
 
 public class UserBasic{
 
@@ -16,7 +15,7 @@ public class UserBasic{
 
   public double cachesEscondidas;
 
-  public ST<String , Cache> hCaches = new ST<>();
+  public ST<Date , Cache> hCaches = new ST<>();
   //sempre que um user visitar uma cache adiciono na Hcache
 
 
@@ -58,22 +57,27 @@ public class UserBasic{
   public UserBasic(String id, String name) {
     this.id = id;
     this.name = name;
-
   }
 
 
-public void visitCache(Cache cache, ArrayList objetosretirados, ArrayList objetoscolocados){
+  public void visitCache(Date date, Cache cache, MessageLog log){
+    CacheLogs cacheLogs = new CacheLogs(date, this.id,null,null);
+    this.cachesVisitadas++;
+   // cache.adicionarLog(log);
+    this.hCaches.put(date,cache);
+    cache.hUsers.put(date,this);
+  }
+
+/*public void visitCache(Cache cache,Objeto objeto, ArrayList objetosretirados, ArrayList objetoscolocados){
     hCaches.put(""+System.currentTimeMillis(), cache);
     cache.addVisitante(this);
 
-}
+    objetoscolocados.add(objeto);
+    objetosretirados.remove(objeto);
 
-  public void printhCaches(){
-    for (String cache : hCaches.keys()){
-      System.out.println(hCaches.get(cache));
-    }
-    System.out.println("\n");
-  }
+}
+ */
+
 
 
   @Override

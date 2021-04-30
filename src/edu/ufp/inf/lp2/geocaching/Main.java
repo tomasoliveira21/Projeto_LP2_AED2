@@ -74,7 +74,7 @@ public class Main {
         Cache c6= new Cache("66",CacheDiff.Easy,u6, lista2 ,43,76,"Braga");
 
         //---------[Inserção na ST de Caches]---------
-        insertCache(c3,"Leticia");
+        insertCache(c3,"Carlos");
         insertCache(c4,"Leonor");
         insertCache(c5,"Ivone");
         insertCache(c6,"Arriscado");
@@ -235,6 +235,10 @@ public class Main {
         cache.x = x;
         cache.y = y;
         cache.regiao=regiao;
+    }
+
+    private static void interacao(Cache cache, UserBasic user, ArrayList objetosRetirados, ArrayList objetosColocados, String mensagem,String date){
+        cache.interacaoCache(user,objetosColocados,objetosRetirados,date,mensagem);
     }
 
 }

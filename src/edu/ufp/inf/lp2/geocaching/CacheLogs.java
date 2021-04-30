@@ -1,10 +1,18 @@
 package edu.ufp.inf.lp2.geocaching;
+import java.util.Date;
 
-import java.util.ArrayList;
+public class CacheLogs {
 
-public class CacheLogs extends Cache {
+    Date data;
+    String userID;
+    public String objetocolocado;
+    public String objetoretirado;
 
-    public CacheLogs(String serialNumber, CacheDiff type, UserBasic userCreator, ArrayList arrayListObjeto, int x, int y, String regiao) {
-        super(serialNumber, type, userCreator, arrayListObjeto, x, y, regiao);
+    public CacheLogs(Date data, String userID, String objetocolocado, String objetoretirado) {
+        this.data = data;
+        this.userID = userID;
+        this.objetocolocado = objetocolocado;
+        this.objetoretirado = objetoretirado;
     }
+
 }

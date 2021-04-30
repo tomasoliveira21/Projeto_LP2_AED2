@@ -2,13 +2,18 @@ package edu.ufp.inf.lp2.geocaching;
 
 import edu.princeton.cs.algs4.ST;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Cache{ // é necessario fazer extends do userBasic (?)
 
-
-  public ST<String, UserBasic> hUsers= new ST<>();
-  public ArrayList<CacheLogs> cacheLogs= new ArrayList<>();
+  //public int nUtilizadores;
+  public ST<Date, UserBasic> hUsers= new ST<>();
+  public ArrayList<MessageLog> messageLogs = new ArrayList<>();
+  public ArrayList<MessageLog> cacheLogs = new ArrayList<>();
   public ArrayList<Objeto> arrayListObjeto=new ArrayList<>();
 
   public UserBasic userCreator;
@@ -90,16 +95,63 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     }
   }
 
-  public void addVisitante(UserBasic u1){
-    hUsers.put(""+System.currentTimeMillis(),u1);
+
+  public void addVisitante(UserBasic u1){ //Receber String de input
+    Date d = Calendar.getInstance().getTime();
+    hUsers.put(d,u1);
   }
 
-  public void printhUsers(){
-    for (String user : hUsers.keys()){
-      System.out.println(hUsers.get(user));
-    }
-    System.out.println("\n");
+  public void addVisitante(UserBasic u1, String date){ //Receber String de input
+  if(date==null){
+    addVisitante(u1);
+    return;
   }
+    Date result = null;
+    try{
+      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      result  = dateFormat.parse(date);
+    }
+
+    catch(ParseException e){
+      e.printStackTrace();
+
+    }
+
+    hUsers.put(result,u1);
+  }
+
+  /* hUsers.put(nUtilizadores,u1);
+    nUtilizadores++;
+
+   */
+
+  public boolean interacaoCache(UserBasic user, ArrayList<Objeto> objetoscolocados, ArrayList<Objeto> objetosretirados,String date, String mensagem){
+    addVisitante(user,date);
+    boolean encontrouobjeto= false;
+    for (Objeto objretirado: objetosretirados){
+      for (Objeto obj: arrayListObjeto){
+        if(objretirado==obj){
+          arrayListObjeto.remove(obj);
+          encontrouobjeto=true;
+        }
+        break;
+      }
+      if (encontrouobjeto==false){
+        return false;
+      }else {
+        encontrouobjeto=false;
+      }
+    }
+
+    objetoscolocados.addAll(objetoscolocados);
+    MessageLog objlogs=new MessageLog(date,mensagem);
+    messageLogs.add(objlogs);
+    CacheLogs cachelog= new CacheLogs(date,user,objetoscolocados,objetosretirados);
+    cacheLogs.add(cachelog);
+    return true;
+  }
+
+
 
   @Override
   public String toString() {

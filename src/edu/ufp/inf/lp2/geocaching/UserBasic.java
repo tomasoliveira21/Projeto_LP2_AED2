@@ -38,6 +38,7 @@ public class UserBasic{
   public void removerUser(){
     userST.remove(this.id);
   }
+
   public void removerUser(String id){
     userST.remove(id);
   }
@@ -143,24 +144,6 @@ public void printObjetos(){
   public void setCachesVisitadas(double cachesVisitadas) {
     this.cachesVisitadas = cachesVisitadas;
   }
-
-  public void visitCache(Date date, Cache cache, MessageLog log){
-    CacheLogs cacheLogs = new CacheLogs(date, this.id,null,null);
-    this.cachesVisitadas++;
-   // cache.adicionarLog(log);
-    this.hCaches.put(date,cache);
-    cache.hUsers.put(date,this);
-  }
-
-/*public void visitCache(Cache cache,Objeto objeto, ArrayList objetosretirados, ArrayList objetoscolocados){
-    hCaches.put(""+System.currentTimeMillis(), cache);
-    cache.addVisitante(this);
-
-    objetoscolocados.add(objeto);
-    objetosretirados.remove(objeto);
-
-}
- */
 
 
 

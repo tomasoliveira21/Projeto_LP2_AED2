@@ -14,29 +14,34 @@ public class Main {
 
 
         //---------[Criação de utilizadores]---------
-        UserBasic u1= new UserBasic("40097", "Tomas");
-        UserBasic u2= new UserBasic("39917", "Ruben");
-        UserPremium u3= new UserPremium("1904", "Leticia");
-        UserPremium u4= new UserPremium("5555", "Leonor");
-        UserAdmin u5= new UserAdmin("1001", "Ivone");
-        UserAdmin u6= new UserAdmin("7004", "Arriscado");
+        UserBasic u1= new UserBasic("Tomas", "40097");
+        UserBasic u2= new UserBasic("Ruben", "39917");
+        UserPremium u3= new UserPremium("Leticia", "1904");
+        UserPremium u4= new UserPremium("Leonor", "5555");
+        UserAdmin u5= new UserAdmin("Ivone", "1001");
+        UserAdmin u6= new UserAdmin("Tichinha", "7004");
 
         //---------[Inserção de Utilizadores na ST]---------
 
-
-
+        u1.insertUser();
+        u2.insertUser();
+        u3.insertUser();
+        u4.insertUser();
+        u5.insertUser();
+        u6.insertUser();
 
         //---------[Print Utilizadores]---------
+        u5.printUser();
 
 
-//        //---------[Editar Utilizador da ST]---------
-//        editUser(u1,"TomasEditado");
-//        editUser(u3,"LeticiaEditado");
-//
+        //---------[Editar Utilizador da ST]---------
+        u3.editarUser("LeticiaEditada","0000");
+        u5.printUser();
+
 //        //---------[Remover Utilizador]---------
-//        removeUser(u3);
-//
-//        printUsers();
+        u4.removerUser();
+        u5.printUser();
+
 //
 //       // ---------[Escrever e Ler Utilizadores do ficheiro]---------
 //        writeUser_txt(".//data/user.txt");
@@ -45,7 +50,7 @@ public class Main {
 
 
         //---------[Caches de objetos e Caches]---------
-      /*  Objeto rato = new Objeto("44","rato");
+        /*Objeto rato = new Objeto("44","rato");
         Objeto teclado= new Objeto("55", "teclado");
         Objeto monitor = new Objeto("66", "monitor");
         ArrayList<Objeto> lista1= new ArrayList<>();
@@ -55,37 +60,28 @@ public class Main {
         ArrayList<Objeto> lista2= new ArrayList<>();
         lista2.add(rato);
         lista2.add(monitor);
+         */
 
-        Cache c1= new Cache("11",CacheDiff.Easy,u3, lista1 ,1,3,"Lisboa");
-        Cache c2= new Cache("21",CacheDiff.Medium,u3, lista2 ,6,8,"Porto");
-        Cache c3= new Cache("31",CacheDiff.Hard,u4, lista1 ,7,4,"Cardielos");
-        Cache c4= new Cache("33",CacheDiff.Medium,u4, lista2 ,9,6,"Torre");
-        Cache c5= new Cache("55",CacheDiff.Hard,u5, lista1 ,12,55,"Ponte de Lima");
-        Cache c6= new Cache("66",CacheDiff.Easy,u6, lista2 ,43,76,"Braga");
-*/
+        Cache c1= new Cache("00",CacheDiff.Easy,u5,2,4,"AltoMinho");
+        Cache c2= new Cache("11",CacheDiff.Medium,u6,7,7,"Cardielos");
+        Cache c3= new Cache("22",CacheDiff.Hard,u5,1,3,"Viana");
+        Cache c4= new Cache("33",CacheDiff.Easy,u6,8,9,"Perre");
+
+
         //---------[Inserção na ST de Caches]---------
-       /* insertCache(c3,"Carlos");
-        insertCache(c4,"Leonor");
-        insertCache(c5,"Ivone");
-        insertCache(c6,"Arriscado");
-        printCaches();
-        */
+        u5.insertCache(c1);
+        u6.insertCache(c2);
+        u5.insertCache(c3);
+        u6.insertCache(c4);
+        u5.printCache();
 
-//        //---------[Inserção de Caches no ArrayList de UserAdmin --> Caches Premium]---------
-//        u5.insertCache(c1);
-//        u6.insertCache(c2);
-//        u5.printCaches();
-//        u6.printCaches();
-//
-//
-//        //---------[Editar Caches da ST]---------
-//        editCache(c3,"99",CacheDiff.Easy,u3,8,55,"Viana");
-//        printCaches();
-//
-//        //---------[Remover Caches da ST]---------
-//        removeCache(c5);
-//        removeCache(c6);
-//        printCaches();
+        //---------[Editar Caches da ST]---------
+       u5.editCache(c4,"44",CacheDiff.Hard,u6,10,11,"PerreParisLondres");
+       u5.printCache();
+
+        //---------[Remover Caches da ST]---------
+        u5.removeCache(c1);
+        u5.printCache();
 //        c3.printObjetoFromCache();
 //        c4.printObjetoFromCache();
 //

@@ -7,7 +7,7 @@ public class UserPremium extends UserBasic {
     public double cachesEscondidas;
     public RedBlackBST<String,TravelBugs> meusTravelBugs = new RedBlackBST<>();
 
-    public UserPremium(String id, String name) {
+    public UserPremium(String name, String id) {
         super(id, name);
     }
 
@@ -24,7 +24,6 @@ public class UserPremium extends UserBasic {
                 "name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 ", cachesVisitadas=" + cachesVisitadas +
-                ", cachesEscondidas=" + cachesEscondidas +
                 '}';
     }
 }

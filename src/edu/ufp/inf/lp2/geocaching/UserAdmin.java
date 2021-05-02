@@ -11,18 +11,18 @@ public class UserAdmin extends UserPremium {
 
     public static   ST<String, Cache> cacheST = new ST<>();
 
-    public UserAdmin(String id, String name) {
+    public UserAdmin(String name, String id) {
         super(id, name);
     }
 
 
 
-    private static void editUser(UserBasic user, String name){
+    public void editUser(UserBasic user, String name){
         user.name=name;
         userST.put(user.id,user);
     }
 
-    private static void printUser(UserBasic user){
+    public void printUser(){
         System.out.println("Lista Utilizadores: ");
         for (String name: userST.keys()){
             System.out.println(userST.get(name));
@@ -30,19 +30,19 @@ public class UserAdmin extends UserPremium {
         System.out.println("\n");
     }
 
-    private static void removeUser(UserBasic user){
+    public void removeUser(UserBasic user){
         userST.remove(user.id);
     }
 
-    private static void insertCache(Cache cache){
+    public void insertCache(Cache cache){
         cacheST.put(cache.serialNumber,cache);
     }
 
-    private static void removeCache(Cache cache){
+    public void removeCache(Cache cache){
         cacheST.remove(cache.serialNumber);
     }
 
-    private static void printCache(){
+    public void printCache(){
         System.out.println("Lista Caches: ");
         for (String cacheName: cacheST.keys()){
             System.out.println(cacheST.get(cacheName));
@@ -50,7 +50,7 @@ public class UserAdmin extends UserPremium {
         System.out.println("\n");
     }
 
-    private static void editCache(Cache cache, String serialNumber, CacheDiff type , UserPremium usercreator, int x, int y, String regiao){
+    public void editCache(Cache cache, String serialNumber, CacheDiff type , UserPremium usercreator, int x, int y, String regiao){
         cache.serialNumber = serialNumber;
         cache.type=type;
         cache.userCreator = usercreator;
@@ -66,7 +66,6 @@ public class UserAdmin extends UserPremium {
                 "name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 ", cachesVisitadas=" + cachesVisitadas +
-                ", cachesEscondidas=" + cachesEscondidas +
                 '}';
     }
 }

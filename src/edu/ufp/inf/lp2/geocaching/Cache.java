@@ -1,9 +1,8 @@
 package edu.ufp.inf.lp2.geocaching;
 
+import edu.princeton.cs.algs4.BST;
 import edu.princeton.cs.algs4.ST;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,10 +12,10 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   //public int nUtilizadores;
   public ST<Date, UserBasic> hUsers= new ST<>();
   public ArrayList<MessageLog> messageLogs = new ArrayList<>();
-  public ArrayList<MessageLog> cacheLogs = new ArrayList<>();
-  public ArrayList<Objeto> arrayListObjeto=new ArrayList<>();
+  public ArrayList<CacheLogs> cacheLogs = new ArrayList<>();
+  public BST<String,Objeto> meusObjetos =new BST<>();
 
-  public UserBasic userCreator;
+  public UserPremium userCreator;
   public CacheDiff type;
   public String serialNumber;
 
@@ -59,39 +58,39 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   }
 
 
-  public Cache(String serialNumber, CacheDiff type , UserBasic userCreator, ArrayList arrayListObjeto , int x, int y, String regiao) {
+  public Cache(String serialNumber, CacheDiff type , UserPremium userCreator , int x, int y, String regiao) {
     this.serialNumber = serialNumber;
     this.type=type;
     this.userCreator = userCreator;
-    this.arrayListObjeto=arrayListObjeto;
     this.x = x;
     this.y = y;
     this.regiao=regiao;
   }
 
 
-  public void addObjectToArrayList(Objeto objeto) throws AlreadyRegisteredObjectException {
-    if (!arrayListObjeto.contains(objeto)) {
-      arrayListObjeto.add(objeto);
+ /* public void addObjectToArrayList(Objeto objeto) throws AlreadyRegisteredObjectException {
+    if (!meusObjetos.contains(objeto)) {
+      meusObjetos.add(objeto);
     }
     throw new AlreadyRegisteredObjectException("Object already registered!");
   }
 
   public boolean removeObjectFromCache(String nameItem) {
-    for (int i = 0; i < arrayListObjeto.size(); i++) {
-      arrayListObjeto.get(i).nameItem.equals(nameItem);
-      if (arrayListObjeto.get(i).nameItem.equals(nameItem)) {
-        return arrayListObjeto.remove(arrayListObjeto.get(i));
+    for (int i = 0; i < meusObjetos.size(); i++) {
+      meusObjetos.get(i).nameItem.equals(nameItem);
+      if (meusObjetos.get(i).nameItem.equals(nameItem)) {
+        return meusObjetos.remove(meusObjetos.get(i));
       }
     }
     return false;
 
   }
-
+*/
   public void printObjetoFromCache(){ //printa todos os objetos da cache
     System.out.println("Item da Lista de objetos: ");
-    for (int i = 0; i < arrayListObjeto.size(); i++){
-      System.out.println(arrayListObjeto.get(i).nameItem);
+    for (String id :meusObjetos.keys()){
+      Objeto obj = meusObjetos.get(id);
+      System.out.println(obj.toString());
     }
   }
 
@@ -100,7 +99,7 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     Date d = Calendar.getInstance().getTime();
     hUsers.put(d,u1);
   }
-
+/*
   public void addVisitante(UserBasic u1, String date){ //Receber String de input
   if(date==null){
     addVisitante(u1);
@@ -120,11 +119,14 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     hUsers.put(result,u1);
   }
 
+ */
+
   /* hUsers.put(nUtilizadores,u1);
     nUtilizadores++;
 
    */
 
+  /*
   public boolean interacaoCache(UserBasic user, ArrayList<Objeto> objetoscolocados, ArrayList<Objeto> objetosretirados,String date, String mensagem){
     addVisitante(user,date);
     boolean encontrouobjeto= false;
@@ -150,7 +152,7 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     cacheLogs.add(cachelog);
     return true;
   }
-
+*/
 
 
   @Override

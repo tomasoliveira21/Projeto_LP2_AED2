@@ -1,47 +1,56 @@
 package edu.ufp.inf.lp2.geocaching;
 
-import java.util.ArrayList;
+import edu.princeton.cs.algs4.ST;
+
+
+
 
 public class UserAdmin extends UserPremium {
 
-   private ArrayList<Cache> arrayListCache= new ArrayList<>();
+    public static ST<String, UserBasic> userST = new ST<>();
+
+    public static   ST<String, Cache> cacheST = new ST<>();
 
     public UserAdmin(String id, String name) {
         super(id, name);
     }
 
-    
-    public UserBasic createUser(String id, String name, UserType t){
-        switch (t){
-            case Basic:  return new UserBasic(id,name);
-            case Premium: return new UserPremium(id,name);
-            case Admin: return new UserAdmin(id,name);
-        }
-        return null;
-    }
 
-    public void editUser(UserBasic user, String name){
+
+    private static void editUser(UserBasic user, String name){
         user.name=name;
+        userST.put(user.id,user);
     }
 
-
-  public void insertCache(Cache cache){
-    arrayListCache.add(cache);
-  }
-
-  public void removeCache(Cache cache){
-    arrayListCache.remove(cache);
-  }
-
-  public void printCaches(){
-        System.out.println("[----- UM ADMIN INSERIU UMA CACHE NO ARRAYLIST DE CACHES -----]");
-        for (Cache cache: arrayListCache){
-            System.out.println(cache.toString());
+    private static void printUser(UserBasic user){
+        System.out.println("Lista Utilizadores: ");
+        for (String name: userST.keys()){
+            System.out.println(userST.get(name));
         }
         System.out.println("\n");
     }
 
-  public void editCache(Cache cache, String serialNumber, CacheDiff type , UserBasic usercreator, int x, int y, String regiao){
+    private static void removeUser(UserBasic user){
+        userST.remove(user.id);
+    }
+
+    private static void insertCache(Cache cache){
+        cacheST.put(cache.serialNumber,cache);
+    }
+
+    private static void removeCache(Cache cache){
+        cacheST.remove(cache.serialNumber);
+    }
+
+    private static void printCache(){
+        System.out.println("Lista Caches: ");
+        for (String cacheName: cacheST.keys()){
+            System.out.println(cacheST.get(cacheName));
+        }
+        System.out.println("\n");
+    }
+
+    private static void editCache(Cache cache, String serialNumber, CacheDiff type , UserPremium usercreator, int x, int y, String regiao){
         cache.serialNumber = serialNumber;
         cache.type=type;
         cache.userCreator = usercreator;

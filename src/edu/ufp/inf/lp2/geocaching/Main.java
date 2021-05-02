@@ -1,21 +1,17 @@
 package edu.ufp.inf.lp2.geocaching;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Out;
-import edu.princeton.cs.algs4.ST;
-
-import java.util.ArrayList;
-
+import static edu.ufp.inf.lp2.geocaching.UserAdmin.cacheST;
+import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
 
 public class Main {
 
-    private static ST<String, UserBasic> userST = new ST<>();
-
-    private static   ST<String, Cache> cacheST = new ST<>();
 
     private static final String FILE_DELIMETER = ";";
 
     public static void main(String[] args) {
+        System.out.println(userST.size());
+        System.out.println(cacheST.size());
+
 
         //---------[Criação de utilizadores]---------
         UserBasic u1= new UserBasic("40097", "Tomas");
@@ -27,16 +23,10 @@ public class Main {
 
         //---------[Inserção de Utilizadores na ST]---------
 
-        insertUser(u1);
-        insertUser(u2);
-        insertUser(u3);
-        insertUser(u4);
-        insertUser(u5);
-        insertUser(u6);
+
 
 
         //---------[Print Utilizadores]---------
-        printUsers();
 
 
 //        //---------[Editar Utilizador da ST]---------
@@ -55,7 +45,7 @@ public class Main {
 
 
         //---------[Caches de objetos e Caches]---------
-        Objeto rato = new Objeto("44","rato");
+      /*  Objeto rato = new Objeto("44","rato");
         Objeto teclado= new Objeto("55", "teclado");
         Objeto monitor = new Objeto("66", "monitor");
         ArrayList<Objeto> lista1= new ArrayList<>();
@@ -66,19 +56,20 @@ public class Main {
         lista2.add(rato);
         lista2.add(monitor);
 
-        Cache c1= new Cache("11",CacheDiff.Easy,u1, lista1 ,1,3,"Lisboa");
-        Cache c2= new Cache("21",CacheDiff.Medium,u2, lista2 ,6,8,"Porto");
-        Cache c3= new Cache("31",CacheDiff.Hard,u3, lista1 ,7,4,"Cardielos");
+        Cache c1= new Cache("11",CacheDiff.Easy,u3, lista1 ,1,3,"Lisboa");
+        Cache c2= new Cache("21",CacheDiff.Medium,u3, lista2 ,6,8,"Porto");
+        Cache c3= new Cache("31",CacheDiff.Hard,u4, lista1 ,7,4,"Cardielos");
         Cache c4= new Cache("33",CacheDiff.Medium,u4, lista2 ,9,6,"Torre");
         Cache c5= new Cache("55",CacheDiff.Hard,u5, lista1 ,12,55,"Ponte de Lima");
         Cache c6= new Cache("66",CacheDiff.Easy,u6, lista2 ,43,76,"Braga");
-
+*/
         //---------[Inserção na ST de Caches]---------
-        insertCache(c3,"Carlos");
+       /* insertCache(c3,"Carlos");
         insertCache(c4,"Leonor");
         insertCache(c5,"Ivone");
         insertCache(c6,"Arriscado");
         printCaches();
+        */
 
 //        //---------[Inserção de Caches no ArrayList de UserAdmin --> Caches Premium]---------
 //        u5.insertCache(c1);
@@ -115,6 +106,8 @@ public class Main {
 
 
     }
+
+    /*
 
     private static void readUser_txt(String path){
         In in = new In(path);
@@ -238,8 +231,10 @@ public class Main {
     }
 
     private static void interacao(Cache cache, UserBasic user, ArrayList objetosRetirados, ArrayList objetosColocados, String mensagem,String date){
-        cache.interacaoCache(user,objetosColocados,objetosRetirados,date,mensagem);
+        //cache.interacaoCache(user,objetosColocados,objetosRetirados,date,mensagem);
     }
 
+
+     */
 }
 

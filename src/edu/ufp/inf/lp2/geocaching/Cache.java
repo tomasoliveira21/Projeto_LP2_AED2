@@ -4,8 +4,7 @@ import edu.princeton.cs.algs4.BST;
 import edu.princeton.cs.algs4.ST;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 
 public class Cache{ // é necessario fazer extends do userBasic (?)
 
@@ -16,7 +15,8 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   public BST<String,Objeto> meusObjetos =new BST<>();
 
   public UserPremium userCreator;
-  public CacheDiff type;
+  public CacheDiff diff;
+  public CacheType type;
   public String serialNumber;
 
 
@@ -58,13 +58,14 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   }
 
 
-  public Cache(String serialNumber, CacheDiff type , UserPremium userCreator , int x, int y, String regiao) {
+  public Cache(String serialNumber, CacheDiff diff ,CacheType type, UserPremium userCreator , int x, int y, String regiao) {
     this.serialNumber = serialNumber;
-    this.type=type;
+    this.diff =diff;
     this.userCreator = userCreator;
     this.x = x;
     this.y = y;
     this.regiao=regiao;
+    this.type=type;
   }
 
 
@@ -95,10 +96,12 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   }
 
 
-  public void addVisitante(UserBasic u1){ //Receber String de input
+ /* public void addVisitante(UserBasic u1){ //Receber String de input
     Date d = Calendar.getInstance().getTime();
     hUsers.put(d,u1);
   }
+  */
+
 /*
   public void addVisitante(UserBasic u1, String date){ //Receber String de input
   if(date==null){
@@ -159,7 +162,7 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   public String toString() {
     return "Cache{" +
             "userCreator=" + userCreator.name +
-            ", type=" + type +
+            ", type=" + diff +
             ", serialNumber='" + serialNumber + '\'' +
            //precisar do for
             ", x=" + x +

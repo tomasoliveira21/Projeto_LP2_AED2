@@ -2,8 +2,6 @@ package edu.ufp.inf.lp2.geocaching;
 import edu.princeton.cs.algs4.BST;
 import edu.princeton.cs.algs4.SeparateChainingHashST;
 
-import java.util.Date;
-
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
 
 
@@ -44,14 +42,18 @@ public class UserBasic{
   }
 
   public void editarUser(String nome,String id){
+    userST.remove(this.id);
     this.name=nome;
     this.id=id;
+    userST.put(this.id,this);
   }
 
   public void criarObjeto(String id , String nameItem){
-      Objeto objeto = new Objeto(id,nameItem);
+      Objeto objeto = new Objeto(id,nameItem,this);
       objeto.criadorObjeto=this;
       myObjetos.put(objeto.id,objeto);
+      objeto.cacheAtual=null;
+
 
   }
 
@@ -105,7 +107,7 @@ public class UserBasic{
   }
 
 
-public void printObjetos(){
+  public void printObjetos(){
 
     if(myObjetos.size()>0){
       System.out.println("Utilizador " + this.name + "tem os objetos :\n");
@@ -115,10 +117,21 @@ public void printObjetos(){
       }
       return;
     }
-    System.out.println("Utilizador " + this.name + "nao tem objetos :\n");
+    System.out.println("Utilizador " + this.name + "nao tem objetos\n");
   }
 
 
+  public void printhCaches(){
+    if(hCaches.size()>0){
+      System.out.println("Utilizador " + this.name + "visitou as seguintes caches :\n");
+      for (Date d : hCaches.keys()){
+        Objeto objeto = myObjetos.get(id);
+        System.out.println(objeto.toString());
+      }
+      return;
+    }
+    System.out.println("Utilizador " + this.name + "ainda nao visitou nenhuma cache\n");
+  }
 
   public String getName() {
     return name;

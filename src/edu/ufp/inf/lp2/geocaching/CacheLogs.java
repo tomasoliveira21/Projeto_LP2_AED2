@@ -1,5 +1,5 @@
 package edu.ufp.inf.lp2.geocaching;
-import java.util.Date;
+
 
 public class CacheLogs {
 

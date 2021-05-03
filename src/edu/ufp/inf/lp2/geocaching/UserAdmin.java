@@ -12,7 +12,7 @@ public class UserAdmin extends UserPremium {
     public static   ST<String, Cache> cacheST = new ST<>();
 
     public UserAdmin(String name, String id) {
-        super(id, name);
+        super(name, id);
     }
 
 
@@ -23,6 +23,7 @@ public class UserAdmin extends UserPremium {
     }
 
     public void printUser(){
+
         System.out.println("Lista Utilizadores: ");
         for (String name: userST.keys()){
             System.out.println(userST.get(name));
@@ -50,9 +51,11 @@ public class UserAdmin extends UserPremium {
         System.out.println("\n");
     }
 
+
+
     public void editCache(Cache cache, String serialNumber, CacheDiff type , UserPremium usercreator, int x, int y, String regiao){
         cache.serialNumber = serialNumber;
-        cache.type=type;
+        cache.diff =type;
         cache.userCreator = usercreator;
         cache.x = x;
         cache.y = y;

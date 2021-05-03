@@ -21,7 +21,7 @@ public class Main {
         UserAdmin u5= new UserAdmin("Ivone", "1001");
         UserAdmin u6= new UserAdmin("Tichinha", "7004");
 
-        //---------[Inserção de Utilizadores na ST]---------
+        //---------[Inserção de Utilizadores na ST]--------
 
         u1.insertUser();
         u2.insertUser();
@@ -62,10 +62,10 @@ public class Main {
         lista2.add(monitor);
          */
 
-        Cache c1= new Cache("00",CacheDiff.Easy,u5,2,4,"AltoMinho");
-        Cache c2= new Cache("11",CacheDiff.Medium,u6,7,7,"Cardielos");
-        Cache c3= new Cache("22",CacheDiff.Hard,u5,1,3,"Viana");
-        Cache c4= new Cache("33",CacheDiff.Easy,u6,8,9,"Perre");
+        Cache c1= new Cache("00",CacheDiff.Easy,CacheType.Basic,u5,2,4,"AltoMinho");
+        Cache c2= new Cache("11",CacheDiff.Medium,CacheType.Basic,u6,7,7,"Cardielos");
+        Cache c3= new Cache("22",CacheDiff.Hard,CacheType.Premium,u5,1,3,"Viana");
+        Cache c4= new Cache("33",CacheDiff.Easy,CacheType.Basic,u6,8,9,"Perre");
 
 
         //---------[Inserção na ST de Caches]---------
@@ -99,6 +99,11 @@ public class Main {
 //        u6.printCaches();
 
 
+
+
+
+        u1.criarObjeto("1","Barbie");
+        u4.criarTravelBug("2","SpiderMannn",c1);
 
 
     }

@@ -1,18 +1,15 @@
 package edu.ufp.inf.lp2.geocaching;
 
-
-import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
-
-public class CacheLogs {
+public class UserLogs {
 
     Date data;
-    String userID;
+    String serialNumber;
     public String objetocolocado;
     public String objetoretirado;
 
-    public CacheLogs(Date data, String userID, String objetocolocado, String objetoretirado) {
+    public UserLogs(Date data, String serialNumber, String objetocolocado, String objetoretirado) {
         this.data = data;
-        this.userID = userID;
+        this.serialNumber = serialNumber;
         this.objetocolocado = objetocolocado;
         this.objetoretirado = objetoretirado;
     }
@@ -20,32 +17,33 @@ public class CacheLogs {
     @Override
     public String toString() {
         if(objetocolocado == null && objetoretirado== null){
-            return "CacheLogs{" +
+            return "UserLogs{" +
                     "data=" + data.print() +
-                    ", User='" + userST.get(userID).name + '\'' +
+                    ", serialNumber='" + serialNumber + '\'' +
                     ", objetocolocado='" + "null" + '\'' +
                     ", objetoretirado='" + "null" + '\'' +
                     '}';
         }else if(objetocolocado != null && objetoretirado== null){
-            return "CacheLogs{" +
+            return "UserLogs{" +
                     "data=" + data.print() +
-                    ", User='" + userST.get(userID).name + '\'' +
-                    ", objetocolocado='" + objetocolocado  + '\'' +
+                    ", serialNumber='" + serialNumber + '\'' +
+                    ", objetocolocado='" + objetocolocado + '\'' +
                     ", objetoretirado='" + "null" + '\'' +
                     '}';
         }else  if (objetocolocado == null){
-            return "CacheLogs{" +
+            return "UserLogs{" +
                     "data=" + data.print() +
-                    ", User='" + userST.get(userID).name + '\'' +
+                    ", serialNumber='" + serialNumber + '\'' +
                     ", objetocolocado='" + "null" + '\'' +
                     ", objetoretirado='" + objetoretirado + '\'' +
                     '}';
         }
-        return "CacheLogs{" +
+        return "UserLogs{" +
                 "data=" + data.print() +
-                ", User='" + userST.get(userID).name + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
                 ", objetocolocado='" + objetocolocado + '\'' +
                 ", objetoretirado='" + objetoretirado + '\'' +
                 '}';
+
     }
 }

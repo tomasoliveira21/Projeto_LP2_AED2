@@ -1,6 +1,6 @@
-1001 Ivone 
-1904 Leticia 
-39917 Ruben 
-40097 Tomas 
-5555 Leonor 
-7004 Arriscado 
+LeticiaEditada,0000,1.0,PREMIUM
+Ivone,1001,2.0,ADMIN
+Ruben,39917,0.0,BASIC
+Tomas,40097,3.0,BASIC
+Leonor,5555,0.0,PREMIUM
+Tichinha,7004,0.0,ADMIN

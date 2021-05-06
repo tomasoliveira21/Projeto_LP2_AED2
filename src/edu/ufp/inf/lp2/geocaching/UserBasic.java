@@ -1,5 +1,6 @@
 package edu.ufp.inf.lp2.geocaching;
 import edu.princeton.cs.algs4.BST;
+import edu.princeton.cs.algs4.LinearProbingHashST;
 import edu.princeton.cs.algs4.SeparateChainingHashST;
 
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
@@ -17,7 +18,9 @@ public class UserBasic{
 
   public BST<String,Objeto> myObjetos = new BST<>();
 
-  public SeparateChainingHashST<Date , Cache> hCaches = new SeparateChainingHashST<>();//sempre que um user visitar uma cache adiciono na Hcache
+  public LinearProbingHashST<Date , Cache> hCaches = new LinearProbingHashST<>();//sempre que um user visitar uma cache adiciono na Hcache
+
+  public SeparateChainingHashST<Date , UserLogs> userLogs = new SeparateChainingHashST<>();//sempre que um user visitar uma cache adiciono na Hcache
 
 
   public UserBasic(String name, String id) {
@@ -53,6 +56,7 @@ public class UserBasic{
       objeto.criadorObjeto=this;
       myObjetos.put(objeto.id,objeto);
       objeto.cacheAtual=null;
+      objeto.userAtual=this;
 
 
   }
@@ -60,43 +64,120 @@ public class UserBasic{
 
 
   public void visitarUmaCache(Cache cache,MessageLog mensagem,Date date){
+    for (CacheLogs cacheLogs :cache.cacheLogs){
+      if(cacheLogs.data.equals(date) && cacheLogs.userID.equals(this.id)){
+        System.out.println("Erro! User " + this.name + " ja visitou esta cache neste dia " + date.print());
+        return;
+      }
+    }
+
     CacheLogs cl = new CacheLogs(date,this.id,null,null);
+    UserLogs ul = new UserLogs(date,cache.serialNumber,null,null);
+
+
     cache.cacheLogs.add(cl);
+    this.userLogs.put(date,ul);
     this.cachesVisitadas++;
-    this.hCaches.put(date,cache);
+
     cache.messageLogs.add(mensagem);
+    //Adcionar Logs
+
+    this.hCaches.put(date,cache);
     cache.hUsers.put(date,this);
   }
 
   public void visitarUmaCache_deixarObjeto(Cache cache,MessageLog mensagem,Date date,String obj){
+
+    for (CacheLogs cacheLogs :cache.cacheLogs){
+      if(cacheLogs.data.equals(date) && cacheLogs.userID.equals(this.id)){
+        System.out.println("Erro! User " + this.name + " ja visitou esta cache neste dia " + date.print());
+        return;
+      }
+    }
+    //procurar objeto no bolso e  remove lo
     Objeto objeto = this.myObjetos.get(obj);
     this.myObjetos.delete(obj);
 
+    //criar cacheLog
     CacheLogs cl = new CacheLogs(date,this.id,objeto.id,null);
     cache.cacheLogs.add(cl);
+    UserLogs ul = new UserLogs(date,cache.serialNumber,objeto.id,null);
+    this.userLogs.put(date,ul);
 
+
+
+    //Colocar objeto na Cache
     cache.meusObjetos.put(objeto.id,objeto);
-
+    objeto.cacheAtual=cache;
+    objeto.userAtual=null;
+  //Deixar mensagem
     cache.messageLogs.add(mensagem);
 
+    //aumenta visitas, colocar no historico de caches e historico de users
     this.cachesVisitadas++;
     this.hCaches.put(date,cache);
     cache.hUsers.put(date,this);
+
+  }
+
+  public void visitarUmaCache_TirarObjeto(Cache cache,MessageLog mensagem,Date date,String obj){
+    for (CacheLogs cacheLogs :cache.cacheLogs){
+      if(cacheLogs.data.equals(date) && cacheLogs.userID.equals(this.id)){
+        System.out.println("Erro! User " + this.name + " ja visitou esta cache neste dia " + date.print());
+        return;
+      }
+    }
+    //procurar objeto na cache, removelo da cache,adciona lo no meu bolso
+    Objeto objeto = cache.meusObjetos.get(obj);
+    objeto.cacheAtual=null;
+    objeto.userAtual=this;
+    this.myObjetos.put(objeto.id,objeto);
+    cache.meusObjetos.delete(objeto.id);
+
+    //criar cacheLog
+    CacheLogs cl = new CacheLogs(date,this.id,null,objeto.id);
+    cache.cacheLogs.add(cl);
+    UserLogs ul = new UserLogs(date,cache.serialNumber,null,objeto.id);
+    this.userLogs.put(date,ul);
+
+
+    //Deixar mensagem
+    cache.messageLogs.add(mensagem);
+
+    //aumenta visitas, colocar no historico de caches e historico de users
+    this.cachesVisitadas++;
+    this.hCaches.put(date,cache);
+    cache.hUsers.put(date,this);
+
   }
 
 
 
   public void visitarUmaCache_trocarObjeto(Cache cache,MessageLog mensagem,Date date,String obj,Objeto objCache){
+    for (CacheLogs cacheLogs :cache.cacheLogs){
+      if(cacheLogs.data.equals(date) && cacheLogs.userID.equals(this.id)){
+        System.out.println("Erro! User " + this.name + " ja visitou esta cache neste dia " + date.print());
+        return;
+      }
+    }
     Objeto objetoColocar = this.myObjetos.get(obj);
     this.myObjetos.delete(obj);
-
+    this.myObjetos.put(objCache.id,objCache);
+    cache.meusObjetos.put(objetoColocar.id,objetoColocar);
 
     cache.meusObjetos.delete(objCache.id);
 
     CacheLogs cl = new CacheLogs(date,this.id,objetoColocar.id,objCache.id);
     cache.cacheLogs.add(cl);
+    UserLogs ul = new UserLogs(date,cache.serialNumber,objetoColocar.id,objCache.id);
+    this.userLogs.put(date,ul);
 
-    cache.meusObjetos.put(objetoColocar.id,objetoColocar);
+    objetoColocar.userAtual=null;
+    objetoColocar.cacheAtual=cache;
+    objCache.userAtual=this;
+    objCache.cacheAtual=null;
+
+
 
 
     cache.messageLogs.add(mensagem);
@@ -110,11 +191,12 @@ public class UserBasic{
   public void printObjetos(){
 
     if(myObjetos.size()>0){
-      System.out.println("Utilizador " + this.name + "tem os objetos :\n");
+      System.out.println("Utilizador " + this.name + " tem os objetos :");
       for (String id : myObjetos.keys()){
         Objeto objeto = myObjetos.get(id);
         System.out.println(objeto.toString());
       }
+      System.out.println("\n");
       return;
     }
     System.out.println("Utilizador " + this.name + "nao tem objetos\n");
@@ -123,40 +205,17 @@ public class UserBasic{
 
   public void printhCaches(){
     if(hCaches.size()>0){
-      System.out.println("Utilizador " + this.name + "visitou as seguintes caches :\n");
+      System.out.println("Utilizador " + this.name + " visitou as seguintes caches :\n");
       for (Date d : hCaches.keys()){
-        Objeto objeto = myObjetos.get(id);
-        System.out.println(objeto.toString());
+        Cache c = hCaches.get(d);
+        System.out.println(c.toString() + " no dia " + d.print());
       }
       return;
     }
-    System.out.println("Utilizador " + this.name + "ainda nao visitou nenhuma cache\n");
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
+    System.out.println("Utilizador " + this.name + " ainda nao visitou nenhuma cache\n");
   }
 
 
-  public double getCachesVisitadas() {
-    return cachesVisitadas;
-  }
-
-  public void setCachesVisitadas(double cachesVisitadas) {
-    this.cachesVisitadas = cachesVisitadas;
-  }
 
 
 

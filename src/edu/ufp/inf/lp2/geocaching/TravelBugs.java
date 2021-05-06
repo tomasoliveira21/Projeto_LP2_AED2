@@ -23,6 +23,9 @@ public class TravelBugs extends  Objeto{
     //this.id=id1;
   }
 
+  public TravelBugs() {
+    super();
+  }
 
 
   public void now() {

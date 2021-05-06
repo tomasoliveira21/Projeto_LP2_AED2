@@ -64,65 +64,14 @@ public class Date implements Comparable<Date> {
     }
 
     public boolean beforeDate(Date d) {
-      /*if(this.year == d.year){
-          if(this.month== d.month){
-              if(this.day == d.day){
-
-              }else{
-                  if(this.day > d.day){
-                      return false;
-                  }
-                  else {
-                      return true;
-                  }
-              }
-          }else{
-              if(this.month > d.month){
-                  return false;
-              }
-              else {
-                  return true;
-              }
-          }
-      }else{
-          if(this.month > d.month){
-              return false;
-          }
-          else {
-              return true;
-          }
-      }
-
-        return false;
-        */
         return this.compareTo(d) < 0;
     }
 
     public boolean afterDate(Date d) {
-       /* if(this.compareTo(d)>0){
-            return true;
-        }else
-            return false;
-       */
-        //return !this.beforeDate(d);
-
         return this.compareTo(d) > 0;
-
-
     }
 
     public boolean isLeapYear(int year) {
-        /*if(this.year%4==0){
-            if (this.year%100!=0){
-                return true;
-            }else{
-                if(this.year%400==0){
-                    return true;
-                }else return false;
-            }
-        }
-        return false;
-        */
         return ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
     }
 
@@ -222,16 +171,6 @@ public class Date implements Comparable<Date> {
         } else {
             return (this.year - d.year) / Math.abs(this.year - d.year);
         }
-
-        /*OU
-        if (this.year > d.year)return 1;
-        if (this.year < d.year)return -1;
-        if (this.year == d.year && this.month > d.month)return 1;
-        if (this.year == d.year && this.month < d.month)return -1;
-        if (this.year == d.year&& this.month == d.month && this.day > d.day)return 1;
-        if (this.year == d.year && this.month == d.month && this.day < d.day)return -1;
-        else return 0;
-        */
 
     }
 

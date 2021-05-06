@@ -19,43 +19,11 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   public CacheType type;
   public String serialNumber;
 
-
-
   public int x;
   public int y;
   public String regiao;
 
-  public String getRegiao() {
-    return regiao;
-  }
 
-  public void setRegiao(String regiao) {
-    this.regiao = regiao;
-  }
-
-  public String getSerialNumber() {
-    return serialNumber;
-  }
-
-  public void setSerialNumber(String serialNumber) {
-    this.serialNumber = serialNumber;
-  }
-
-  public int getX() {
-    return x;
-  }
-
-  public void setX(int x) {
-    this.x = x;
-  }
-
-  public int getY() {
-    return y;
-  }
-
-  public void setY(int y) {
-    this.y = y;
-  }
 
 
   public Cache(String serialNumber, CacheDiff diff ,CacheType type, UserPremium userCreator , int x, int y, String regiao) {
@@ -69,7 +37,28 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   }
 
 
- /* public void addObjectToArrayList(Objeto objeto) throws AlreadyRegisteredObjectException {
+  public void criarObjeto(String id , String nameItem,UserBasic creatorID){
+    Objeto objeto = new Objeto(id,nameItem,creatorID);
+    objeto.criadorObjeto=creatorID;
+    meusObjetos.put(objeto.id,objeto);
+    objeto.cacheAtual=this;
+    objeto.userAtual=null;
+  }
+
+  public Cache() {
+
+  }
+
+
+  public void printObjetoFromCache(){ //printa todos os objetos da cache
+    for (String id :meusObjetos.keys()){
+      Objeto obj = meusObjetos.get(id);
+      System.out.println(obj.toString());
+    }
+  }
+
+
+   /* public void addObjectToArrayList(Objeto objeto) throws AlreadyRegisteredObjectException {
     if (!meusObjetos.contains(objeto)) {
       meusObjetos.add(objeto);
     }
@@ -86,23 +75,14 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     return false;
 
   }
-*/
-  public void printObjetoFromCache(){ //printa todos os objetos da cache
-    System.out.println("Item da Lista de objetos: ");
-    for (String id :meusObjetos.keys()){
-      Objeto obj = meusObjetos.get(id);
-      System.out.println(obj.toString());
-    }
-  }
 
-
- /* public void addVisitante(UserBasic u1){ //Receber String de input
+  public void addVisitante(UserBasic u1){ //Receber String de input
     Date d = Calendar.getInstance().getTime();
     hUsers.put(d,u1);
   }
-  */
 
-/*
+
+
   public void addVisitante(UserBasic u1, String date){ //Receber String de input
   if(date==null){
     addVisitante(u1);
@@ -122,14 +102,14 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     hUsers.put(result,u1);
   }
 
- */
 
-  /* hUsers.put(nUtilizadores,u1);
+
+   hUsers.put(nUtilizadores,u1);
     nUtilizadores++;
 
-   */
 
-  /*
+
+
   public boolean interacaoCache(UserBasic user, ArrayList<Objeto> objetoscolocados, ArrayList<Objeto> objetosretirados,String date, String mensagem){
     addVisitante(user,date);
     boolean encontrouobjeto= false;
@@ -160,11 +140,10 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
 
   @Override
   public String toString() {
-    return "Cache{" +
+    return "\tCache{" +
             "userCreator=" + userCreator.name +
             ", type=" + diff +
             ", serialNumber='" + serialNumber + '\'' +
-           //precisar do for
             ", x=" + x +
             ", y=" + y +
             ", regiao='" + regiao + '\'' +

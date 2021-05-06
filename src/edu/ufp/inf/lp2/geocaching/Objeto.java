@@ -15,7 +15,11 @@ public class Objeto {
     this.criadorObjeto=criadorObjeto;
   }
 
-  @Override
+    public Objeto() {
+
+    }
+
+    @Override
   public String toString() {
     return "Objeto{" +
             "nameItem='" + nameItem + '\'' +

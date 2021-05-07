@@ -9,8 +9,8 @@ public class Main {
     private static final String FILE_DELIMETER = ";";
 
     public static void main(String[] args) {
-        //teste1();
-        teste2();
+        teste1();
+        //teste2();
 
     }
 
@@ -204,9 +204,13 @@ public class Main {
         u5.printr8f();
 
         UserAdmin.saveUsers();
+
+        UserAdmin.saveCaches();
+
+        UserAdmin.saveObjetos();
     }
 
-    public static void teste2(){
+    public static void teste2(){ //ler users
 
         System.out.println(userST.size());
         System.out.println(cacheST.size());
@@ -220,14 +224,34 @@ public class Main {
         UserAdmin u5= (UserAdmin) userST.get("1001");
         UserAdmin u6= (UserAdmin) userST.get("7004");
 
+
+
         u5.printUser();
 
 
 
+    }
 
-        //UserAdmin.saveUsers();
+    public static void teste3(){
 
     }
+
+    public static void teste4(){
+
+    }
+
+    public static void teste5(){
+
+    }
+
+    public static void teste6(){
+
+    }
+
+    public static void teste7(){
+
+    }
+
 
 
 }

@@ -1,2 +1,4 @@
-11 rato
-21 teclado
+ob2,faca
+33,TravelBug2
+ob4,LEGENDBOY
+ob5,CHENTRIC

@@ -331,10 +331,10 @@ public class UserAdmin extends UserPremium {
         for (String id : userST) {
             UserBasic user = userST.get(id);
             if (user.getClass().equals(UserBasic.class))
-                out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + "BASIC\n");
+                out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + " basic\n");
             else if (user.getClass().equals(UserPremium.class))
-                out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + "PREMIUM\n");
-            else out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + "ADMIN\n");
+                out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + " premium\n");
+            else out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + " admin\n");
         }
         out.close();
 
@@ -368,6 +368,30 @@ public class UserAdmin extends UserPremium {
         in.close();
 
     }
+
+    public static void saveCaches(){
+        Out out = new Out(".//data//cache.txt");
+        for (String serialNumber: cacheST){
+            Cache cache= cacheST.get(serialNumber);
+            out.print(cache.userCreator.name + "," + cache.type + "," + cache.serialNumber + "," + cache.x + "," + cache.y + "," + cache.regiao + "\n");
+        }
+        out.close();
+    }
+
+    public static void saveObjetos(){
+        Out out = new Out(".//data//objeto.txt");
+        for (String key : cacheST.keys()){
+            Cache c = cacheST.get(key);
+            if (c.meusObjetos.size() > 0) {
+                for (String obj : c.meusObjetos.keys()) {
+                    out.print(c.meusObjetos.get(obj).id + "," + c.meusObjetos.get(obj).nameItem + "\n");
+                }
+            }
+        }
+        out.close();
+    }
+
+
 
 
     @Override

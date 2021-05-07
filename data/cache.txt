@@ -1,6 +1,6 @@
-Ivone,Basic,00,2,4,AltoMinho
-Ivone,Basic,01,2,4,AltoMinho
-Ivone,Basic,02,2,4,AltoMinho
-Tichinha,Basic,11,7,7,Cardielos
-Ivone,Premium,22,1,3,Viana
-Tichinha,Premium,33,8,9,Perre
+1001,Basic,Easy,00,2,4,AltoMinho
+1001,Basic,Easy,01,2,4,AltoMinho
+1001,Basic,Easy,02,2,4,AltoMinho
+7004,Basic,Medium,11,7,7,Cardielos
+1001,Premium,Hard,22,1,3,Viana
+7004,Premium,Easy,33,8,9,Perre

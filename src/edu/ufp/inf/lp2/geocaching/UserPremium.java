@@ -14,11 +14,11 @@ public class UserPremium extends UserBasic {
 
     public void criarTravelBug(String id, String nameItem,Cache cacheMissao){
     TravelBugs travelBugs = new TravelBugs(id,nameItem,this,cacheMissao);
+    travelBugs.userAtual=this;
     travelBugs.cacheAtual=null;
     meusTravelBugs.put(travelBugs.nameItem,travelBugs);
     travelBugs.historicoUsers.put(this.id,this);
     this.myObjetos.put(travelBugs.nameItem,travelBugs);
-    travelBugs.cacheAtual=null;
 
     }
 

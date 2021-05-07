@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class TravelBugs extends  Objeto{
 
   public Cache cacheDestino;
-  public int id;
 
   public ArrayList<TravelBugsLogs> historicoTravelBugsLogs = new ArrayList<>();
   public BST<String,Cache> historicoCaches = new BST<>();

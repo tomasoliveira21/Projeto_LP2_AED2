@@ -1,4 +1,4 @@
-ob2,faca
-33,TravelBug2
-ob4,LEGENDBOY
-ob5,CHENTRIC
+objeto,faca,ob2,40097,00
+travelbug,TravelBug2,33,1001,22,11
+objeto,LEGENDBOY,ob4,7004,22
+objeto,CHENTRIC,ob5,7004,33

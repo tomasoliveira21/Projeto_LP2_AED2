@@ -1,6 +1,6 @@
-LeticiaEditada,0000,1.0, premium
-Ivone,1001,2.0, admin
-Ruben,39917,0.0, basic
-Tomas,40097,3.0, basic
-Leonor,5555,0.0, premium
-Tichinha,7004,0.0, admin
+LeticiaEditada,0000,1.0,PREMIUM
+Ivone,1001,2.0,ADMIN
+Ruben,39917,0.0,BASIC
+Tomas,40097,3.0,BASIC
+Leonor,5555,0.0,PREMIUM
+Tichinha,7004,0.0,ADMIN

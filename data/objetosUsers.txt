@@ -1,6 +1,6 @@
-22,TravelBug1
-ob5,Miss
-ob4,Tiagovski
-ob1,BabyFace
-ob3,espada
-44,TravelBug3
+travelbug,TravelBug1,22,0000,0000,00
+objeto,Miss,ob5,0000,0000
+objeto,Tiagovski,ob4,39917,39917
+objeto,BabyFace,ob1,40097,40097
+objeto,espada,ob3,40097,40097
+travelbug,TravelBug3,44,7004,7004,22

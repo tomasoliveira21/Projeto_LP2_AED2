@@ -235,11 +235,12 @@ public class UserAdmin extends UserPremium {
             if (c.meusObjetos.size() > 0) {
                 System.out.println("Objetos da cache " + c.serialNumber + ":");
                 for (String obj : c.meusObjetos.keys()) {
-                    System.out.println("\t" + c.meusObjetos.get(obj).toString());
+                    System.out.println("\t" + c.meusObjetos.get(obj).toString() + "\n");
                 }
             }
-            System.out.println("\n");
+
         }
+        System.out.println("\n");
     }
 
     public void printObjetosAllUsers() {
@@ -326,15 +327,18 @@ public class UserAdmin extends UserPremium {
     }
 
 
+    ///////////////////////////////////////////                   FICHEIROS                 //////////////////////////////////////////
+
+
     public static void saveUsers() {
         Out out = new Out(".//data//user.txt");
         for (String id : userST) {
             UserBasic user = userST.get(id);
             if (user.getClass().equals(UserBasic.class))
-                out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + " basic\n");
+                out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + "BASIC\n");
             else if (user.getClass().equals(UserPremium.class))
-                out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + " premium\n");
-            else out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + " admin\n");
+                out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + "PREMIUM\n");
+            else out.print(user.name + "," + user.id + "," + user.cachesVisitadas + "," + "ADMIN\n");
         }
         out.close();
 
@@ -373,9 +377,32 @@ public class UserAdmin extends UserPremium {
         Out out = new Out(".//data//cache.txt");
         for (String serialNumber: cacheST){
             Cache cache= cacheST.get(serialNumber);
-            out.print(cache.userCreator.name + "," + cache.type + "," + cache.serialNumber + "," + cache.x + "," + cache.y + "," + cache.regiao + "\n");
+            out.print(cache.userCreator.id + "," + cache.type + "," + cache.diff+ "," + cache.serialNumber + "," + cache.x + "," + cache.y + "," + cache.regiao + "\n");
         }
         out.close();
+    }
+
+
+    public static void readCaches(){
+        In in = new In(".//data//cache.txt");
+        while (in.hasNextLine()) {
+            String line = in.readLine();
+            String[] words = line.split(",");
+            CacheDiff cdif = CacheDiff.Easy;
+            CacheType ctype = CacheType.Basic;
+            if(words[1].equals("Premium"))ctype=CacheType.Premium;
+            if(words[2].equals("Medium"))cdif=CacheDiff.Medium;
+            else if (words[2].equals("Hard"))cdif=CacheDiff.Hard;
+
+            UserPremium creator = (UserPremium) userST.get(words[0]);
+            int x = Integer.parseInt(words[4]);
+            int y = Integer.parseInt(words[5]);
+            Cache cache = new Cache(words[3],cdif,ctype,creator,x,y,words[6]);
+
+            cacheST.put(cache.serialNumber,cache);
+
+
+        }
     }
 
     public static void saveObjetosCache(){
@@ -383,8 +410,16 @@ public class UserAdmin extends UserPremium {
         for (String key : cacheST.keys()){
             Cache c = cacheST.get(key);
             if (c.meusObjetos.size() > 0) {
-                for (String obj : c.meusObjetos.keys()) {
-                    out.print(c.meusObjetos.get(obj).id + "," + c.meusObjetos.get(obj).nameItem + "\n");
+                for (String key2 : c.meusObjetos.keys()) {
+                    Objeto  obj = c.meusObjetos.get(key2);
+                    if(obj.getClass().equals(Objeto.class)){
+                            out.print("objeto" + ","+ obj.nameItem + "," + obj.id + "," +obj.criadorObjeto.id  + "," + obj.cacheAtual.serialNumber+ "\n");
+                    }else{
+                        TravelBugs tb = (TravelBugs) c.meusObjetos.get(key2);
+                        out.print("travelbug" + ","+ tb.nameItem + "," + tb.id + "," +tb.criadorObjeto.id + ","+  tb.cacheAtual.serialNumber+","+ tb.cacheDestino.serialNumber+ "\n");
+
+                    }
+
                 }
             }
         }
@@ -392,18 +427,85 @@ public class UserAdmin extends UserPremium {
     }
 
 
-    public static void saveObjetosUser(){
+    public static void readObjetosCache(){
+        In in = new In(".//data//objetosCaches.txt");
+        while(in.hasNextLine()){
+            String line = in.readLine();
+            String [] words = line.split(",");
+            if(words[0].equals("objeto")){
+                UserBasic userCeator = userST.get(words[3]);
+                Cache cacheAtual = cacheST.get(words[4]);
+                Objeto objeto = new Objeto(words[2],words[1], userCeator);
+                objeto.cacheAtual=cacheAtual;
+                objeto.userAtual=null;
+                cacheAtual.meusObjetos.put(objeto.id,objeto);
+
+            }else{
+                UserPremium userCeator = (UserPremium) userST.get(words[3]);
+                Cache cacheAtual = cacheST.get(words[4]);
+                Cache cacheDestino = cacheST.get(words[5]);
+                TravelBugs travelBugs = new TravelBugs(words[2],words[1],userCeator,cacheDestino );
+                travelBugs.cacheAtual=cacheAtual;
+                travelBugs.userAtual=null;
+                cacheAtual.meusObjetos.put(travelBugs.id,travelBugs);
+                userCeator.meusTravelBugs.put(travelBugs.id,travelBugs);
+
+            }
+        }
+        in.close();
+    }
+
+
+    public static void saveObjetosUsers(){
         Out out = new Out(".//data//objetosUsers.txt");
         for (String key : userST.keys()){
             UserBasic user = userST.get(key);
             if (user.myObjetos.size() > 0) {
-                for (String obj : user.myObjetos.keys()) {
-                    out.print(user.myObjetos.get(obj).id + "," + user.myObjetos.get(obj).nameItem+ "\n");
+                for (String key2 : user.myObjetos.keys()) {
+                    Objeto  obj = user.myObjetos.get(key2);
+                    if(obj.getClass().equals(Objeto.class)){
+                        out.print("objeto" + ","+ obj.nameItem + "," + obj.id + "," +obj.criadorObjeto.id  + "," + obj.userAtual.id+ "\n");
+                    }else{
+                        TravelBugs tb = (TravelBugs) user.myObjetos.get(key2);
+                        out.print("travelbug" + ","+ tb.nameItem + "," + tb.id + "," +tb.criadorObjeto.id + ","+  tb.userAtual.id+","+ tb.cacheDestino.serialNumber+ "\n");
+
+                    }
+
                 }
             }
         }
         out.close();
     }
+
+
+    public static void readObjetosUsers(){
+        In in = new In(".//data//objetosUsers.txt");
+        while(in.hasNextLine()){
+            String line = in.readLine();
+            String [] words = line.split(",");
+            if(words[0].equals("objeto")){
+                UserBasic userCeator = userST.get(words[3]);
+                UserBasic userAtual = userST.get(words[4]);
+                Objeto objeto = new Objeto(words[2],words[1], userCeator);
+                objeto.cacheAtual=null;
+                objeto.userAtual=userAtual;
+                userAtual.myObjetos.put(objeto.id,objeto);
+
+            }else{
+                UserPremium userCeator = (UserPremium) userST.get(words[3]);
+                UserPremium userAtual = (UserPremium) userST.get(words[4]);
+                Cache cacheDestino = cacheST.get(words[5]);
+                TravelBugs travelBugs = new TravelBugs(words[2],words[1],userCeator,cacheDestino );
+                travelBugs.cacheAtual=null;
+                travelBugs.userAtual=userAtual;
+                userAtual.myObjetos.put(travelBugs.id,travelBugs);
+                userCeator.meusTravelBugs.put(travelBugs.id,travelBugs);
+
+            }
+        }
+        in.close();
+    }
+
 
 
     public static void savehCachesehUsers(){
@@ -411,14 +513,29 @@ public class UserAdmin extends UserPremium {
         for (String key: userST.keys()){
             UserBasic userBasic = userST.get(key);
             if (userBasic.hCaches.size() > 0) {
-                out.print(userBasic.name +"\n");
                 for (Date d : userBasic.hCaches.keys()) {
                     Cache cache = userBasic.hCaches.get(d);
-                    out.print(cache.serialNumber + d.print() + "\n");
+                    out.print(userBasic.id + "," + cache.serialNumber + "," + d.day + "," + d.month +"," + d.year + "\n");
                 }
             }
         }
         out.close();
+    }
+
+    public static void readhCacheshUsers(){
+        In in = new In(".//data//hCacheshUsers.txt");
+        while(in.hasNextLine()){
+            String line = in.readLine();
+            String []words = line.split(",");
+            Cache cache = cacheST.get(words[1]);
+            UserBasic user = userST.get(words[0]);
+            int day = Integer.parseInt(words[2]);
+            int month = Integer.parseInt(words[3]);
+            int year = Integer.parseInt(words[4]);
+            Date date = new Date(day,month,year);
+            cache.hUsers.put(date,user);
+            user.hCaches.put(date,cache);
+        }
     }
 
 

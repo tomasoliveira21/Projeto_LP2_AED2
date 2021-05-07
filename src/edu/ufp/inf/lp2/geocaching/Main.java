@@ -207,7 +207,20 @@ public class Main {
 
         UserAdmin.saveCaches();
 
-        UserAdmin.saveObjetos();
+        UserAdmin.saveObjetosCache();
+
+        UserAdmin.saveObjetosUser();
+
+        UserAdmin.savehCachesehUsers();
+
+        UserAdmin.saveLogsCache();
+
+        UserAdmin.saveLogsUser();
+
+        System.out.println("\n------------------------------------------------------------------\n");
+
+
+
     }
 
     public static void teste2(){ //ler users

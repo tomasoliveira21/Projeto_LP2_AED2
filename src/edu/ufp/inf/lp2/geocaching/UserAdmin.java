@@ -378,8 +378,8 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
-    public static void saveObjetos(){
-        Out out = new Out(".//data//objeto.txt");
+    public static void saveObjetosCache(){
+        Out out = new Out(".//data//objetosCaches.txt");
         for (String key : cacheST.keys()){
             Cache c = cacheST.get(key);
             if (c.meusObjetos.size() > 0) {
@@ -390,6 +390,97 @@ public class UserAdmin extends UserPremium {
         }
         out.close();
     }
+
+
+    public static void saveObjetosUser(){
+        Out out = new Out(".//data//objetosUsers.txt");
+        for (String key : userST.keys()){
+            UserBasic user = userST.get(key);
+            if (user.myObjetos.size() > 0) {
+                for (String obj : user.myObjetos.keys()) {
+                    out.print(user.myObjetos.get(obj).id + "," + user.myObjetos.get(obj).nameItem+ "\n");
+                }
+            }
+        }
+        out.close();
+    }
+
+
+    public static void savehCachesehUsers(){
+        Out out = new Out(".//data//hCacheshUsers.txt");
+        for (String key: userST.keys()){
+            UserBasic userBasic = userST.get(key);
+            if (userBasic.hCaches.size() > 0) {
+                out.print(userBasic.name +"\n");
+                for (Date d : userBasic.hCaches.keys()) {
+                    Cache cache = userBasic.hCaches.get(d);
+                    out.print(cache.serialNumber + d.print() + "\n");
+                }
+            }
+        }
+        out.close();
+    }
+
+
+    public static void saveLogsCache(){
+        Out out = new Out(".//data//LogsCache.txt");
+        for (String serial : cacheST.keys()) {
+            Cache cache = cacheST.get(serial);
+            if (cache.cacheLogs.size() > 0) {
+                out.print(cache.serialNumber + "\n");
+                for (CacheLogs clogs : cache.cacheLogs) {
+                    out.print(clogs.toString() + "\n");
+                }
+            }
+        }
+        out.close();
+    }
+
+    public static void saveLogsUser() {
+        Out out = new Out(".//data//LogsUser.txt");
+        for (String id : userST.keys()) {
+            UserBasic userBasic = userST.get(id);
+            if (userBasic.userLogs.size() > 0) {
+                out.print(userBasic.name + "\n");
+                for (Date date : userBasic.userLogs.keys()) {
+                    UserLogs userLogs = userBasic.userLogs.get(date);
+                    out.print(userLogs.toString() + "\n");
+                }
+            }
+        }
+        out.close();
+    }
+
+    /*
+     public void printALLTravelBug() {
+        System.out.println("Lista todos Travel Bugs\n");
+        for (String name : userST.keys()) {
+            UserBasic userBasic = userST.get(name);
+            if (!userBasic.getClass().equals(UserBasic.class)) {
+                UserPremium userPremium = (UserPremium) userBasic;
+                if (userPremium.meusTravelBugs.size() > 0) {
+                    System.out.println("Utilizador " + userPremium.name + " tem os TravelBugs :");
+                    for (String id : userPremium.meusTravelBugs.keys()) {
+                        TravelBugs travelBugs = userPremium.meusTravelBugs.get(id);
+                        System.out.println(travelBugs.toString());
+                    }
+                    System.out.println("\n");
+                } else {
+                    System.out.println("Utilizador " + userPremium.name + " nao tem TravelBugs\n");
+                }
+
+            }
+        }
+
+
+    }
+     */
+
+    public static void saveTravelBugs(){
+
+    }
+
+
 
 
 

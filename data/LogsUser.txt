@@ -1,0 +1,9 @@
+LeticiaEditada
+UserLogs{data=(1,12,2021), serialNumber='00', objetocolocado='null', objetoretirado='null'}
+Ivone
+UserLogs{data=(12,10,2021), serialNumber='22', objetocolocado='TravelBug2', objetoretirado='null'}
+UserLogs{data=(1,12,2021), serialNumber='00', objetocolocado='null', objetoretirado='null'}
+Tomas
+UserLogs{data=(12,10,2021), serialNumber='00', objetocolocado='ob2', objetoretirado='null'}
+UserLogs{data=(1,12,2021), serialNumber='11', objetocolocado='null', objetoretirado='null'}
+UserLogs{data=(15,11,2021), serialNumber='00', objetocolocado='null', objetoretirado='null'}

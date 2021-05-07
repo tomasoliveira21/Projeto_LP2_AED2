@@ -1,0 +1,9 @@
+00
+CacheLogs{data=(12,10,2021), User='Tomas', objetocolocado='ob2', objetoretirado='null'}
+CacheLogs{data=(15,11,2021), User='Tomas', objetocolocado='null', objetoretirado='null'}
+CacheLogs{data=(1,12,2021), User='LeticiaEditada', objetocolocado='null', objetoretirado='null'}
+CacheLogs{data=(1,12,2021), User='Ivone', objetocolocado='null', objetoretirado='null'}
+11
+CacheLogs{data=(1,12,2021), User='Tomas', objetocolocado='null', objetoretirado='null'}
+22
+CacheLogs{data=(12,10,2021), User='Ivone', objetocolocado='TravelBug2', objetoretirado='null'}

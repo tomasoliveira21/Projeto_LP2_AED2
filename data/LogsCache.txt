@@ -1,9 +1,6 @@
-00
-CacheLogs{data=(12,10,2021), User='Tomas', objetocolocado='ob2', objetoretirado='null'}
-CacheLogs{data=(15,11,2021), User='Tomas', objetocolocado='null', objetoretirado='null'}
-CacheLogs{data=(1,12,2021), User='LeticiaEditada', objetocolocado='null', objetoretirado='null'}
-CacheLogs{data=(1,12,2021), User='Ivone', objetocolocado='null', objetoretirado='null'}
-11
-CacheLogs{data=(1,12,2021), User='Tomas', objetocolocado='null', objetoretirado='null'}
-22
-CacheLogs{data=(12,10,2021), User='Ivone', objetocolocado='TravelBug2', objetoretirado='null'}
+00,40097,ob2,null,12,10,2021
+00,40097,null,null,15,11,2021
+00,0000,null,null,1,12,2021
+00,1001,null,null,1,12,2021
+11,40097,null,null,1,12,2021
+22,1001,TravelBug2,null,12,10,2021

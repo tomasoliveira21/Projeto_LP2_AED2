@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         //teste1();
+
         teste2();
 
     }
@@ -217,9 +218,19 @@ public class Main {
 
         UserAdmin.saveLogsUser();
 
+        UserAdmin.saveMessageLogs();
+
+        UserAdmin.saveTravelBugsHCaches();
+
+        UserAdmin.saveTravelBugsHCUsers();
+
+
         System.out.println("\n------------------------------------------------------------------\n");
 
+        ivone.printMessageLogs();
 
+        ivone.printALLTravelBugHCaches();
+        ivone.printALLTravelBugHUsers();
 
     }
 
@@ -233,6 +244,12 @@ public class Main {
         UserAdmin.readObjetosCache();
         UserAdmin.readObjetosUsers();
         UserAdmin.readhCacheshUsers();
+        UserAdmin.readLogsCache();
+        UserAdmin.readLogsUsers();
+        UserAdmin.readMessageLogs();
+        UserAdmin.readTravelBugsHUsers();
+        UserAdmin.readTravelBugsHCaches();
+
 
 
         UserBasic u1= userST.get("40097");
@@ -249,7 +266,14 @@ public class Main {
         u5.printObjetosAllCaches();
         u5.printObjetosAllUsers();
         u5.printUsers_historicoCaches();
-
+        u5.printTravelBug();
+        System.out.println("------------------------");
+        u5.printCacheLogs();
+        u5.printUserLogs();
+        u5.printCacheLogs();
+        u5.printMessageLogs();
+        u5.printALLTravelBugHCaches();
+        u5.printALLTravelBugHUsers();
 
 
     }

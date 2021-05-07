@@ -1,0 +1,6 @@
+00,Estive aqui -1
+00,Estive aqui -2
+00,Estive aqui -2
+00,Estive aqui -2
+11,Estive aqui -2
+22,Estive aqui -1

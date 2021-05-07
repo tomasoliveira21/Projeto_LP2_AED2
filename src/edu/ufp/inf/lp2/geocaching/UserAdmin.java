@@ -48,6 +48,62 @@ public class UserAdmin extends UserPremium {
     }
 
 
+    public void printALLTravelBugHCaches() {
+        System.out.println("Lista todos Travel Bugs e o seu Historico de Caches\n");
+        for (String name : userST.keys()) {
+            UserBasic userBasic = userST.get(name);
+            if (!userBasic.getClass().equals(UserBasic.class)) {
+                UserPremium userPremium = (UserPremium) userBasic;
+                if (userPremium.meusTravelBugs.size() > 0) {
+                    System.out.println("Utilizador " + userPremium.name + " tem os TravelBugs :");
+                    for (String id : userPremium.meusTravelBugs.keys()) {
+                        TravelBugs travelBugs = userPremium.meusTravelBugs.get(id);
+                        System.out.println( "\t" + travelBugs.toString());
+                        for (String key :travelBugs.historicoCaches.keys()){
+                            Cache cache= cacheST.get(key);
+                            System.out.println("\t\t Este travelbug ja esteve na cache -> " + cache.serialNumber);
+
+                        }
+                    }
+                    System.out.println("\n");
+                } else {
+                    System.out.println("Utilizador " + userPremium.name + " nao tem TravelBugs\n");
+                }
+
+            }
+        }
+
+
+    }
+
+    public void printALLTravelBugHUsers() {
+        System.out.println("Lista todos Travel Bugs e o seu Historico de Users\n");
+        for (String name : userST.keys()) {
+            UserBasic userBasic = userST.get(name);
+            if (!userBasic.getClass().equals(UserBasic.class)) {
+                UserPremium userPremium = (UserPremium) userBasic;
+                if (userPremium.meusTravelBugs.size() > 0) {
+                    System.out.println("Utilizador " + userPremium.name + " tem os TravelBugs :");
+                    for (String id : userPremium.meusTravelBugs.keys()) {
+                        TravelBugs travelBugs = userPremium.meusTravelBugs.get(id);
+                        System.out.println( "\t" + travelBugs.toString());
+                        for (String key :travelBugs.historicoUsers.keys()){
+                            UserPremium puser= (UserPremium) userST.get(key);
+                            System.out.println("\t\t Este travelbug ja esteve com o user -> " + puser.name);
+
+                        }
+                    }
+                    System.out.println("\n");
+                } else {
+                    System.out.println("Utilizador " + userPremium.name + " nao tem TravelBugs\n");
+                }
+
+            }
+        }
+
+
+    }
+
     public void insertCache(Cache cache) {
         cacheST.put(cache.serialNumber, cache);
     }
@@ -292,7 +348,7 @@ public class UserAdmin extends UserPremium {
         for (String serial : cacheST.keys()) {
             Cache cache = cacheST.get(serial);
             if (cache.cacheLogs.size() > 0) {
-                System.out.println("\tCache ->" + cache.serialNumber + "Logs:");
+                System.out.println("\tCache ->" + cache.serialNumber + " Logs:");
                 for (CacheLogs clogs : cache.cacheLogs) {
                     System.out.println("\t\t->" + clogs.toString());
                 }
@@ -314,6 +370,34 @@ public class UserAdmin extends UserPremium {
             }
 
         }
+    }
+
+    public void printMessageLogs(){
+        System.out.println("\nMessage Logs de todas as caches:\n");
+        for (String key : cacheST.keys()){
+            Cache cache= cacheST.get(key);
+            if(cache.messageLogs.size()>0) System.out.println("Cache " + cache.serialNumber + ":\n");
+            for (MessageLog messageLog: cache.messageLogs){
+                System.out.println("\t-> " + messageLog.mensagem + ".\n");
+            }
+        }
+    }
+
+    private static TravelBugs findTravelBug(String idTB) {
+        for (String name : userST.keys()) {
+            UserBasic userBasic = userST.get(name);
+            if (!userBasic.getClass().equals(UserBasic.class)) {
+                UserPremium userPremium = (UserPremium) userBasic;
+                if (userPremium.meusTravelBugs.size() > 0) {
+                    for (String id : userPremium.meusTravelBugs.keys()) {
+                        TravelBugs travelBugs = userPremium.meusTravelBugs.get(id);
+                        if(travelBugs.id.equals(idTB))return travelBugs;
+
+                    }
+                }
+            }
+        }
+        return null;
     }
 
 
@@ -507,7 +591,6 @@ public class UserAdmin extends UserPremium {
     }
 
 
-
     public static void savehCachesehUsers(){
         Out out = new Out(".//data//hCacheshUsers.txt");
         for (String key: userST.keys()){
@@ -538,69 +621,164 @@ public class UserAdmin extends UserPremium {
         }
     }
 
-
     public static void saveLogsCache(){
         Out out = new Out(".//data//LogsCache.txt");
         for (String serial : cacheST.keys()) {
             Cache cache = cacheST.get(serial);
             if (cache.cacheLogs.size() > 0) {
-                out.print(cache.serialNumber + "\n");
                 for (CacheLogs clogs : cache.cacheLogs) {
-                    out.print(clogs.toString() + "\n");
+                    out.print(cache.serialNumber + "," +clogs.userID + "," + clogs.objetocolocado + "," + clogs.objetoretirado +
+                            "," + clogs.data.day + "," + clogs.data.month + "," + clogs.data.year+ "\n");
                 }
             }
         }
         out.close();
     }
+
+    public static void readLogsCache(){
+        In in = new In(".//data//LogsCache.txt");
+        while (in.hasNextLine()){
+            String line = in.readLine();
+            String []words = line.split(",");
+            Cache cache= cacheST.get(words[0]);
+            int dia=Integer.parseInt(words[4]), mes=Integer.parseInt(words[5]),ano=Integer.parseInt(words[6]);
+            Date date = new Date(dia,mes,ano);
+            CacheLogs clogs = new CacheLogs(date,words[1],words[2],words[3]);
+            if(clogs.objetoretirado.equals("null"))clogs.objetoretirado=null;
+            if(clogs.objetocolocado.equals("null"))clogs.objetocolocado=null;
+            cache.cacheLogs.add(clogs);
+        }
+        in.close();
+    }
+
+
 
     public static void saveLogsUser() {
         Out out = new Out(".//data//LogsUser.txt");
         for (String id : userST.keys()) {
             UserBasic userBasic = userST.get(id);
             if (userBasic.userLogs.size() > 0) {
-                out.print(userBasic.name + "\n");
                 for (Date date : userBasic.userLogs.keys()) {
                     UserLogs userLogs = userBasic.userLogs.get(date);
-                    out.print(userLogs.toString() + "\n");
+                    out.print(userBasic.id + "," + userLogs.serialNumber+ "," +userLogs.objetocolocado+ "," + userLogs.objetoretirado
+                            + "," +date.day + "," + date.month +"," + date.year+"\n");
                 }
             }
         }
         out.close();
     }
 
-    /*
-     public void printALLTravelBug() {
-        System.out.println("Lista todos Travel Bugs\n");
+
+    public static void readLogsUsers(){
+        In in = new In(".//data//LogsUser.txt");
+        while (in.hasNextLine()){
+            String line = in.readLine();
+            String []words = line.split(",");
+            UserBasic user= userST.get(words[0]);
+            int dia=Integer.parseInt(words[4]), mes=Integer.parseInt(words[5]),ano=Integer.parseInt(words[6]);
+            Date date = new Date(dia,mes,ano);
+            UserLogs userLogs = new UserLogs(date,words[1],words[2],words[3]);
+            if(userLogs.objetoretirado.equals("null"))userLogs.objetoretirado=null;
+            if(userLogs.objetocolocado.equals("null"))userLogs.objetocolocado=null;
+            user.userLogs.put(date,userLogs);
+        }
+        in.close();
+    }
+
+
+    public static void saveMessageLogs(){
+        Out out = new Out(".//data//LogsMessage.txt");
+        for (String key : cacheST.keys()){
+            Cache cache= cacheST.get(key);
+            for (MessageLog messageLog: cache.messageLogs){
+                out.print(cache.serialNumber + "," + messageLog.mensagem + "\n");
+            }
+        }
+        out.close();
+    }
+
+    public static void readMessageLogs(){
+        In in = new In(".//data//LogsMessage.txt");
+        while(in.hasNextLine()){
+            String line = in.readLine();
+            String [] words = line.split(",");
+            Cache cache = cacheST.get(words[0]);
+            MessageLog messageLog= new MessageLog(words[1]);
+            cache.messageLogs.add(messageLog);
+        }
+        in.close();
+    }
+
+
+    public static void saveTravelBugsHCaches(){
+        Out out = new Out(".//data//TravelBugsHCaches.txt");
         for (String name : userST.keys()) {
             UserBasic userBasic = userST.get(name);
             if (!userBasic.getClass().equals(UserBasic.class)) {
                 UserPremium userPremium = (UserPremium) userBasic;
                 if (userPremium.meusTravelBugs.size() > 0) {
-                    System.out.println("Utilizador " + userPremium.name + " tem os TravelBugs :");
                     for (String id : userPremium.meusTravelBugs.keys()) {
                         TravelBugs travelBugs = userPremium.meusTravelBugs.get(id);
-                        System.out.println(travelBugs.toString());
-                    }
-                    System.out.println("\n");
-                } else {
-                    System.out.println("Utilizador " + userPremium.name + " nao tem TravelBugs\n");
-                }
+                        for (String key :travelBugs.historicoCaches.keys()){
+                            Cache cache= cacheST.get(key);
+                            out.print(travelBugs.id + "," + cache.serialNumber + "\n");
 
+                        }
+                    }
+                }
             }
         }
-
-
-    }
-     */
-
-    public static void saveTravelBugs(){
+        out.close();
 
     }
 
+    public static void readTravelBugsHCaches(){
+        In in = new In(".//data//TravelBugsHCaches.txt");
+        while(in.hasNextLine()){
+            String line = in.readLine();
+            String []words = line.split(",");
+            TravelBugs travelBugs = UserAdmin.findTravelBug(words[0]);
+            Cache cache = cacheST.get(words[1]);
+            assert travelBugs != null;
+            travelBugs.historicoCaches.put(cache.serialNumber,cache);
+        }
+        in.close();
+    }
 
 
 
+    public static void saveTravelBugsHCUsers(){
+        Out out = new Out(".//data//TravelBugsHUsers.txt");
+        for (String id : userST.keys()) {
+            UserBasic userBasic = userST.get(id);
+            if (!userBasic.getClass().equals(UserBasic.class)) {
+                UserPremium userPremium = (UserPremium) userBasic;
+                if (userPremium.meusTravelBugs.size() > 0) {
+                    for (String id2 : userPremium.meusTravelBugs.keys()) {
+                        TravelBugs travelBugs = userPremium.meusTravelBugs.get(id2);
+                        for (String key :travelBugs.historicoUsers.keys()){
+                            UserPremium puser= (UserPremium) userST.get(key);
+                            out.print(travelBugs.id + "," + puser.id + "\n");
 
+                        }
+                    }
+                }
+            }
+        }
+        out.close();
+    }
+    public static void readTravelBugsHUsers(){
+        In in = new In(".//data//TravelBugsHUsers.txt");
+        while(in.hasNextLine()){
+            String line = in.readLine();
+            String []words = line.split(",");
+            TravelBugs travelBugs = UserAdmin.findTravelBug(words[0]);
+            UserPremium puser = (UserPremium) userST.get(words[1]);
+            assert travelBugs != null;
+            travelBugs.historicoUsers.put(puser.id, puser);
+        }
+        in.close();
+    }
 
     @Override
     public String toString() {

@@ -22,75 +22,60 @@ public class Main {
 
 
         //---------[Criação de utilizadores]---------
-        UserBasic tomas= new UserBasic("Tomas", "40097");
-        UserBasic ruben= new UserBasic("Ruben", "39917");
-        UserPremium leticia= new UserPremium("Leticia", "1904");
-        UserPremium leonor= new UserPremium("Leonor", "5555");
-        UserAdmin ivone= new UserAdmin("Ivone", "1001");
-        UserAdmin tichinha = new UserAdmin("Tichinha", "7004");
+        UserBasic manuel= new UserBasic("Manuel", "1");
+        UserBasic pedro= new UserBasic("Pedro", "2");
+        UserAdmin fernando= new UserAdmin("Fernando", "3");
+        UserBasic joana= new UserBasic("Joana", "4");
+        UserPremium maria= new UserPremium("Maria", "5");
+        UserAdmin filomena = new UserAdmin("Filomena", "6");
 
         //---------[Inserção de Utilizadores na ST]--------
 
-        tomas.insertUser();
-        ruben.insertUser();
-        leticia.insertUser();
-        leonor.insertUser();
-        ivone.insertUser();
-        tichinha.insertUser();
+        manuel.insertUser();
+        pedro.insertUser();
+        fernando.insertUser();
+        joana.insertUser();
+        maria.insertUser();
+        filomena.insertUser();
 
         //---------[Print Utilizadores]---------
-        ivone.printUser();
+
+        fernando.printUser();
 
 
         //---------[Editar Utilizador da ST]---------
-        leticia.editarUser("LeticiaEditada","0000");
-        ivone.printUser();
+        //fernando.editarUser("LeticiaEditada","0000");
+        //filomena.printUser();
 
 //        //---------[Remover Utilizador]---------
         //u4.removerUser();
-        ivone.printUser();
-
-//
-//       // ---------[Escrever e Ler Utilizadores do ficheiro]---------
-//        writeUser_txt(".//data/user.txt");
-//        readUser_txt(".//data/user.txt");
-//        printUsers();
+        //filomena.printUser();
 
 
-        //---------[Caches de objetos e Caches]---------
-        /*Objeto rato = new Objeto("44","rato");
-        Objeto teclado= new Objeto("55", "teclado");
-        Objeto monitor = new Objeto("66", "monitor");
-        ArrayList<Objeto> lista1= new ArrayList<>();
-        lista1.add(rato);
-        lista1.add(teclado);
 
-        ArrayList<Objeto> lista2= new ArrayList<>();
-        lista2.add(rato);
-        lista2.add(monitor);
-         */
-
-        Cache c1= new Cache("00",CacheDiff.Easy,CacheType.Basic,ivone,2,4,"AltoMinho");
-        Cache c12= new Cache("01",CacheDiff.Easy,CacheType.Basic,ivone,2,4,"AltoMinho");
-        Cache c13= new Cache("02",CacheDiff.Easy,CacheType.Basic,ivone,2,4,"AltoMinho");
-        Cache c2= new Cache("11",CacheDiff.Medium,CacheType.Basic,tichinha,7,7,"Cardielos");
-        Cache c3= new Cache("22",CacheDiff.Hard,CacheType.Premium,ivone,1,3,"Viana");
-        Cache c4= new Cache("33",CacheDiff.Easy,CacheType.Premium,tichinha,8,9,"Perre");
+//caches norte
+        Cache c1= new Cache("1",CacheDiff.Easy,CacheType.Basic,maria,4117,-8614,"norte");
+        Cache c2= new Cache("2",CacheDiff.Medium,CacheType.Basic,filomena,4116,-8585,"norte");
+        Cache c3= new Cache("3",CacheDiff.Hard,CacheType.Basic,maria,4116,-8675,"norte");
+        Cache c4= new Cache("4",CacheDiff.Easy,CacheType.Basic,filomena,4115,-8633,"norte");
+        Cache c5= new Cache("5",CacheDiff.Easy,CacheType.Premium,maria,4114,-8612,"norte");
+        Cache c6= new Cache("6",CacheDiff.Easy,CacheType.Basic,maria,4115,-8665,"norte");
+        Cache c7= new Cache("7",CacheDiff.Easy,CacheType.Basic,maria,4124,-8680,"norte");
 
 
         //---------[Inserção na ST de Caches]---------
-        ivone.insertCache(c1);
-        tichinha.insertCache(c2);
-        ivone.insertCache(c3);
-        tichinha.insertCache(c4);
+        fernando.insertCache(c1);
+        filomena.insertCache(c2);
+        fernando.insertCache(c3);
+        filomena.insertCache(c4);
+        filomena.insertCache(c5);
+        filomena.insertCache(c6);
+        filomena.insertCache(c7);
 
-        tichinha.insertCache(c12);
-        tichinha.insertCache(c13);
 
+        fernando.printCache();
 
-        ivone.printCache();
-
-        ivone.printhCaches();
+        maria.printhCaches();
 
 
         Date d1 = new Date(12,10,2021);
@@ -111,49 +96,39 @@ public class Main {
 //        c4.printObjetoFromCache();
 //
 //
-//      //---------[Escrever e Ler Caches e Objetos do ficheiro]---------
-//        writeCache_txt(".//data/cache.txt");
-//        writeObjeto_txt(".//data/objeto.txt");
-//        //falta ler da cache e do objeto
-//        ivone.printCache();
 //
-
-
-
-
-
         MessageLog log1 = new MessageLog("Estive aqui -1");
         MessageLog log2 = new MessageLog("Estive aqui -2");
         MessageLog log3 = new MessageLog("Estive aqui -3");
         MessageLog log4 = new MessageLog("Estive aqui -4");
 
-        tomas.criarObjeto("ob1","BabyFace");
-        tomas.criarObjeto("ob2","faca");
-        tomas.criarObjeto("ob3","espada");
+        manuel.criarObjeto("ob1","BabyFace");
+        manuel.criarObjeto("ob2","faca");
+        manuel.criarObjeto("ob3","espada");
 
-        ruben.criarObjeto("ob4","Tiagovski");
-        leticia.criarObjeto("ob5","Miss");
-
-
-
-        c3.criarObjeto("ob4","LEGENDBOY",tichinha);
-        c4.criarObjeto("ob5","CHENTRIC",tichinha);
+        pedro.criarObjeto("ob4","Tiagovski");
+        fernando.criarObjeto("ob5","Miss");
 
 
-        leticia.criarTravelBug("22","TravelBug1",c1);
-        ivone.criarTravelBug("33","TravelBug2",c2);
-        tichinha.criarTravelBug("44","TravelBug3",c3);
+
+        c3.criarObjeto("ob4","LEGENDBOY",filomena);
+        c4.criarObjeto("ob5","CHENTRIC",filomena);
+
+
+        fernando.criarTravelBug("22","TravelBug1",c1);
+        maria.criarTravelBug("33","TravelBug2",c2);
+        filomena.criarTravelBug("44","TravelBug3",c3);
 
         //tomas.printObjetos();
 
-        tomas.visitarUmaCache_deixarObjeto(c1,log1,d1,"ob2");
-        tomas.visitarUmaCache(c1,log2,d2);
+        manuel.visitarUmaCache_deixarObjeto(c1,log1,d1,"ob2");
+        manuel.visitarUmaCache(c1,log2,d2);
 
-        tomas.visitarUmaCache(c2,log2,d3);
+        manuel.visitarUmaCache(c2,log2,d3);
 
-        leticia.visitarUmaCache(c1,log2,d3);
-        ivone.visitarUmaCache(c1,log2,d3);
-        ivone.visitarUmaCache_deixarTravelBug(c3,log1,d1,"TravelBug2");
+        fernando.visitarUmaCache(c1,log2,d3);
+        maria.visitarUmaCache(c1,log2,d3);
+        maria.visitarUmaCache_deixarTravelBug(c3,log1,d1,"TravelBug2");
         //ruben.visitarUmaCache_TirarObjeto(c1,log2,d2,"ob2");
 
         System.out.println("\n------------------------------------------------------------------\n");
@@ -161,48 +136,48 @@ public class Main {
 
 
 
-        ivone.printALLTravelBug();
+        fernando.printALLTravelBug();
 
 
-        ivone.printObjetosAllUsers();
+        fernando.printObjetosAllUsers();
 
-        ivone.printObjetosAllCaches();
+        fernando.printObjetosAllCaches();
 
-        ivone.printUsers_historicoCaches();
+        fernando.printUsers_historicoCaches();
 
-        ivone.printCaches_historicoUsers();
+        fernando.printCaches_historicoUsers();
 
 
         System.out.println("\n------------------------------------------------------------------\n");
 
-        ivone.printALLTravelBug();
+        fernando.printALLTravelBug();
 
 
-        ivone.printUserLogs();
+        fernando.printUserLogs();
 
-        ivone.printCacheLogs();
-
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        ivone.print_r8a_global(tomas);
-
-        ivone.print_r8a_regiao(tomas,"AltoMinho");
+        fernando.printCacheLogs();
 
         System.out.println("\n------------------------------------------------------------------\n");
 
-        ivone.printr8b(tomas);
+        fernando.print_r8a_global(manuel);
 
-        ivone.print_r8b_regiao(tomas,"AltoMinho");
-
-        ivone.printr8c(c1);
-
-        ivone.printr8d();
+        fernando.print_r8a_regiao(manuel,"AltoMinho");
 
         System.out.println("\n------------------------------------------------------------------\n");
 
-        ivone.printr8e(d1,d4);
+        fernando.printr8b(manuel);
 
-        ivone.printr8f();
+        fernando.print_r8b_regiao(manuel,"AltoMinho");
+
+        fernando.printr8c(c1);
+
+        fernando.printr8d();
+
+        System.out.println("\n------------------------------------------------------------------\n");
+
+        fernando.printr8e(d1,d4);
+
+        fernando.printr8f();
 
         UserAdmin.saveUsers();
 
@@ -229,13 +204,13 @@ public class Main {
 
         System.out.println("\n------------------------------------------------------------------\n");
 
-        ivone.printMessageLogs();
+        fernando.printMessageLogs();
 
-        ivone.printALLTravelBugHCaches();
-        ivone.printALLTravelBugHUsers();
-        ivone.printAllTravelBugsLogs();
+        fernando.printALLTravelBugHCaches();
+        fernando.printALLTravelBugHUsers();
+        fernando.printAllTravelBugsLogs();
 
-        ivone.now();
+        fernando.now();
 
     }
 

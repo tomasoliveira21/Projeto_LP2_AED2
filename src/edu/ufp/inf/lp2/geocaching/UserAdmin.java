@@ -18,6 +18,44 @@ public class UserAdmin extends UserPremium {
     }
 
 
+
+   public void now() {
+       System.out.println("\nFunção now: Localizacao dos TravelBugs do user " + this.name);
+       for (String key : meusTravelBugs.keys()) {
+           TravelBugs travelBugs = meusTravelBugs.get(key);
+           System.out.println("\tTravel bug -> " + travelBugs.nameItem + " ja esteve nas seguintes localizacoes:");
+           int size = travelBugs.historicoTravelBugsLogs.size() - 1;
+           if (travelBugs.historicoTravelBugsLogs.size() > 0) {
+               while (size >= 0) {
+                   if (size == travelBugs.historicoTravelBugsLogs.size() - 1) {
+                       TravelBugsLogs tblog = travelBugs.historicoTravelBugsLogs.get(size);
+                       if (tblog.p == null) {
+                           System.out.println("\t\tEncontra se neste moemnto na cache " + tblog.c.serialNumber + " e foi la deixada pelo user "
+                                   + userST.get(tblog.user).name + " no dia " + tblog.date.print());
+                       } else {
+                           System.out.println("\t\tEncontra se neste moemnto com o o user  " + userST.get(tblog.user).name + " e retirado da cache "
+                                   + tblog.cache + " no dia " + tblog.date.print());
+                       }
+
+                   } else {
+                       if (size == travelBugs.historicoTravelBugsLogs.size() - 1) {
+                           TravelBugsLogs tblog = travelBugs.historicoTravelBugsLogs.get(size);
+                           if (tblog.p == null) {
+                               System.out.println("\t\tEsteve na cache " + tblog.c.serialNumber + " e foi la deixada pelo user "
+                                       + userST.get(tblog.user).name + " no dia " + tblog.date.print());
+                           } else {
+                               System.out.println("\t\tEsteve com o user  " + userST.get(tblog.user).name + " e retirado da cache "
+                                       + tblog.cache + " no dia " + tblog.date.print());
+                           }
+                       }
+
+                   }
+                   size--;
+               }
+           }
+       }
+   }
+
     public void editUser(UserBasic user, String name) {
         user.name = name;
         userST.put(user.id, user);
@@ -383,6 +421,8 @@ public class UserAdmin extends UserPremium {
         }
     }
 
+
+
     private static TravelBugs findTravelBug(String idTB) {
         for (String name : userST.keys()) {
             UserBasic userBasic = userST.get(name);
@@ -408,6 +448,35 @@ public class UserAdmin extends UserPremium {
         cache.x = x;
         cache.y = y;
         cache.regiao = regiao;
+    }
+
+
+    public void printAllTravelBugsLogs(){
+        System.out.println("\nLogs dos Travel Bugs:");
+        for (String id : userST.keys()) {
+            UserBasic userBasic = userST.get(id);
+            if (!userBasic.getClass().equals(UserBasic.class)) {
+                UserPremium userPremium = (UserPremium) userBasic;
+                if (userPremium.meusTravelBugs.size() > 0) {
+                    System.out.println("User "+ userPremium.name +" tem os seguintos travelBugs:");
+                    for (String id2 : userPremium.meusTravelBugs.keys()) {
+                        TravelBugs travelBugs = userPremium.meusTravelBugs.get(id2);
+                        System.out.println("\t-> " + travelBugs.nameItem);
+                        for (TravelBugsLogs travelBugsLogs : travelBugs.historicoTravelBugsLogs){
+                            if(travelBugsLogs.p==null){
+                                System.out.println("\t\t O user " + travelBugsLogs.user + " colocou me na cache " + travelBugsLogs.cache + " no dia " +
+                                        travelBugsLogs.date.print() + " Cache destino: " + travelBugsLogs.destinoConcluido);
+                            }
+                            else if (travelBugsLogs.c==null){
+                                System.out.println("\t\t O user " + travelBugsLogs.user + " retirou me me na cache " + travelBugsLogs.cache + " no dia " +
+                                        travelBugsLogs.date.print() + " Cache destino: " + travelBugsLogs.destinoConcluido);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 
@@ -767,6 +836,7 @@ public class UserAdmin extends UserPremium {
         }
         out.close();
     }
+
     public static void readTravelBugsHUsers(){
         In in = new In(".//data//TravelBugsHUsers.txt");
         while(in.hasNextLine()){
@@ -779,6 +849,62 @@ public class UserAdmin extends UserPremium {
         }
         in.close();
     }
+
+
+    public static void saveTravelBugsLogs(){
+        Out out = new Out(".//data//TravelBugsLogs.txt");
+        for (String id : userST.keys()) {
+            UserBasic userBasic = userST.get(id);
+            if (!userBasic.getClass().equals(UserBasic.class)) {
+                UserPremium userPremium = (UserPremium) userBasic;
+                if (userPremium.meusTravelBugs.size() > 0) {
+                    for (String id2 : userPremium.meusTravelBugs.keys()) {
+                        TravelBugs travelBugs = userPremium.meusTravelBugs.get(id2);
+                       for (TravelBugsLogs tblogs : travelBugs.historicoTravelBugsLogs){
+                           if(tblogs.p==null){
+                               out.print(travelBugs.criadorObjeto.id + "," + travelBugs.id + "," + tblogs.user + "," + tblogs.cache + "," +
+                                       tblogs.date.day  + "," +tblogs.date.month  + "," +tblogs.date.year  + "," + tblogs.c.serialNumber + "," + tblogs.destinoConcluido + ",CACHE\n");
+                           }else{
+                               out.print(travelBugs.criadorObjeto.id + "," + travelBugs.id + "," + tblogs.user + "," + tblogs.cache + "," +
+                                       tblogs.date.day  + "," +tblogs.date.month  + "," +tblogs.date.year  + "," + tblogs.p.id + "," + tblogs.destinoConcluido + ",USER\n");
+                           }
+                       }
+                    }
+                }
+            }
+        }
+        out.close();
+    }
+
+
+    public static void readTravelBugsLogs(){
+        In in = new In(".//data//TravelBugsLogs.txt");
+        while(in.hasNextLine()){
+            String line = in.readLine();
+            String []words = line.split(",");
+            UserPremium puser = (UserPremium) userST.get(words[0]);
+            TravelBugs tb = puser.meusTravelBugs.get(words[1]);
+            if(words[9].equals("CACHE")){//logs esta numa cache
+                Cache cache = cacheST.get(words[7]);
+                int dia = Integer.parseInt(words[4]),mes = Integer.parseInt(words[5]),ano = Integer.parseInt(words[6]);
+                Date date = new Date(dia,mes,ano);
+                TravelBugsLogs tblogs = new TravelBugsLogs(words[3], words[2],cache,null,date );
+                if(words[8].equals("true"))tblogs.destinoConcluido=true;
+                else tblogs.destinoConcluido=false;
+                tb.historicoTravelBugsLogs.add(tblogs);
+
+            }else{//logs esta num user
+                UserPremium user = (UserPremium) userST.get(words[2]);
+                int dia = Integer.parseInt(words[4]),mes = Integer.parseInt(words[5]),ano = Integer.parseInt(words[6]);
+                Date date = new Date(dia,mes,ano);
+                TravelBugsLogs tblogs = new TravelBugsLogs(words[3], words[2],null,user,date );
+                tblogs.destinoConcluido=false;
+                tb.historicoTravelBugsLogs.add(tblogs);
+            }
+        }
+        in.close();
+    }
+
 
     @Override
     public String toString() {

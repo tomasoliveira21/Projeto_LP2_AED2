@@ -9,9 +9,9 @@ public class Main {
     private static final String FILE_DELIMETER = ";";
 
     public static void main(String[] args) {
-        //teste1();
+        teste1();
 
-        teste2();
+        //teste2();
 
     }
 
@@ -224,6 +224,8 @@ public class Main {
 
         UserAdmin.saveTravelBugsHCUsers();
 
+        UserAdmin.saveTravelBugsLogs();
+
 
         System.out.println("\n------------------------------------------------------------------\n");
 
@@ -231,6 +233,9 @@ public class Main {
 
         ivone.printALLTravelBugHCaches();
         ivone.printALLTravelBugHUsers();
+        ivone.printAllTravelBugsLogs();
+
+        ivone.now();
 
     }
 
@@ -249,6 +254,7 @@ public class Main {
         UserAdmin.readMessageLogs();
         UserAdmin.readTravelBugsHUsers();
         UserAdmin.readTravelBugsHCaches();
+        UserAdmin.readTravelBugsLogs();
 
 
 
@@ -274,6 +280,7 @@ public class Main {
         u5.printMessageLogs();
         u5.printALLTravelBugHCaches();
         u5.printALLTravelBugHUsers();
+        u5.printAllTravelBugsLogs();
 
 
     }

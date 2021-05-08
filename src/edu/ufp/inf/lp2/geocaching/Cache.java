@@ -50,6 +50,7 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   }
 
 
+
   public void printObjetoFromCache(){ //printa todos os objetos da cache
     for (String id :meusObjetos.keys()){
       Objeto obj = meusObjetos.get(id);

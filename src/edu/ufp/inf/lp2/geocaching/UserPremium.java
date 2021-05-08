@@ -48,12 +48,12 @@ public class UserPremium extends UserBasic {
         //se a cache onde vou chegar for o destino de travelbug
         if (cache.equals(travelBugs.cacheDestino)) {
             System.out.println("O Travel bug : " + travelBugs.nameItem + "conclui a sua missao.\n");
-            TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null);
+            TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null,date);
             travelBugsLogs.destinoConcluido=true;
             travelBugs.historicoTravelBugsLogs.add(travelBugsLogs);
 
         }else{
-            TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null);
+            TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null,date);
             travelBugsLogs.destinoConcluido=false;
             travelBugs.historicoTravelBugsLogs.add(travelBugsLogs);
         }
@@ -86,6 +86,11 @@ public class UserPremium extends UserBasic {
         tbCache.userAtual=this;
         cache.meusObjetos.delete(tb);
         this.myObjetos.put(tbCache.nameItem,tbCache);
+
+        TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,null,this,date);
+        travelBugsLogs.destinoConcluido=false;
+        tbCache.historicoTravelBugsLogs.add(travelBugsLogs);
+
 
         //Adcionar Logs/mensagem
         CacheLogs cacheLogs = new CacheLogs(date,this.id,null,tbCache.nameItem);
@@ -123,12 +128,12 @@ public class UserPremium extends UserBasic {
 
         if (cache.equals(tbColocar.cacheDestino)) {
             System.out.println("O Travel bug : " + tbColocar.nameItem + "conclui a sua missao.\n");
-            TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null);
+            TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null,date);
             travelBugsLogs.destinoConcluido=true;
             tbColocar.historicoTravelBugsLogs.add(travelBugsLogs);
 
         }else{
-            TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null);
+            TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null,date);
             travelBugsLogs.destinoConcluido=false;
             tbColocar.historicoTravelBugsLogs.add(travelBugsLogs);
         }
@@ -147,7 +152,7 @@ public class UserPremium extends UserBasic {
         this.meusTravelBugs.put(tbRetirar.nameItem,tbRetirar);
 
         //logs tb retirar
-        TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,null,this);
+        TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,null,this,date);
         tbRetirar.historicoTravelBugsLogs.add(travelBugsLogs);
         tbRetirar.cacheAtual=null;
         tbRetirar.userAtual=this;

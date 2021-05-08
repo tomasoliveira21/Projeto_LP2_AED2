@@ -6,15 +6,16 @@ public class TravelBugsLogs {
     String user;
     Cache c;
     UserPremium p;
-
+    Date date;
     boolean destinoConcluido;
 
-    public TravelBugsLogs(String cache, String user, Cache c, UserPremium p) {
+    public TravelBugsLogs(String cache, String user, Cache c, UserPremium p,Date date) {
         this.cache = cache;
         this.user = user;
         this.c = c;
         this.p = p;
         this.destinoConcluido = false;
+        this.date=date;
     }
 
     @Override

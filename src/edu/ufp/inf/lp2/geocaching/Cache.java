@@ -19,14 +19,14 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   public CacheType type;
   public String serialNumber;
 
-  public int x;
-  public int y;
+  public double x;
+  public double y;
   public String regiao;
 
 
 
 
-  public Cache(String serialNumber, CacheDiff diff ,CacheType type, UserPremium userCreator , int x, int y, String regiao) {
+  public Cache(String serialNumber, CacheDiff diff ,CacheType type, UserPremium userCreator , double x, double y, String regiao) {
     this.serialNumber = serialNumber;
     this.diff =diff;
     this.userCreator = userCreator;

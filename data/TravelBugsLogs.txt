@@ -1,1 +1,4 @@
-1001,33,1001,22,12,10,2021,22,false,CACHE
+5,tb1,3,geocache1,11,1,2021,3,false,USER
+5,tb1,3,geocache15,13,1,2021,geocache15,true,CACHE
+6,tb3,5,geocache3,1,1,2021,5,false,USER
+6,tb3,5,geocache12,7,1,2021,geocache12,true,CACHE

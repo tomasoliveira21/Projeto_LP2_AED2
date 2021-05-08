@@ -1,0 +1,30 @@
+Cache geocache1,Tipo Premium,Dificuldade Easy
+	- tinha os seguintes objetos:
+		Objeto canudo
+		Objeto faca
+		Objeto oculos
+	- recebeu as seguintes visitas :
+		- recebeu o user Manuel no dia (1,1,2021)obj retirado null,obj colocado null
+		- recebeu o user Fernando no dia (11,1,2021)obj retirado travelbug1,obj colocado null
+		- recebeu o user Filomena no dia (6,1,2021)obj retirado null,obj colocado null
+--------------------------------------------------------------------------------
+Cache geocache2,Tipo Premium,Dificuldade Medium
+	- tinha os seguintes objetos:
+		Objeto bola
+		Objeto brinquedo
+		Objeto camisola
+	- recebeu as seguintes visitas :
+		- recebeu o user Manuel no dia (2,1,2021)obj retirado travelbug2,obj colocado null
+		- recebeu o user Fernando no dia (10,1,2021)obj retirado null,obj colocado null
+		- recebeu o user Filomena no dia (5,1,2021)obj retirado null,obj colocado null
+--------------------------------------------------------------------------------
+Cache geocache2,Tipo Premium,Dificuldade Medium
+	- tinha os seguintes objetos:
+		Objeto bola
+		Objeto brinquedo
+		Objeto camisola
+	- recebeu as seguintes visitas :
+		- recebeu o user Manuel no dia (2,1,2021)obj retirado travelbug2,obj colocado null
+		- recebeu o user Fernando no dia (10,1,2021)obj retirado null,obj colocado null
+		- recebeu o user Filomena no dia (5,1,2021)obj retirado null,obj colocado null
+--------------------------------------------------------------------------------

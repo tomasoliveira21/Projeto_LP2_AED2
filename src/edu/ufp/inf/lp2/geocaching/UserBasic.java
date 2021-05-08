@@ -3,6 +3,8 @@ import edu.princeton.cs.algs4.BST;
 import edu.princeton.cs.algs4.LinearProbingHashST;
 import edu.princeton.cs.algs4.SeparateChainingHashST;
 
+import java.io.IOException;
+
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
 
 
@@ -36,7 +38,8 @@ public class UserBasic{
     userST.put(this.id, this);
   }
 
-  public void removerUser(){
+  public void removerUser() throws IOException {
+    UserAdmin.ficheiroRemoverUser(this);
     userST.remove(this.id);
   }
 
@@ -203,9 +206,9 @@ public class UserBasic{
   }
 
 
-  public void printhCaches(){
+  public  void printhCaches(){
     if(hCaches.size()>0){
-      System.out.println("Utilizador " + this.name + " visitou as seguintes caches :\n");
+      System.out.println("Utilizador " + name + " visitou as seguintes caches :\n");
       for (Date d : hCaches.keys()){
         Cache c = hCaches.get(d);
         System.out.println(c.toString() + " no dia " + d.print());
@@ -213,6 +216,30 @@ public class UserBasic{
       return;
     }
     System.out.println("Utilizador " + this.name + " ainda nao visitou nenhuma cache\n");
+  }
+
+
+  public static void printhCachesAllUsers(){
+    System.out.println("Caches visitadas pelos utilizadores");
+    for (String id : userST.keys()){
+      UserBasic basic = userST.get(id);
+      if(!basic.getClass().equals(UserBasic.class)){
+        UserPremium premium = (UserPremium) userST.get(id);
+        if(premium.hCaches.size()>0){
+          System.out.println("\tUtilizador " + premium.name + " visitou as seguintes caches :\n");
+          for (Date d : premium.hCaches.keys()){
+            Cache c = premium.hCaches.get(d);
+            System.out.println("\t\t" +c.toString() + " no dia " + d.print());
+          }
+        }else{ System.out.println("\tUtilizador " + premium.name + " ainda nao visitou nenhuma cache\n");
+
+        }
+      }
+
+      System.out.println();
+    }
+
+
   }
 
 

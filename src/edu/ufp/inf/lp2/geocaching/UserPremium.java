@@ -42,12 +42,13 @@ public class UserPremium extends UserBasic {
             return;
         }
         //Buscar travelBug ao bolso,remover do bolso
-        TravelBugs travelBugs = meusTravelBugs.get(tb);
+        TravelBugs travelBugs = (TravelBugs) myObjetos.get(tb);
         myObjetos.delete(tb);
 
         //se a cache onde vou chegar for o destino de travelbug
         if (cache.equals(travelBugs.cacheDestino)) {
-            System.out.println("O Travel bug : " + travelBugs.nameItem + "conclui a sua missao.\n");
+            System.out.println("O Travel bug " + travelBugs.nameItem + " conclui a sua missao ao ser colocado pelo "+ this.name+ " na cache "
+                    +cache.serialNumber +" no dia "+date.print() +".\n");
             TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,cache,null,date);
             travelBugsLogs.destinoConcluido=true;
             travelBugs.historicoTravelBugsLogs.add(travelBugsLogs);
@@ -67,7 +68,7 @@ public class UserPremium extends UserBasic {
         travelBugs.cacheAtual=cache;
         travelBugs.userAtual=null;
         travelBugs.historicoCaches.put(cache.serialNumber,cache);
-        cache.meusObjetos.put(travelBugs.nameItem, travelBugs);
+        cache.meusObjetos.put(travelBugs.id, travelBugs);
         cache.hUsers.put(date,this);
 
         this.hCaches.put(date,cache);
@@ -85,7 +86,7 @@ public class UserPremium extends UserBasic {
         tbCache.cacheAtual=null;
         tbCache.userAtual=this;
         cache.meusObjetos.delete(tb);
-        this.myObjetos.put(tbCache.nameItem,tbCache);
+        this.myObjetos.put(tbCache.id,tbCache);
 
         TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,null,this,date);
         travelBugsLogs.destinoConcluido=false;
@@ -94,7 +95,7 @@ public class UserPremium extends UserBasic {
 
         //Adcionar Logs/mensagem
         CacheLogs cacheLogs = new CacheLogs(date,this.id,null,tbCache.nameItem);
-        UserLogs userLogs = new UserLogs(date, cache.serialNumber, name,tbCache.nameItem);
+        UserLogs userLogs = new UserLogs(date, cache.serialNumber, null,tbCache.nameItem);
         cache.cacheLogs.add(cacheLogs);
         this.userLogs.put(date,userLogs);
         cache.messageLogs.add(mensagem);
@@ -113,7 +114,7 @@ public class UserPremium extends UserBasic {
             return;
         }
         //Removo travelbug do bolso , adciona a cache, removo tb da cache,adciono no bolso
-        TravelBugs tbColocar = meusTravelBugs.get(tb);
+        TravelBugs tbColocar = (TravelBugs) myObjetos.get(tb);
         myObjetos.delete(tb);
         TravelBugs tbRetirar = (TravelBugs) cache.meusObjetos.get(tb_retirar);
         cache.meusObjetos.delete(tb_retirar);
@@ -148,8 +149,8 @@ public class UserPremium extends UserBasic {
 
         tbColocar.historicoCaches.put(cache.serialNumber,cache);
         tbRetirar.historicoUsers.put(this.id,this);
-        cache.meusObjetos.put(tbColocar.nameItem,tbColocar);
-        this.meusTravelBugs.put(tbRetirar.nameItem,tbRetirar);
+        cache.meusObjetos.put(tbColocar.id,tbColocar);
+        this.meusTravelBugs.put(tbRetirar.id,tbRetirar);
 
         //logs tb retirar
         TravelBugsLogs travelBugsLogs = new TravelBugsLogs(cache.serialNumber,this.id,null,this,date);

@@ -1,7 +1,7 @@
 5,Premium,Easy,geocache1,41.1720859,-8.6148178,norte
 5,Premium,Hard,geocache10,40.188891,-8.410378,centro
 6,Basic,Easy,geocache11,40.6394116,-8.6621375,centro
-5,Basic,Easy,geocache12,40.6597787,-7.9136921,centro
+5,Premium,Easy,geocache12,40.6597787,-7.9136921,centro
 5,Basic,Easy,geocache13,38.6942546,-9.2129457,sul
 6,Basic,Medium,geocache14,38.7288464,-9.1481854,sul
 5,Premium,Hard,geocache15,38.7756417,-9.1325313,sul
@@ -9,7 +9,7 @@
 5,Premium,Easy,geocache17,38.7612341,-9.1639843,sul
 5,Basic,Easy,geocache18,38.9369329,-9.3290594,sul
 6,Premium,Medium,geocache2,41.1605747,-8.5855818,norte
-5,Basic,Hard,geocache3,41.1666825,-8.6751895,norte
+5,Premium,Hard,geocache3,41.1666825,-8.6751895,norte
 6,Basic,Easy,geocache4,41.158881,-8.6337921,norte
 5,Premium,Easy,geocache5,41.1492281,-8.6120275,norte
 5,Basic,Easy,geocache6,41.1504982,-8.6654695,norte

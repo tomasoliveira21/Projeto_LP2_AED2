@@ -16,13 +16,19 @@ public class UserAdmin extends UserPremium {
 
     public static ST<String, Cache> cacheST = new ST<>();
 
+    /**
+     * Construtor UserAdmin
+     * @param name
+     * @param id
+     */
+
     public UserAdmin(String name, String id) {
         super(name, id);
     }
 
-
-
-
+    /**
+     * O Método Now apresenta o estado de todos os travel bugs naquele instante
+     */
     public void now() {
         System.out.println("\nFunção now: Localizacao dos TravelBugs do user " + this.name);
         for (String key : meusTravelBugs.keys()) {
@@ -60,12 +66,19 @@ public class UserAdmin extends UserPremium {
         }
     }
 
+    /**
+     * Método que edita o Utilizador
+     * @param user
+     * @param name
+     */
     public void editUser(UserBasic user, String name) {
         user.name = name;
         userST.put(user.id, user);
     }
 
-
+    /**
+     * Método que printa todos os TravelBugs
+     */
     public void printALLTravelBug() {
         System.out.println("Lista todos Travel Bugs\n");
         for (String name : userST.keys()) {
@@ -89,7 +102,9 @@ public class UserAdmin extends UserPremium {
 
     }
 
-
+    /**
+     * Método que lista todos os TravelBugs e o seu Historico de Caches
+     */
     public void printALLTravelBugHCaches() {
         System.out.println("Lista todos Travel Bugs e o seu Historico de Caches\n");
         for (String name : userST.keys()) {
@@ -118,6 +133,9 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método que lista todos os TravelBugs e o seu historico de Users
+     */
     public void printALLTravelBugHUsers() {
         System.out.println("Lista todos Travel Bugs e o seu Historico de Users\n");
         for (String name : userST.keys()) {
@@ -146,16 +164,27 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método que insere uma Cache na Symbol Table
+     * @param cache
+     */
     public void insertCache(Cache cache) {
         cacheST.put(cache.serialNumber, cache);
     }
 
+    /**
+     * Método que remove uma Cache da Symbol Table
+     * @param cache
+     * @throws IOException
+     */
     public static void removeCache(Cache cache) throws IOException {
         UserAdmin.ficheiroRemoverCache(cache);
         cacheST.remove(cache.serialNumber);
     }
 
-
+    /**
+     * Método que lista as caches
+     */
     public static void printCaches() {
         System.out.println("Lista Caches: ");
         for (String cacheName : cacheST.keys()) {
@@ -164,6 +193,9 @@ public class UserAdmin extends UserPremium {
         System.out.println("\n");
     }
 
+    /**
+     * Método que lista os utilizadores
+     */
     public static void printUser() {
 
         System.out.println("Lista Utilizadores: ");
@@ -173,11 +205,26 @@ public class UserAdmin extends UserPremium {
         System.out.println("\n");
     }
 
+    /**
+     * Requisito 8A
+     * Devem implementar-se diversas pesquisas sobre a base de informação como, por
+     * exemplo, determinar:
+     * a) Todas as caches visitadas por um utilizador. Global
+     * @param userBasic
+     */
     public void print_r8a_global(UserBasic userBasic) {
         System.out.println();
         userBasic.printhCaches();
     }
 
+    /**
+     * Requisito 8A
+     * Devem implementar-se diversas pesquisas sobre a base de informação como, por
+     * exemplo, determinar:
+     * a) Todas as caches visitadas por um utilizador. Região;
+     * @param userBasic
+     * @param regiao
+     */
     public void print_r8a_regiao(UserBasic userBasic, String regiao) {
         if (userBasic.hCaches.size() > 0) {
             System.out.println("\nUtilizador " + userBasic.name + " visitou as seguintes caches em " + regiao + "\n");
@@ -190,6 +237,13 @@ public class UserAdmin extends UserPremium {
         System.out.println("\nUtilizador " + userBasic.name + " ainda nao visitou nenhuma cache em " + regiao + "\n");
     }
 
+    /**
+     * Requisito 8B
+     * Devem implementar-se diversas pesquisas sobre a base de informação como, por
+     * exemplo, determinar:
+     * b) Todas as caches não visitadas por um utilizador. Global
+     * @param userBasic
+     */
     public static void printr8b(UserBasic userBasic) {
         System.out.println("O user " + userBasic.name + " nao visitou as seguintes caches:");
         Cache visitada = new Cache();
@@ -210,6 +264,14 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Requisito 8B
+     * Devem implementar-se diversas pesquisas sobre a base de informação como, por
+     * exemplo, determinar:
+     * b) Todas as caches não visitadas por um utilizador. região;
+     * @param userBasic
+     * @param regiao
+     */
     public static void print_r8b_regiao(UserBasic userBasic, String regiao) {
         System.out.println("O user " + userBasic.name + " nao visitou as seguintes caches na regiao " + regiao);
         Cache cache = new Cache();
@@ -230,7 +292,13 @@ public class UserAdmin extends UserPremium {
 
     }
 
-
+    /**
+     * Requisito 8C
+     * Devem implementar-se diversas pesquisas sobre a base de informação como, por
+     * exemplo, determinar:
+     * c) Todos os utilizadores que já visitaram uma dada cache;
+     * @param cache
+     */
     public void printr8c(Cache cache) {
         System.out.println(cache.serialNumber + " -> Utilizadores que visitaram esta cache:");
         for (Date date : cache.hUsers.keys()) {
@@ -240,6 +308,12 @@ public class UserAdmin extends UserPremium {
         System.out.println();
     }
 
+    /**
+     * Requisito 8D
+     * Devem implementar-se diversas pesquisas sobre a base de informação como, por
+     * exemplo, determinar:
+     * d) Todas as caches premium que têm pelo menos um objecto;
+     */
     public static void printr8d() {//Todas as caches premium que têm pelo menos um objecto;
         System.out.println("Caches primium que tem objetos:");
         for (String key : cacheST) {
@@ -251,6 +325,15 @@ public class UserAdmin extends UserPremium {
         }
     }
 
+    /**
+     * Requisito 8E
+     * Devem implementar-se diversas pesquisas sobre a base de informação como, por
+     * exemplo, determinar:
+     * e) Top-5 de utilizadores que visitaram maior nº de caches num dado período
+     * temporal;
+     * @param dinicial
+     * @param dfinal
+     */
     public static void printr8e(Date dinicial, Date dfinal) {//Top-5 de utilizadores que visitaram maior nº de caches num dado períodotemporal;
         ST<String, Integer> totalvisitas = new ST<>();
         for (String key : cacheST) {
@@ -292,6 +375,12 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Requisito 8F
+     * Devem implementar-se diversas pesquisas sobre a base de informação como, por
+     * exemplo, determinar:
+     * f) travel bugs com maior número de localizações percorridas no seu histórico
+     */
     public void printr8f() {
         ArrayList<TravelBugs> travelBugs = new ArrayList<>();
         for (String id : userST) {
@@ -327,6 +416,9 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método que lista todos os objetos das caches
+     */
     public static void printObjetosAllCaches() {
         System.out.println("Lista todos Objetos das Caches\n");
         for (String key : cacheST.keys()) {
@@ -342,6 +434,9 @@ public class UserAdmin extends UserPremium {
         System.out.println("\n");
     }
 
+    /**
+     * Método que lista todos os objetos dos Users
+     */
     public void printObjetosAllUsers() {
         System.out.println("Lista todos Objetos dos Users\n");
         for (String key : userST.keys()) {
@@ -356,6 +451,9 @@ public class UserAdmin extends UserPremium {
         }
     }
 
+    /**
+     * Método para printar o Historico de caches do user
+     */
     public void printUsers_historicoCaches() {
         System.out.println("Historico de Caches do Utilizadores:\n");
         for (String key : userST.keys()) {
@@ -371,6 +469,9 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método para printar o Historico de users das caches
+     */
     public void printCaches_historicoUsers() {
         System.out.println("Historico de Utilizadores das Caches:\n");
         for (String key : cacheST.keys()) {
@@ -386,6 +487,10 @@ public class UserAdmin extends UserPremium {
         }
     }
 
+    /**
+     * Método para printar o Historico de Users da cache
+     * @param cache
+     */
     public static void printCaches_historicoUsers(String cache) {
 
             Cache c = cacheST.get(cache);
@@ -401,6 +506,9 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método para printar o Logs das Caches
+     */
     public void printCacheLogs() {
         System.out.println("\n\nLogs das Caches:\n");
         for (String serial : cacheST.keys()) {
@@ -415,6 +523,10 @@ public class UserAdmin extends UserPremium {
         }
     }
 
+    /**
+     * Método para printar os Logs de uma determinada Cache
+     * @param c
+     */
     public static void printCacheLogs(String c) {
         Cache cache = cacheST.get(c);
         if (cache.cacheLogs.size() > 0) {
@@ -424,11 +536,13 @@ public class UserAdmin extends UserPremium {
             }
         }
 
-
     }
 
+    /**
+     * Método para printar as Logs dos Users
+     */
     public static void printUserLogs() {
-        System.out.println("\n\nLogs das Users:\n");
+        System.out.println("\n\nLogs dos Users:\n");
         for (String id : userST.keys()) {
             UserBasic userBasic = userST.get(id);
             if (userBasic.userLogs.size() > 0) {
@@ -442,6 +556,10 @@ public class UserAdmin extends UserPremium {
         }
     }
 
+    /**
+     * Método que printa as logs de um determinado User
+     * @param u
+     */
     public static void printUserLogs(String u) {
 
         UserBasic userBasic = userST.get(u);
@@ -452,10 +570,11 @@ public class UserAdmin extends UserPremium {
                 System.out.println("\t\t->" + userLogs.toString());
             }
         }
-
-
     }
 
+    /**
+     * Método que printa as Message Logs
+     */
     public void printMessageLogs() {
         System.out.println("\nMessage Logs de todas as caches:\n");
         for (String key : cacheST.keys()) {
@@ -467,7 +586,11 @@ public class UserAdmin extends UserPremium {
         }
     }
 
-
+    /**
+     * Método que encontra um TravelBug
+     * @param idTB
+     * @return
+     */
     private static TravelBugs findTravelBug(String idTB) {
         for (String name : userST.keys()) {
             UserBasic userBasic = userST.get(name);
@@ -485,7 +608,16 @@ public class UserAdmin extends UserPremium {
         return null;
     }
 
-
+    /**
+     * Método que edita uma Cache
+     * @param cache
+     * @param serialNumber
+     * @param type
+     * @param usercreator
+     * @param x
+     * @param y
+     * @param regiao
+     */
     public void editCache(Cache cache, String serialNumber, CacheDiff type, UserPremium usercreator, int x, int y, String regiao) {
         cache.serialNumber = serialNumber;
         cache.diff = type;
@@ -495,7 +627,9 @@ public class UserAdmin extends UserPremium {
         cache.regiao = regiao;
     }
 
-
+    /**
+     * Método que printa todos os TravelBugs Logs
+     */
     public static void printAllTravelBugsLogs() {
         System.out.println("\nLogs dos Travel Bugs:");
         for (String id : userST.keys()) {
@@ -523,6 +657,11 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método que printa todos os TravelBugs de um determinado User
+     * @param puser
+     * @param tb
+     */
     public void printAllTravelBugsLogs(UserPremium puser,String tb) {
 
         TravelBugs travelBugs = puser.meusTravelBugs.get(tb);
@@ -543,7 +682,9 @@ public class UserAdmin extends UserPremium {
 
     ///////////////////////////////////////////                   FICHEIROS                 //////////////////////////////////////////
 
-
+    /**
+     * Método que dá save aos Users num ficheiro de texto
+     */
     public static void saveUsers() {
         Out out = new Out(".//data//user.txt");
         for (String id : userST) {
@@ -558,6 +699,9 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método que lê os Users do ficheiro de texto
+     */
     public static void readUsers() {
         In in = new In(".//data//user.txt");
 
@@ -588,6 +732,9 @@ public class UserAdmin extends UserPremium {
     }
 
 
+    /**
+     * Método que dá save às caches num ficheiro de texto
+     */
     public static void saveCaches() {
         Out out = new Out(".//data//cache.txt");
         for (String serialNumber : cacheST) {
@@ -597,6 +744,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que lê as caches de um ficheiro de texto
+     */
     public static void readCaches() {
         In in = new In(".//data//cache.txt");
         while (in.hasNextLine()) {
@@ -622,7 +772,9 @@ public class UserAdmin extends UserPremium {
         }
     }
 
-
+    /**
+     * Método que guarda os objetos e travel bugs das caches num ficheiro de texto
+     */
     public static void saveObjetosCache() {
         Out out = new Out(".//data//objetosCaches.txt");
         for (String key : cacheST.keys()) {
@@ -644,6 +796,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que lê os objetos e travel bugs das caches de um ficheiro de texto
+     */
     public static void readObjetosCache() {
         In in = new In(".//data//objetosCaches.txt");
         while (in.hasNextLine()) {
@@ -675,7 +830,9 @@ public class UserAdmin extends UserPremium {
         in.close();
     }
 
-
+    /**
+     * Método que guarda os objetos e travel bugs dos Users num ficheiro de texto
+     */
     public static void saveObjetosUsers() {
         Out out = new Out(".//data//objetosUsers.txt");
         for (String key : userST.keys()) {
@@ -697,6 +854,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que lê os objetos e travel bugs de um ficheiro de texto
+     */
     public static void readObjetosUsers() {
         In in = new In(".//data//objetosUsers.txt");
         while (in.hasNextLine()) {
@@ -726,7 +886,9 @@ public class UserAdmin extends UserPremium {
         in.close();
     }
 
-
+    /**
+     * Método que guarda o Historico de Users e caches num ficheiro de texto
+     */
     public static void savehCachesehUsers() {
         Out out = new Out(".//data//hCacheshUsers.txt");
         for (String key : userST.keys()) {
@@ -741,6 +903,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que lê o Historico de Users e Caches de um ficheiro de texto
+     */
     public static void readhCacheshUsers() {
         In in = new In(".//data//hCacheshUsers.txt");
         while (in.hasNextLine()) {
@@ -760,7 +925,9 @@ public class UserAdmin extends UserPremium {
         }
     }
 
-
+    /**
+     * Método que guarda os Logs das Caches num ficheiro de texto
+     */
     public static void saveLogsCache() {
         Out out = new Out(".//data//LogsCache.txt");
         for (String serial : cacheST.keys()) {
@@ -775,6 +942,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que lê os Logs das Caches num ficheiro de texto
+     */
     public static void readLogsCache() {
         In in = new In(".//data//LogsCache.txt");
         while (in.hasNextLine()) {
@@ -791,7 +961,9 @@ public class UserAdmin extends UserPremium {
         in.close();
     }
 
-
+    /**
+     * Método que guarda os Logs dos users num ficheiro texto
+     */
     public static void saveLogsUser() {
         Out out = new Out(".//data//LogsUser.txt");
         for (String id : userST.keys()) {
@@ -807,6 +979,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que lê os Logs dos users de um ficheiro de texto
+     */
     public static void readLogsUser() {
         In in = new In(".//data//LogsUser.txt");
         while (in.hasNextLine()) {
@@ -823,7 +998,9 @@ public class UserAdmin extends UserPremium {
         in.close();
     }
 
-
+    /**
+     * Método que guarda os MessageLogs num ficheiro de texto
+     */
     public static void saveMessageLogs() {
         Out out = new Out(".//data//LogsMessage.txt");
         for (String key : cacheST.keys()) {
@@ -835,6 +1012,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que lê os MessageLogs de um ficheiro de texto
+     */
     public static void readMessageLogs() {
         In in = new In(".//data//LogsMessage.txt");
         while (in.hasNextLine()) {
@@ -847,7 +1027,9 @@ public class UserAdmin extends UserPremium {
         in.close();
     }
 
-
+    /**
+     * Método que guarda  os travel bugs e historico de caches
+     */
     public static void saveTravelBugsHCaches() {
         Out out = new Out(".//data//TravelBugsHCaches.txt");
         for (String name : userST.keys()) {
@@ -870,6 +1052,9 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método que lê os travel bugs e historico de caches
+     */
     public static void readTravelBugsHCaches() {
         In in = new In(".//data//TravelBugsHCaches.txt");
         while (in.hasNextLine()) {
@@ -885,7 +1070,9 @@ public class UserAdmin extends UserPremium {
         in.close();
     }
 
-
+    /**
+     * Método que guarda os travelBugs e historico de Users
+     */
     public static void saveTravelBugsHUsers() {
         Out out = new Out(".//data//TravelBugsHUsers.txt");
         for (String id : userST.keys()) {
@@ -907,6 +1094,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que lê os travelBugs e historico de Users
+     */
     public static void readTravelBugsHUsers() {
         In in = new In(".//data//TravelBugsHUsers.txt");
         while (in.hasNextLine()) {
@@ -922,7 +1112,9 @@ public class UserAdmin extends UserPremium {
         in.close();
     }
 
-
+    /**
+     * Método que guarda os travel bugs Logs de um ficheiro de texto
+     */
     public static void saveTravelBugsLogs() {
         Out out = new Out(".//data//TravelBugsLogs.txt");
         for (String id : userST.keys()) {
@@ -948,6 +1140,9 @@ public class UserAdmin extends UserPremium {
         out.close();
     }
 
+    /**
+     * Método que le os travel bugs logs de um ficheiro de texto
+     */
     public static void readTravelBugsLogs() {
         In in = new In(".//data//TravelBugsLogs.txt");
         while (in.hasNextLine()) {
@@ -987,7 +1182,9 @@ public class UserAdmin extends UserPremium {
         in.close();
     }
 
-
+    /**
+     * Função que chama todas a funcoes save
+     */
     public static void saveAll() {
         saveUsers();
         saveCaches();
@@ -1003,6 +1200,9 @@ public class UserAdmin extends UserPremium {
         saveTravelBugsLogs();
     }
 
+    /**
+     * Função que chama todas a funcoes read
+     */
     public static void readAll() {
         readUsers();
         readCaches();
@@ -1019,7 +1219,11 @@ public class UserAdmin extends UserPremium {
     }
 
 
-
+    /**
+     * Método para arquivar um utilizador num ficheiro de texto
+     * @param user
+     * @throws IOException
+     */
     public static void ficheiroRemoverUser(UserBasic user) throws IOException {
         FileWriter fileWriter = new FileWriter(".//data//UsersRemovidos.txt",true);
         BufferedWriter ficheiro = new BufferedWriter(fileWriter);
@@ -1094,6 +1298,11 @@ public class UserAdmin extends UserPremium {
 
     }
 
+    /**
+     * Método para arquivar uma cache num ficheiro de texto
+     * @param cache
+     * @throws IOException
+     */
     public static void ficheiroRemoverCache(Cache cache) throws IOException{
         FileWriter fileWriter = new FileWriter(".//data//CacheRemovidos.txt",true);
         BufferedWriter ficheiro = new BufferedWriter(fileWriter);

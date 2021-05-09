@@ -24,7 +24,11 @@ public class UserBasic{
 
   public SeparateChainingHashST<Date , UserLogs> userLogs = new SeparateChainingHashST<>();//sempre que um user visitar uma cache adiciono na Hcache
 
-
+  /**
+   * Construtor UserBasic
+   * @param name
+   * @param id
+   */
   public UserBasic(String name, String id) {
     this.name = name;
     this.id = id;
@@ -33,20 +37,35 @@ public class UserBasic{
   }
 
 
-
+  /**
+   * Método para Inserir um utilizador na Symbol Table
+   */
   public void insertUser(){
     userST.put(this.id, this);
   }
 
+  /**
+   * Método para Remover um utilizador da Symbol Table e arquivar no ficheiro
+   * @throws IOException
+   */
   public void removerUser() throws IOException {
     UserAdmin.ficheiroRemoverUser(this);
     userST.remove(this.id);
   }
 
+  /**
+   * Método para Remover um utilizador da Symbol Table
+   * @param id
+   */
   public void removerUser(String id){
     userST.remove(id);
   }
 
+  /**
+   * Método para editar um utilizador
+   * @param nome
+   * @param id
+   */
   public void editarUser(String nome,String id){
     userST.remove(this.id);
     this.name=nome;
@@ -54,6 +73,11 @@ public class UserBasic{
     userST.put(this.id,this);
   }
 
+  /**
+   * Método para criar um Objeto
+   * @param id
+   * @param nameItem
+   */
   public void criarObjeto(String id , String nameItem){
       Objeto objeto = new Objeto(id,nameItem,this);
       objeto.criadorObjeto=this;
@@ -65,7 +89,12 @@ public class UserBasic{
   }
 
 
-
+  /**
+   * Método para visitar uma Cache -> não colocando objetos nem retirando
+   * @param cache
+   * @param mensagem
+   * @param date
+   */
   public void visitarUmaCache(Cache cache,MessageLog mensagem,Date date){
     for (CacheLogs cacheLogs :cache.cacheLogs){
       if(cacheLogs.data.equals(date) && cacheLogs.userID.equals(this.id)){
@@ -89,6 +118,13 @@ public class UserBasic{
     cache.hUsers.put(date,this);
   }
 
+  /**
+   * Método para visitar uma Cache -> e deixar um objeto
+   * @param cache
+   * @param mensagem
+   * @param date
+   * @param obj
+   */
   public void visitarUmaCache_deixarObjeto(Cache cache,MessageLog mensagem,Date date,String obj){
 
     for (CacheLogs cacheLogs :cache.cacheLogs){
@@ -123,6 +159,14 @@ public class UserBasic{
 
   }
 
+
+  /**
+   * Método para visitar uma Cache -> Tirando um objeto
+   * @param cache
+   * @param mensagem
+   * @param date
+   * @param obj
+   */
   public void visitarUmaCache_TirarObjeto(Cache cache,MessageLog mensagem,Date date,String obj){
     for (CacheLogs cacheLogs :cache.cacheLogs){
       if(cacheLogs.data.equals(date) && cacheLogs.userID.equals(this.id)){
@@ -155,7 +199,14 @@ public class UserBasic{
   }
 
 
-
+  /**
+   * Método para visitar uma cache e trocar um objeto
+   * @param cache
+   * @param mensagem
+   * @param date
+   * @param obj
+   * @param objCache
+   */
   public void visitarUmaCache_trocarObjeto(Cache cache,MessageLog mensagem,Date date,String obj,Objeto objCache){
     for (CacheLogs cacheLogs :cache.cacheLogs){
       if(cacheLogs.data.equals(date) && cacheLogs.userID.equals(this.id)){
@@ -190,7 +241,9 @@ public class UserBasic{
     cache.hUsers.put(date,this);
   }
 
-
+  /**
+   * Método para printar os objetos
+   */
   public void printObjetos(){
 
     if(myObjetos.size()>0){
@@ -205,7 +258,9 @@ public class UserBasic{
     System.out.println("Utilizador " + this.name + "nao tem objetos\n");
   }
 
-
+  /**
+   * Método para printar o historico de caches
+   */
   public  void printhCaches(){
     if(hCaches.size()>0){
       System.out.println("Utilizador " + name + " visitou as seguintes caches :\n");
@@ -218,7 +273,9 @@ public class UserBasic{
     System.out.println("Utilizador " + this.name + " ainda nao visitou nenhuma cache\n");
   }
 
-
+  /**
+   * Método para printar o historico de caches de todos os utilizadores
+   */
   public static void printhCachesAllUsers(){
     System.out.println("Caches visitadas pelos utilizadores");
     for (String id : userST.keys()){

@@ -9,6 +9,13 @@ public class Objeto {
   public UserBasic userAtual;
   public Cache cacheAtual;
 
+  /**
+   * Construtor Objeto (Item)
+   * @param id
+   * @param nameItem
+   * @param criadorObjeto
+   */
+
   public Objeto(String id, String nameItem,UserBasic criadorObjeto) {
     this.id=id;
     this.nameItem = nameItem;

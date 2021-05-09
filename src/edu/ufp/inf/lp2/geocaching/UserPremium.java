@@ -7,11 +7,23 @@ public class UserPremium extends UserBasic {
     public double cachesEscondidas;
     public RedBlackBST<String,TravelBugs> meusTravelBugs = new RedBlackBST<>();
 
+    /**
+     * Construtor do UserPremium
+     * @param name
+     * @param id
+     */
+
     public UserPremium(String name, String id) {
         super(name, id);
     }
 
 
+    /**
+     * Método para criar Travel Bug
+     * @param id
+     * @param nameItem
+     * @param cacheMissao
+     */
     public void criarTravelBug(String id, String nameItem,Cache cacheMissao){
     TravelBugs travelBugs = new TravelBugs(id,nameItem,this,cacheMissao);
     travelBugs.userAtual=this;
@@ -22,7 +34,9 @@ public class UserPremium extends UserBasic {
 
     }
 
-
+    /**
+     * Método para printar Travel Bug dos Users
+     */
     public void printTravelBug(){
         if(meusTravelBugs.size()>0){
             System.out.println("Utilizador " + this.name + " tem os TravelBugs :");
@@ -36,6 +50,13 @@ public class UserPremium extends UserBasic {
         System.out.println("Utilizador " + this.name + " nao tem TravelBugs\n");
     }
 
+    /**
+     * Método visita uma cache -> deixa um travel bug
+     * @param cache
+     * @param mensagem
+     * @param date
+     * @param tb
+     */
     public void visitarUmaCache_deixarTravelBug(Cache cache,MessageLog mensagem,Date date,String tb){
         if(!cache.type.equals(CacheType.Premium)){
             System.out.println("Esta cache nao é premium, logo nao e permitido o uso de Travel Bugs\n");
@@ -76,6 +97,13 @@ public class UserPremium extends UserBasic {
     }
 
 
+    /**
+     * Método visita uma cache -> tira um travel bug
+     * @param cache
+     * @param mensagem
+     * @param date
+     * @param tb
+     */
     public void visitarUmaCache_TirarTravelBug(Cache cache,MessageLog mensagem,Date date,String tb){
         if(!cache.type.equals(CacheType.Premium)){
             System.out.println("Esta cache nao é premium, logo nao e permitido o uso de Travel Bugs\n");
@@ -108,6 +136,14 @@ public class UserPremium extends UserBasic {
         this.cachesVisitadas++;
     }
 
+    /**
+     * Método visita uma cache -> troca um travel bug
+     * @param cache
+     * @param mensagem
+     * @param date
+     * @param tb
+     * @param tb_retirar
+     */
     public void visitarUmaCache_trocarTravelBugs(Cache cache,MessageLog mensagem,Date date,String tb,String tb_retirar){
         if(!cache.type.equals(CacheType.Premium)){
             System.out.println("Esta cache nao é premium, logo nao e permitido o uso de Travel Bugs\n");
@@ -166,7 +202,10 @@ public class UserPremium extends UserBasic {
 
     }
 
-
+    /**
+     * Método printa Logs de um determinado travel bug
+     * @param travelBug
+     */
     void printLogs_1TravelBug(String travelBug){
             TravelBugs tb = this.meusTravelBugs.get(travelBug);
             for (TravelBugsLogs tbL : tb.historicoTravelBugsLogs){
@@ -174,6 +213,9 @@ public class UserPremium extends UserBasic {
             }
     }
 
+    /**
+     * Método printa Logs de travel bugs
+     */
     void printLogs_TravelBugs(){
         if(this.meusTravelBugs.size()>0){
             for (String key : meusTravelBugs.keys()){

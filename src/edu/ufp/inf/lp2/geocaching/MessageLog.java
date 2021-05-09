@@ -6,6 +6,11 @@ public class MessageLog {
  String mensagem;
 
 
+ /**
+  * Construtor do MessageLog
+  * @param mensagem
+  */
+
  public MessageLog(String mensagem) {
   this.mensagem = mensagem;
  }

@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.BST;
 
 import java.util.ArrayList;
 
-//provavelmente os travel bugs é que extends objeto
+
 public class TravelBugs extends  Objeto{
 
   public Cache cacheDestino;
@@ -14,7 +14,13 @@ public class TravelBugs extends  Objeto{
   public BST<String,UserBasic> historicoUsers = new BST<>();
 
 
-
+  /**
+   * Contrutor Travel Bugs
+   * @param id
+   * @param nameItem
+   * @param criadorObjeto
+   * @param cacheMissao
+   */
 
   public TravelBugs(String id, String nameItem,UserBasic criadorObjeto,Cache cacheMissao) {
     super(id, nameItem,criadorObjeto);
@@ -27,7 +33,5 @@ public class TravelBugs extends  Objeto{
   }
 
 
-  public void now() {
-  }
 
 }

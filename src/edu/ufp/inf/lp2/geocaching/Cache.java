@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.ST;
 import java.util.ArrayList;
 
 
-public class Cache{ // é necessario fazer extends do userBasic (?)
+public class Cache{
 
   //public int nUtilizadores;
   public ST<Date, UserBasic> hUsers= new ST<>();
@@ -25,7 +25,9 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
 
 
 
-
+/**
+ * Construtor Cache
+ */
   public Cache(String serialNumber, CacheDiff diff ,CacheType type, UserPremium userCreator , double x, double y, String regiao) {
     this.serialNumber = serialNumber;
     this.diff =diff;
@@ -36,7 +38,12 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     this.type=type;
   }
 
-
+  /**
+   * Método que cria um Objeto inserindo-o na BST dos meusObjetos
+   * @param id
+   * @param nameItem
+   * @param creatorID
+   */
   public void criarObjeto(String id , String nameItem,UserBasic creatorID){
     Objeto objeto = new Objeto(id,nameItem,creatorID);
     objeto.criadorObjeto=creatorID;
@@ -50,8 +57,10 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   }
 
 
-
-  public void printObjetoFromCache(){ //printa todos os objetos da cache
+  /**
+   * Método que printa todos os objetos da cache
+   */
+  public void printObjetoFromCache(){
     for (String id :meusObjetos.keys()){
       Objeto obj = meusObjetos.get(id);
       System.out.println(obj.toString());
@@ -59,6 +68,30 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
   }
 
 
+  @Override
+  public String toString() {
+    return "\tCache{" +
+            "userCreator=" + userCreator.name +
+            ", type=" + diff +
+            ", serialNumber='" + serialNumber + '\'' +
+            ", x=" + x +
+            ", y=" + y +
+            ", regiao='" + regiao + '\'' +
+            '}';
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+//codigo antigo (Prof.Diogo Machado)
    /* public void addObjectToArrayList(Objeto objeto) throws AlreadyRegisteredObjectException {
     if (!meusObjetos.contains(objeto)) {
       meusObjetos.add(objeto);
@@ -137,18 +170,3 @@ public class Cache{ // é necessario fazer extends do userBasic (?)
     return true;
   }
 */
-
-
-  @Override
-  public String toString() {
-    return "\tCache{" +
-            "userCreator=" + userCreator.name +
-            ", type=" + diff +
-            ", serialNumber='" + serialNumber + '\'' +
-            ", x=" + x +
-            ", y=" + y +
-            ", regiao='" + regiao + '\'' +
-            '}';
-  }
-}
-

@@ -7,6 +7,14 @@ public class UserLogs {
     public String objetocolocado;
     public String objetoretirado;
 
+    /**
+     * Construtor UserLogs
+     * @param data
+     * @param serialNumber
+     * @param objetocolocado
+     * @param objetoretirado
+     */
+
     public UserLogs(Date data, String serialNumber, String objetocolocado, String objetoretirado) {
         this.data = data;
         this.serialNumber = serialNumber;

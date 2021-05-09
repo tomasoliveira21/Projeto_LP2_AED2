@@ -10,6 +10,14 @@ public class CacheLogs {
     public String objetocolocado;
     public String objetoretirado;
 
+    /**
+     * Construtor das LOGS DA CACHE
+     * @param data
+     * @param userID
+     * @param objetocolocado
+     * @param objetoretirado
+     */
+
     public CacheLogs(Date data, String userID, String objetocolocado, String objetoretirado) {
         this.data = data;
         this.userID = userID;

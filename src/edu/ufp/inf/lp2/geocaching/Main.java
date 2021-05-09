@@ -8,315 +8,23 @@ import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
 public class Main {
 
 
-
+    /**
+     * Método Main
+     * @param args
+     * @throws IOException
+     */
 
     public static void main(String[] args) throws IOException {
-        //teste1();
-        //teste2();
 
-        testeprojeto();
+        testeprojeto();         //TESTES PEDIDOS PELO PROF
         //testeprojeto2();
     }
 
 
-    public static void teste1(){
-        System.out.println(userST.size());
-        System.out.println(cacheST.size());
-
-
-        //---------[Criação de utilizadores]---------
-        UserBasic manuel= new UserBasic("Manuel", "1");
-        UserBasic pedro= new UserBasic("Pedro", "2");
-        UserAdmin fernando= new UserAdmin("Fernando", "3");
-        UserBasic joana= new UserBasic("Joana", "4");
-        UserPremium maria= new UserPremium("Maria", "5");
-        UserAdmin filomena = new UserAdmin("Filomena", "6");
-
-        //---------[Inserção de Utilizadores na ST]--------
-
-        manuel.insertUser();
-        pedro.insertUser();
-        fernando.insertUser();
-        joana.insertUser();
-        maria.insertUser();
-        filomena.insertUser();
-
-        //---------[Print Utilizadores]---------
-
-        UserAdmin.printUser();
-
-
-        //---------[Editar Utilizador da ST]---------
-        //fernando.editarUser("LeticiaEditada","0000");
-        //filomena.printUser();
-
-//        //---------[Remover Utilizador]---------
-        //u4.removerUser();
-        //filomena.printUser();
-
-
-
-        //caches norte
-        Cache c1= new Cache("1",CacheDiff.Easy,CacheType.Basic,maria,41.1720859,-8.6148178,"norte");
-        Cache c2= new Cache("2",CacheDiff.Medium,CacheType.Basic,filomena,41.1605747,-8.5855818,"norte");
-        Cache c3= new Cache("3",CacheDiff.Hard,CacheType.Basic,maria,41.1666825,-8.6751895,"norte");
-        Cache c4= new Cache("4",CacheDiff.Easy,CacheType.Basic,filomena,41.158881,-8.6337921,"norte");
-        Cache c5= new Cache("5",CacheDiff.Easy,CacheType.Premium,maria,41.1492281,-8.6120275,"norte");
-        Cache c6= new Cache("6",CacheDiff.Easy,CacheType.Basic,maria,41.1504982,-8.6654695,"norte");
-        Cache c7= new Cache("7",CacheDiff.Easy,CacheType.Basic,maria,41.2421226,-8.6807401,"norte");
-
-        //caches centro
-        Cache c8= new Cache("8",CacheDiff.Easy,CacheType.Basic,maria,40.2094433,-8.4208601,"centro");
-        Cache c9= new Cache("9",CacheDiff.Medium,CacheType.Basic,filomena,40.2027321,-8.4333746,"centro");
-        Cache c10= new Cache("10",CacheDiff.Hard,CacheType.Premium,maria,40.188891,-8.410378,"centro");
-        Cache c11= new Cache("11",CacheDiff.Easy,CacheType.Basic,filomena,40.6394116,-8.6621375,"centro");
-        Cache c12= new Cache("12",CacheDiff.Easy,CacheType.Basic,maria,40.6597787,-7.9136921,"centro");
-
-        //caches sul
-        Cache c13= new Cache("13",CacheDiff.Easy,CacheType.Basic,maria,38.6942546,-9.2129457,"sul");
-        Cache c14= new Cache("14",CacheDiff.Medium,CacheType.Basic,filomena,38.7288464,-9.1481854,"sul");
-        Cache c15= new Cache("15",CacheDiff.Hard,CacheType.Basic,maria,38.7756417,-9.1325313,"sul");
-        Cache c16= new Cache("16",CacheDiff.Easy,CacheType.Premium,filomena,38.7527152,-9.1869627,"sul");
-        Cache c17= new Cache("17",CacheDiff.Easy,CacheType.Basic,maria,38.7612341,-9.1639843,"sul");
-        Cache c18= new Cache("18",CacheDiff.Easy,CacheType.Basic,maria,38.9369329,-9.3290594,"sul");
-
-        //---------[Inserção na ST de Caches]---------
-        filomena.insertCache(c1);
-        filomena.insertCache(c2);
-        fernando.insertCache(c3);
-        filomena.insertCache(c4);
-        filomena.insertCache(c5);
-        filomena.insertCache(c6);
-        filomena.insertCache(c7);
-        filomena.insertCache(c8);
-        filomena.insertCache(c9);
-        filomena.insertCache(c10);
-        filomena.insertCache(c11);
-        filomena.insertCache(c12);
-        filomena.insertCache(c13);
-        filomena.insertCache(c14);
-        filomena.insertCache(c15);
-        filomena.insertCache(c16);
-        filomena.insertCache(c17);
-        filomena.insertCache(c18);
-
-
-        UserAdmin.printCaches();
-
-        maria.printhCaches();
-
-
-        Date d1 = new Date(12,10,2021);
-        Date d2 = new Date(15,11,2021);
-        Date d3 = new Date(1,12,2021);
-        Date d4 = new Date(27,12,2021);
-
-
-
-//        //---------[Editar Caches da ST]---------
-//       ivone.editCache(c4,"44",CacheDiff.Hard,tichinha,10,11,"PerreParisLondres");
-//       ivone.printCache();
-//
-//        //---------[Remover Caches da ST]---------
-//        ivone.removeCache(c1);
-//        ivone.printCache();
-//        c3.printObjetoFromCache();
-//        c4.printObjetoFromCache();
-//
-//
-//
-        MessageLog log1 = new MessageLog("Estive aqui -1");
-        MessageLog log2 = new MessageLog("Estive aqui -2");
-        MessageLog log3 = new MessageLog("Estive aqui -3");
-        MessageLog log4 = new MessageLog("Estive aqui -4");
-
-        manuel.criarObjeto("ob1","BabyFace");
-        manuel.criarObjeto("ob2","faca");
-        manuel.criarObjeto("ob3","espada");
-
-        pedro.criarObjeto("ob4","Tiagovski");
-        fernando.criarObjeto("ob5","Miss");
-
-
-        //objetos caches
-        c1.criarObjeto("ob1","canudo",filomena);
-        c1.criarObjeto("ob2","livro",filomena);
-        c1.criarObjeto("ob3","oculos",filomena);
-
-        c2.criarObjeto("ob4","bola",filomena);
-        c2.criarObjeto("ob5","brinquedo",filomena);
-        c2.criarObjeto("ob6","camisola",filomena);
-
-        c3.criarObjeto("ob7","pedra",filomena);
-        c3.criarObjeto("ob8","flor",filomena);
-        c3.criarObjeto("ob9","areia",filomena);
-
-        c4.criarObjeto("ob10","flauta",filomena);
-
-        c7.criarObjeto("ob11","bilhetes_aviao",filomena);
-
-        c8.criarObjeto("ob12","canudo",filomena);
-        c8.criarObjeto("ob13","capa",filomena);
-
-        c10.criarObjeto("ob14","borracha",filomena);
-        c10.criarObjeto("ob15","chaves",filomena);
-
-        c11.criarObjeto("ob16","ovos_moles",filomena);
-
-        c12.criarObjeto("ob17","espada",filomena);
-
-        c15.criarObjeto("ob18","bilhetes_aviao",filomena);
-
-
-
-
-
-        //travel bugs
-        //filomena.criarTravelBug("1","travelbug1",c15);
-        //filomena.criarTravelBug("2","travelbug2",c17);
-        //filomena.criarTravelBug("3","travelbug3",c12);
-
-        //tomas.printObjetos();
-
-        manuel.visitarUmaCache_deixarObjeto(c1,log1,d1,"ob2");
-        manuel.visitarUmaCache(c1,log2,d2);
-
-        manuel.visitarUmaCache(c2,log2,d3);
-
-        fernando.visitarUmaCache(c1,log2,d3);
-        maria.visitarUmaCache(c1,log2,d3);
-        maria.visitarUmaCache_deixarTravelBug(c3,log1,d1,"TravelBug2");
-        //ruben.visitarUmaCache_TirarObjeto(c1,log2,d2,"ob2");
-
-        System.out.println("\n------------------------------------------------------------------\n");
-
-
-
-
-        fernando.printALLTravelBug();
-
-
-        fernando.printObjetosAllUsers();
-
-        UserAdmin.printObjetosAllCaches();
-
-        fernando.printUsers_historicoCaches();
-
-        fernando.printCaches_historicoUsers();
-
-
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        fernando.printALLTravelBug();
-
-
-        UserAdmin.printUserLogs();
-
-        fernando.printCacheLogs();
-
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        fernando.print_r8a_global(manuel);
-
-        fernando.print_r8a_regiao(manuel,"norte");
-
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        fernando.printr8b(manuel);
-
-        fernando.print_r8b_regiao(manuel,"norte");
-
-        fernando.printr8c(c1);
-
-        fernando.printr8d();
-
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        fernando.printr8e(d1,d4);
-
-        fernando.printr8f();
-
-        UserAdmin.saveUsers();
-
-        UserAdmin.saveCaches();
-
-        UserAdmin.saveObjetosCache();
-
-        UserAdmin.saveObjetosUsers();
-
-        UserAdmin.savehCachesehUsers();
-
-        UserAdmin.saveLogsCache();
-
-        UserAdmin.saveLogsUser();
-
-        UserAdmin.saveMessageLogs();
-
-        UserAdmin.saveTravelBugsHCaches();
-
-        UserAdmin.saveTravelBugsHUsers();
-
-        UserAdmin.saveTravelBugsLogs();
-
-
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        fernando.printMessageLogs();
-
-        fernando.printALLTravelBugHCaches();
-        fernando.printALLTravelBugHUsers();
-        fernando.printAllTravelBugsLogs();
-
-        fernando.now();
-
-    }
-
-    public static void teste2(){ //ler users
-
-        System.out.println(userST.size());
-        System.out.println(cacheST.size());
-
-        UserAdmin.readUsers();
-        UserAdmin.readCaches();
-        UserAdmin.readObjetosCache();
-        UserAdmin.readObjetosUsers();
-        UserAdmin.readhCacheshUsers();
-        UserAdmin.readLogsCache();
-        UserAdmin.readLogsUser();
-        UserAdmin.readMessageLogs();
-        UserAdmin.readTravelBugsHUsers();
-        UserAdmin.readTravelBugsHCaches();
-        UserAdmin.readTravelBugsLogs();
-
-
-
-        UserBasic u1= userST.get("40097");
-        UserBasic u2= userST.get("39917");
-        UserPremium u3= (UserPremium) userST.get("0000");
-        UserPremium u4= (UserPremium) userST.get("5555");
-        UserAdmin u5= (UserAdmin) userST.get("1001");
-        UserAdmin u6= (UserAdmin) userST.get("7004");
-
-
-
-        UserAdmin.printUser();
-        UserAdmin.printCaches();
-        UserAdmin.printObjetosAllCaches();
-        u5.printObjetosAllUsers();
-        u5.printUsers_historicoCaches();
-        u5.printTravelBug();
-        System.out.println("------------------------");
-        u5.printCacheLogs();
-        UserAdmin.printUserLogs();
-        u5.printCacheLogs();
-        u5.printMessageLogs();
-        u5.printALLTravelBugHCaches();
-        u5.printALLTravelBugHUsers();
-        u5.printAllTravelBugsLogs();
-
-
-    }
-
+    /**
+     * Função teste dos inputs do prof
+     * @throws IOException
+     */
 
     public static void testeprojeto() throws IOException {
 
@@ -551,6 +259,9 @@ public class Main {
 
     }
 
+    /**
+     * Função teste de ler dos inputs
+     */
     public static void testeprojeto2(){
 
         UserAdmin.readAll();

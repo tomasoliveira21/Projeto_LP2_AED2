@@ -4,6 +4,11 @@ package edu.ufp.inf.lp2.geocaching;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * Classe Date retirada da aula
+ */
+
+
 public class Date implements Comparable<Date> {
 
     public int day;

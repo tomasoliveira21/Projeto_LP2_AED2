@@ -9,6 +9,15 @@ public class TravelBugsLogs {
     Date date;
     boolean destinoConcluido;
 
+    /**
+     * Construtor dos TravelBugsLogs
+     * @param cache
+     * @param user
+     * @param c
+     * @param p
+     * @param date
+     */
+
     public TravelBugsLogs(String cache, String user, Cache c, UserPremium p,Date date) {
         this.cache = cache;
         this.user = user;

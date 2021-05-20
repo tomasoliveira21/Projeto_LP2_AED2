@@ -1,11 +1,14 @@
 package edu.ufp.inf.lp2.geocaching;
 
+import Graph.Aresta_Projeto;
+
 import java.io.IOException;
 
-import static edu.ufp.inf.lp2.geocaching.UserAdmin.cacheST;
-import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
+import static edu.ufp.inf.lp2.geocaching.UserAdmin.*;
+
 
 public class Main {
+
 
 
     /**
@@ -249,8 +252,102 @@ public class Main {
         UserAdmin.printAllTravelBugsLogs();
 
         System.out.println("\n---------------------------------------------------------------------------------\n");
+        int index_1=grafoTS.st.get("geocache1");
+        int index_2=grafoTS.st.get("geocache2");
+        int index_3=grafoTS.st.get("geocache3");
+        int index_4=grafoTS.st.get("geocache4");
+        int index_5=grafoTS.st.get("geocache5");
+        int index_6=grafoTS.st.get("geocache6");
+        int index_7=grafoTS.st.get("geocache7");
+        int index_8=grafoTS.st.get("geocache8");
+        int index_9=grafoTS.st.get("geocache9");
+        int index_10=grafoTS.st.get("geocache10");
+        int index_11=grafoTS.st.get("geocache11");
+        int index_12=grafoTS.st.get("geocache12");
+        int index_13=grafoTS.st.get("geocache13");
+        int index_14=grafoTS.st.get("geocache14");
+        int index_15=grafoTS.st.get("geocache15");
+        int index_16=grafoTS.st.get("geocache16");
+        int index_17=grafoTS.st.get("geocache17");
+        int index_18=grafoTS.st.get("geocache18");
+        //ligacoes 1
+        Aresta_Projeto e0 =new Aresta_Projeto(index_1,index_2,5.2,60f);
+        Aresta_Projeto e1 =new Aresta_Projeto(index_1,index_3,8.2,102f);
+        Aresta_Projeto e2 =new Aresta_Projeto(index_1,index_4,6.2,70f);
+        Aresta_Projeto e3 =new Aresta_Projeto(index_1,index_5,4.2,40f);
+        Aresta_Projeto e4 =new Aresta_Projeto(index_1,index_6,3.2,35f);
+        Aresta_Projeto e5 =new Aresta_Projeto(index_1,index_7,5.2,66f);
+        //ligacoes 2
+        Aresta_Projeto e6 =new Aresta_Projeto(index_2,index_3,8.5,102f);
+        Aresta_Projeto e7 =new Aresta_Projeto(index_2,index_4, 5.8,65f);
+        Aresta_Projeto e8 =new Aresta_Projeto(index_2,index_5, 7.2,72f);
+        Aresta_Projeto e9 =new Aresta_Projeto(index_2,index_6, 5.4,53f);
+        Aresta_Projeto e10 =new Aresta_Projeto(index_2,index_7,4.5,51f);
+        //ligacoes 3
+        Aresta_Projeto e11 =new Aresta_Projeto(index_3,index_4,2.7,30f);
+        Aresta_Projeto e12 =new Aresta_Projeto(index_3,index_5, 3.2,35f);
+        Aresta_Projeto e13 =new Aresta_Projeto(index_3,index_6,4.1,43f);
+        Aresta_Projeto e14 =new Aresta_Projeto(index_3,index_7,8.5,89f);
+        //ligacoes 4
+        Aresta_Projeto e15 =new Aresta_Projeto(index_4,index_5,3.7,41f);
+        Aresta_Projeto e16 =new Aresta_Projeto(index_4,index_6,4.3,49f);
+        Aresta_Projeto e17 =new Aresta_Projeto(index_4,index_7,7.4,72f);
+        //ligacoes 5
+        Aresta_Projeto e18 =new Aresta_Projeto(index_5,index_6,7.4,71f);
+        Aresta_Projeto e19 =new Aresta_Projeto(index_5,index_7,5.2,53f);
+        //ligacoes 6
+        Aresta_Projeto e20 =new Aresta_Projeto(index_6,index_7,7.4,73f);
+        //ligacoes 7
+        Aresta_Projeto e21 =new Aresta_Projeto(index_7,index_8,130,1500f);
+        //ligacoes 8
+        Aresta_Projeto e22 =new Aresta_Projeto(index_8,index_9,7.2,72f);
+        Aresta_Projeto e23 =new Aresta_Projeto(index_8,index_10,4.7,51f);
+        Aresta_Projeto e24 =new Aresta_Projeto(index_8,index_11, 3.4,41f);
+        Aresta_Projeto e25 =new Aresta_Projeto(index_8,index_12,5.3,55f);
+        //ligacoes 9
+        Aresta_Projeto e26=new Aresta_Projeto(index_9,index_10,2.2,24f);
+        Aresta_Projeto e27 =new Aresta_Projeto(index_9,index_11,1.7,21f);
+        Aresta_Projeto e28 =new Aresta_Projeto(index_9,index_12, 6.4,71f);
+        //ligacoes 10
+        Aresta_Projeto e29 =new Aresta_Projeto(index_10,index_11,4.7,52f);
+        Aresta_Projeto e30 =new Aresta_Projeto(index_10,index_12,3.5,36f);
+        Aresta_Projeto e31 =new Aresta_Projeto(index_10,index_13,6.2,67f);
+        //ligacoes 11
+        Aresta_Projeto e32 =new Aresta_Projeto(index_11,index_12,2.8,32f);
+        //ligacoes 12
+        Aresta_Projeto e33 =new Aresta_Projeto(index_12,index_13,197,2460f);
+        //ligacoes 13
+        Aresta_Projeto e34 =new Aresta_Projeto(index_13,index_14,2.6,31f);
+        Aresta_Projeto e35 =new Aresta_Projeto(index_13,index_15,4.5,51f);
+        Aresta_Projeto e36 =new Aresta_Projeto(index_13,index_16,3.8,45f);
+        Aresta_Projeto e37 =new Aresta_Projeto(index_13,index_17,4.2,51f);
+        Aresta_Projeto e38 =new Aresta_Projeto(index_13,index_18,2.8,32f);
+        //ligacoes 14
+        Aresta_Projeto e39 =new Aresta_Projeto(index_14,index_15,3.3,41f);
+        Aresta_Projeto e40 =new Aresta_Projeto(index_14,index_16,4.8,58f);
+        Aresta_Projeto e41 =new Aresta_Projeto(index_14,index_17,5.2,62f);
+        Aresta_Projeto e42=new Aresta_Projeto(index_14,index_18,3.7,41f);
+        //ligacoes 15
+        Aresta_Projeto e43 =new Aresta_Projeto(index_15,index_16,4.4,53f);
+        Aresta_Projeto e44 =new Aresta_Projeto(index_15,index_17, 5.3,64f);
+        Aresta_Projeto e45 =new Aresta_Projeto(index_15,index_18,3.8,43f);
+        //ligacoes 16
+        Aresta_Projeto e46 =new Aresta_Projeto(index_16,index_17,1.2,22f);
+        Aresta_Projeto e47 =new Aresta_Projeto(index_16,index_18, 2.1,35f);
+        //ligacoes 17
+        Aresta_Projeto e48 =new Aresta_Projeto(index_17,index_18,3.8,44f);
+        Aresta_Projeto e49 =new Aresta_Projeto(index_17,index_15,330,45f);
 
+        grafoTS.graph.addEdge(e0);grafoTS.graph.addEdge(e1);grafoTS.graph.addEdge(e2);grafoTS.graph.addEdge(e3);grafoTS.graph.addEdge(e4);grafoTS.graph.addEdge(e5);grafoTS.graph.addEdge(e6);
+        grafoTS.graph.addEdge(e7);grafoTS.graph.addEdge(e8);grafoTS.graph.addEdge(e9);grafoTS.graph.addEdge(e10);grafoTS.graph.addEdge(e11);grafoTS.graph.addEdge(e12);grafoTS.graph.addEdge(e13);
+        grafoTS.graph.addEdge(e14);grafoTS.graph.addEdge(e15);grafoTS.graph.addEdge(e16);grafoTS.graph.addEdge(e17);grafoTS.graph.addEdge(e18);grafoTS.graph.addEdge(e19);grafoTS.graph.addEdge(e20);
+        grafoTS.graph.addEdge(e21);grafoTS.graph.addEdge(e22);grafoTS.graph.addEdge(e23);grafoTS.graph.addEdge(e24);grafoTS.graph.addEdge(e25);grafoTS.graph.addEdge(e26);grafoTS.graph.addEdge(e27);
+        grafoTS.graph.addEdge(e28);grafoTS.graph.addEdge(e29);grafoTS.graph.addEdge(e30);grafoTS.graph.addEdge(e31);grafoTS.graph.addEdge(e32);grafoTS.graph.addEdge(e33);grafoTS.graph.addEdge(e34);
+        grafoTS.graph.addEdge(e35);grafoTS.graph.addEdge(e36);grafoTS.graph.addEdge(e37);grafoTS.graph.addEdge(e38);grafoTS.graph.addEdge(e39);grafoTS.graph.addEdge(e40);grafoTS.graph.addEdge(e41);
+        grafoTS.graph.addEdge(e42);grafoTS.graph.addEdge(e43);grafoTS.graph.addEdge(e44);grafoTS.graph.addEdge(e45);grafoTS.graph.addEdge(e46);grafoTS.graph.addEdge(e47);grafoTS.graph.addEdge(e48);
+        grafoTS.graph.addEdge(e49);
 
+        System.out.println(UserAdmin.grafoTS.graph.toString());
 
        // pedro.removerUser();
         //UserAdmin.removeCache(cache2);

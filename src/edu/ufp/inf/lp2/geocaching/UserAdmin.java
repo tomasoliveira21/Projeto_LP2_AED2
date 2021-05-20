@@ -1,5 +1,7 @@
 package edu.ufp.inf.lp2.geocaching;
 
+import Graph.Grafo_Projeto;
+import Graph.Grafos_Tabela_Simbolos;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.ST;
@@ -15,6 +17,8 @@ public class UserAdmin extends UserPremium {
     public static ST<String, UserBasic> userST = new ST<>();
 
     public static ST<String, Cache> cacheST = new ST<>();
+
+    public static Grafos_Tabela_Simbolos grafoTS=new Grafos_Tabela_Simbolos();
 
     /**
      * Construtor UserAdmin
@@ -170,6 +174,9 @@ public class UserAdmin extends UserPremium {
      */
     public void insertCache(Cache cache) {
         cacheST.put(cache.serialNumber, cache);
+        int size=cacheST.size()-1;
+        grafoTS.graph=new Grafo_Projeto(cacheST.size());
+        grafoTS.st.put(cache.serialNumber, size);
     }
 
     /**
@@ -180,6 +187,14 @@ public class UserAdmin extends UserPremium {
     public static void removeCache(Cache cache) throws IOException {
         UserAdmin.ficheiroRemoverCache(cache);
         cacheST.remove(cache.serialNumber);
+        int index_cache_rem=grafoTS.st.get(cache.serialNumber);
+        for (String nome : grafoTS.st.keys()) {
+            int index_cache_atual=grafoTS.st.get(nome);
+            if (!nome.equals(cache.serialNumber) && index_cache_atual > index_cache_rem) {
+                grafoTS.st.put(nome,index_cache_atual-1);
+            }
+        }
+        grafoTS.st.remove(cache.serialNumber);
     }
 
     /**
@@ -765,11 +780,11 @@ public class UserAdmin extends UserPremium {
                 Cache cache = new Cache(words[3], cdif, ctype, creator, x, y, words[6]);
 
                 cacheST.put(cache.serialNumber, cache);
+                int size_cache=cacheST.size()-1;
+                grafoTS.st.put(cache.serialNumber,size_cache);
             }
-
-
-
         }
+        grafoTS.graph=new Grafo_Projeto(cacheST.size());
     }
 
     /**

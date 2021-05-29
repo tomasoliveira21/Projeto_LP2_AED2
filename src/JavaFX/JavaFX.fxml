@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox layoutY="555.0" prefHeight="93.0" prefWidth="262.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="555.0">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="262.0" style="-fx-background-color: #fff;" styleClass="button1" stylesheets="@../css/fullpackstyling.css" text="Ruben Guedes">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <padding>
+                                <Insets left="40.0" />
+                            </padding>
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Downloads/man-technologist-apple.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #fff;" styleClass="button1" stylesheets="@../css/fullpackstyling.css" text="Tomás Oliveira">
+                            <padding>
+                                <Insets left="40.0" />
+                            </padding>
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Downloads/man-technologist-apple.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+                <Pane layoutY="494.0" prefHeight="61.0" prefWidth="262.0" style="-fx-background-color: #000; -fx-background-radius: 5;">
+                    <children>
+                        <Label layoutX="84.0" layoutY="17.0" text="Developers" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            <ImageView fitHeight="190.0" fitWidth="262.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Downloads/Sem_Titulo.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="4.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There are millions of geocaches worldwide. Geocaches are found in parks, urban areas, forests, deserts, on top of mountains, underwater — pretty much anywhere you can imagine. There are probably a few near you right now… like the ones in Cardielos." textAlignment="CENTER" wrappingWidth="253.6708984375">
+               <font>
+                  <Font name="Impact" size="21.0" />
+               </font>
+            </Text>
+            </children></AnchorPane>
+        <Pane layoutX="262.0" prefHeight="649.0" prefWidth="631.0" style="-fx-background-color: #555;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Pane layoutX="125.0" layoutY="106.0">
+                    <children>
+                        <Button layoutX="50.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" stylesheets="@../css/fullpackstyling.css" />
+                        <Circle layoutX="131.0" layoutY="91.0" radius="50.0" strokeType="INSIDE">
+                            <stroke>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="BLACK" />
+                                        <Stop color="WHITE" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </stroke>
+                     <fill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#03b5fc" />
+                              <Stop color="#320202" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </fill>
+                        </Circle>
+                        <Label alignment="CENTER" layoutX="47.0" layoutY="151.0" prefHeight="17.0" prefWidth="174.0" text="User" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="13.0" />
+                            </font></Label>
+                    </children>
+                </Pane>
+                <Pane layoutX="167.0" layoutY="354.0" prefHeight="202.0" prefWidth="179.0">
+                    <children>
+                        <Button layoutX="6.0" layoutY="-4.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" stylesheets="@../css/fullpackstyling.css" />
+                        <Circle layoutX="84.0" layoutY="87.0" radius="50.0" strokeType="INSIDE">
+                            <stroke>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="BLACK" />
+                                        <Stop color="WHITE" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </stroke>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
+                                    <stops>
+                                        <Stop color="#ff52e2" />
+                                        <Stop color="WHITE" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Circle>
+                        <Label alignment="CENTER" layoutX="3.0" layoutY="146.0" prefHeight="17.0" prefWidth="168.0" text="GeoCaches" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="13.0" />
+                            </font></Label>
+                    </children>
+                </Pane>
+                <Pane layoutX="491.0" layoutY="354.0" prefHeight="202.0" prefWidth="179.0">
+               <children>
+                        <Button layoutX="-11.0" layoutY="-2.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" stylesheets="@../css/fullpackstyling.css" />
+                        <Label alignment="CENTER" layoutX="-11.0" layoutY="151.0" prefHeight="17.0" prefWidth="168.0" text="Map" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="13.0" />
+                            </font>
+                  </Label>
+                        <Circle layoutX="73.0" layoutY="93.0" radius="50.0" stroke="#ff924f" strokeType="INSIDE">
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
+                                    <stops>
+                                        <Stop color="#ff934f" />
+                                        <Stop color="WHITE" offset="0.9961685823754789" />
+                                        <Stop color="WHITE" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Circle>
+               </children>
+                </Pane>
+                <Pane layoutX="504.0" layoutY="100.0" prefHeight="202.0" prefWidth="179.0">
+               <children>
+                        <Button layoutX="-26.0" layoutY="6.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" stylesheets="@../css/fullpackstyling.css" />
+                        <Circle layoutX="58.0" layoutY="101.0" radius="50.0" strokeType="INSIDE">
+                            <stroke>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="BLACK" />
+                                        <Stop color="WHITE" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </stroke>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
+                                    <stops>
+                                        <Stop color="#68479f" />
+                                        <Stop color="WHITE" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Circle>
+                        <Label alignment="CENTER" layoutX="-24.0" layoutY="158.0" prefHeight="17.0" prefWidth="168.0" text="UserAdmin" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="13.0" />
+                            </font>
+                  </Label>
+               </children>
+                </Pane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

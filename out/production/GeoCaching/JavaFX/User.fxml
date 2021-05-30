@@ -62,7 +62,7 @@
             </HBox>
          </children>
       </VBox>
-      <Text fill="#dab2d2" layoutX="463.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERS" wrappingWidth="142.802734375">
+      <Text fill="#f2c45b" layoutX="463.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERS" wrappingWidth="142.802734375">
          <font>
             <Font name="Berlin Sans FB" size="42.0" />
          </font>

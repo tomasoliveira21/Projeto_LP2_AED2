@@ -4,6 +4,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
@@ -21,13 +22,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.SceneController">
     <children>
         <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <VBox layoutY="555.0" prefHeight="93.0" prefWidth="262.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="555.0">
                     <children>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="262.0" style="-fx-background-color: #fff;" styleClass="button1" stylesheets="@../css/fullpackstyling.css" text="Ruben Guedes">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="262.0" style="-fx-background-color: #fff;" styleClass="button1" text="Ruben Guedes">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
@@ -37,18 +38,18 @@
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Downloads/man-technologist-apple.png" />
+                              <Image url="file:/C:/Users/olaso/IdeaProjects/Projeto_LP2_AED2/img/man-technologist-apple.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #fff;" styleClass="button1" stylesheets="@../css/fullpackstyling.css" text="Tomás Oliveira">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #fff;" styleClass="button1" text="Tomás Oliveira">
                             <padding>
                                 <Insets left="40.0" />
                             </padding>
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../Downloads/man-technologist-apple.png" />
+                              <Image url="file:/C:/Users/olaso/IdeaProjects/Projeto_LP2_AED2/img/man-technologist-apple.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -64,14 +65,14 @@
                         </Label>
                     </children>
                 </Pane>
-            <ImageView fitHeight="190.0" fitWidth="262.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Geocaching" fitHeight="190.0" fitWidth="262.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Downloads/Sem_Titulo.png" />
+                  <Image url="file:/C:/Users/olaso/IdeaProjects/Projeto_LP2_AED2/img/Sem_Titulo.png" />
                </image>
             </ImageView>
-            <Text layoutX="4.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There are millions of geocaches worldwide. Geocaches are found in parks, urban areas, forests, deserts, on top of mountains, underwater — pretty much anywhere you can imagine. There are probably a few near you right now… like the ones in Cardielos." textAlignment="CENTER" wrappingWidth="253.6708984375">
+            <Text focusTraversable="true" layoutX="4.0" layoutY="230.0" stroke="#323131" strokeType="OUTSIDE" strokeWidth="0.0" text="There are millions of geocaches worldwide. Geocaches are found in parks, urban areas, forests, deserts, on top of mountains, underwater — pretty much anywhere you can imagine. There are probably a few near you right now…" textAlignment="CENTER" wrappingWidth="253.6708984375">
                <font>
-                  <Font name="Impact" size="21.0" />
+                  <Font name="Berlin Sans FB" size="21.0" />
                </font>
             </Text>
             </children></AnchorPane>
@@ -79,105 +80,46 @@
             <children>
                 <Pane layoutX="125.0" layoutY="106.0">
                     <children>
-                        <Button layoutX="50.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" stylesheets="@../css/fullpackstyling.css" />
-                        <Circle layoutX="131.0" layoutY="91.0" radius="50.0" strokeType="INSIDE">
-                            <stroke>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop color="BLACK" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </stroke>
-                     <fill>
-                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                           <stops>
-                              <Stop color="#03b5fc" />
-                              <Stop color="#320202" offset="1.0" />
-                           </stops>
-                        </RadialGradient>
-                     </fill>
-                        </Circle>
-                        <Label alignment="CENTER" layoutX="47.0" layoutY="151.0" prefHeight="17.0" prefWidth="174.0" text="User" textFill="WHITE">
-                            <font>
-                                <Font name="Arial Bold" size="13.0" />
-                            </font></Label>
+                        <Button layoutX="50.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" />
+                  <ImageView fx:id="User" fitHeight="100.0" fitWidth="100.0" layoutX="81.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/olaso/IdeaProjects/Projeto_LP2_AED2/img/profile.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="106.0" layoutY="159.0" mnemonicParsing="false" onAction="#switchToUser" text="User" />
                     </children>
                 </Pane>
                 <Pane layoutX="167.0" layoutY="354.0" prefHeight="202.0" prefWidth="179.0">
                     <children>
-                        <Button layoutX="6.0" layoutY="-4.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" stylesheets="@../css/fullpackstyling.css" />
-                        <Circle layoutX="84.0" layoutY="87.0" radius="50.0" strokeType="INSIDE">
-                            <stroke>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop color="BLACK" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </stroke>
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
-                                    <stops>
-                                        <Stop color="#ff52e2" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                        </Circle>
-                        <Label alignment="CENTER" layoutX="3.0" layoutY="146.0" prefHeight="17.0" prefWidth="168.0" text="GeoCaches" textFill="WHITE">
-                            <font>
-                                <Font name="Arial Bold" size="13.0" />
-                            </font></Label>
+                        <Button layoutX="6.0" layoutY="-4.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" />
+                  <ImageView fx:id="GeoCaches" fitHeight="85.0" fitWidth="84.0" layoutX="45.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/olaso/IdeaProjects/Projeto_LP2_AED2/img/3037076.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="45.0" layoutY="133.0" mnemonicParsing="false" onAction="#switchToGeoCaches" text="GeoCaches" />
                     </children>
                 </Pane>
                 <Pane layoutX="491.0" layoutY="354.0" prefHeight="202.0" prefWidth="179.0">
                <children>
-                        <Button layoutX="-11.0" layoutY="-2.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" stylesheets="@../css/fullpackstyling.css" />
-                        <Label alignment="CENTER" layoutX="-11.0" layoutY="151.0" prefHeight="17.0" prefWidth="168.0" text="Map" textFill="WHITE">
-                            <font>
-                                <Font name="Arial Bold" size="13.0" />
-                            </font>
-                  </Label>
-                        <Circle layoutX="73.0" layoutY="93.0" radius="50.0" stroke="#ff924f" strokeType="INSIDE">
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
-                                    <stops>
-                                        <Stop color="#ff934f" />
-                                        <Stop color="WHITE" offset="0.9961685823754789" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                        </Circle>
+                        <Button layoutX="-11.0" layoutY="-2.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" />
+                  <ImageView fx:id="Map" fitHeight="93.0" fitWidth="107.0" layoutX="27.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/olaso/IdeaProjects/Projeto_LP2_AED2/img/2936514.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="49.0" layoutY="141.0" mnemonicParsing="false" onAction="#switchToMap" text="Map" />
                </children>
                 </Pane>
                 <Pane layoutX="504.0" layoutY="100.0" prefHeight="202.0" prefWidth="179.0">
                <children>
-                        <Button layoutX="-26.0" layoutY="6.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" stylesheets="@../css/fullpackstyling.css" />
-                        <Circle layoutX="58.0" layoutY="101.0" radius="50.0" strokeType="INSIDE">
-                            <stroke>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop color="BLACK" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </stroke>
-                            <fill>
-                                <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
-                                    <stops>
-                                        <Stop color="#68479f" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </fill>
-                        </Circle>
-                        <Label alignment="CENTER" layoutX="-24.0" layoutY="158.0" prefHeight="17.0" prefWidth="168.0" text="UserAdmin" textFill="WHITE">
-                            <font>
-                                <Font name="Arial Bold" size="13.0" />
-                            </font>
-                  </Label>
+                        <Button layoutX="-26.0" layoutY="6.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" style="-fx-background-color: #4D4D4D;" styleClass="button2" />
+                  <ImageView fx:id="UserAdmin" fitHeight="107.0" fitWidth="116.0" layoutX="7.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/olaso/IdeaProjects/Projeto_LP2_AED2/img/3135768.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="14.0" layoutY="155.0" mnemonicParsing="false" onAction="#switchToUserAdmin" text="UserAdmin" />
                </children>
                 </Pane>
             </children>

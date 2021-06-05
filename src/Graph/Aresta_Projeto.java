@@ -1,5 +1,9 @@
 package Graph;
 
+import edu.ufp.inf.lp2.geocaching.UserAdmin;
+
+import static edu.ufp.inf.lp2.geocaching.UserAdmin.*;
+
 public class Aresta_Projeto {
         private  int v;
         private  int w;
@@ -59,7 +63,9 @@ public class Aresta_Projeto {
          * @return a string representation of the directed edge
          */
         public String toString() {
-            return v + "->" + w + " " + String.format("%5.2f", km);
+            return grafoTS.st.get(UserAdmin.findIndexCacheName(grafoTS,v)) + "->" + grafoTS.st.get(UserAdmin.findIndexCacheName(grafoTS,w)) + " " + String.format("%5.2f", km) + " - " + String.format("%5.2f", getTime()) +" | ";
+            //return v + "->" + w + " " + String.format("%5.2f", km) + " - " + String.format("%5.2f", getTime()) +" | ";
+
         }
 
         /**

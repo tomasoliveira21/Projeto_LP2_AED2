@@ -1,7 +1,5 @@
 package edu.ufp.inf.lp2.geocaching;
 
-import Graph.Aresta_Projeto;
-
 import java.io.IOException;
 
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.*;
@@ -270,6 +268,8 @@ public class Main {
         int index_16=grafoTS.st.get("geocache16");
         int index_17=grafoTS.st.get("geocache17");
         int index_18=grafoTS.st.get("geocache18");
+
+        /*
         //ligacoes 1
         Aresta_Projeto e0 =new Aresta_Projeto(index_1,index_2,5.2,60f);
         Aresta_Projeto e1 =new Aresta_Projeto(index_1,index_3,8.2,102f);
@@ -348,10 +348,40 @@ public class Main {
         grafoTS.graph.addEdge(e49);
 
         System.out.println(UserAdmin.grafoTS.graph.toString());
+        UserAdmin.saveGraphEdges();
 
        // pedro.removerUser();
         //UserAdmin.removeCache(cache2);
         //UserAdmin.saveAll();
+
+        */
+
+        System.out.println("\nGraph Geral:\n");
+        UserAdmin.readGraphEdges();
+        System.out.println(UserAdmin.grafoTS.graph.toString());
+
+        System.out.println("\nGraph Centro:\n");
+        UserAdmin.SubGraphZona("centro");
+        System.out.println(subGrafo.graph.toString());
+
+        System.out.println("\nGraph Dif Easy:\n");
+        UserAdmin.SubGraphDificuldade(CacheDiff.Easy);
+        System.out.println(subGrafo.graph.toString());
+
+        System.out.println("\nGraph Visitas menor 2:\n");
+        UserAdmin.SubGraphNrVisitasmenor(2);
+        System.out.println(subGrafo.graph.toString());
+
+        System.out.println("\nGraph Visitas maior 2:\n");
+        UserAdmin.SubGraphNrVisitasmaior(2);
+        System.out.println(subGrafo.graph.toString());
+
+        System.out.println("\nGraph Visitas entre 2 e 10:\n");
+        UserAdmin.SubGraphNrVisitasMenorMaior(2,10);
+        System.out.println(subGrafo.graph.toString());
+
+
+
 
 
     }

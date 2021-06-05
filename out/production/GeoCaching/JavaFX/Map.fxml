@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #555;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #555;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.SceneController">
+   <children>
+      <Button layoutX="33.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToMainMenu" prefWidth="100.0" text="Main Menu" />
+      <MenuBar layoutX="33.0" layoutY="60.0" prefHeight="25.0" prefWidth="100.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Graph">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#GraphGeral" text="Mapa Geral" />
+                <Menu mnemonicParsing="false" text="Zona">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#GraphRegiaoNorte" text="Norte" />
+                        <MenuItem mnemonicParsing="false" onAction="#GraphRegiaoCentro" text="Centro" />
+                        <MenuItem mnemonicParsing="false" onAction="#GraphRegiaoSul" text="Sul" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Dificuldade">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Facil" />
+                        <MenuItem mnemonicParsing="false" text="Medio" />
+                        <MenuItem mnemonicParsing="false" text="Difiicl" />
+                  </items>
+                </Menu>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Group fx:id="graphGroup" layoutX="508.0" layoutY="289.0" />
+   </children>
+</AnchorPane>

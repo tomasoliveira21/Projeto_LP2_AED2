@@ -1,8 +1,12 @@
 package Graph;
 
 import edu.princeton.cs.algs4.*;
+import edu.ufp.inf.lp2.geocaching.Cache;
+import edu.ufp.inf.lp2.geocaching.UserAdmin;
 
 import java.util.NoSuchElementException;
+
+import static edu.ufp.inf.lp2.geocaching.UserAdmin.*;
 
 public class Grafo_Projeto {
         private static final String NEWLINE = System.getProperty("line.separator");
@@ -11,6 +15,9 @@ public class Grafo_Projeto {
         private int E;                      // number of edges in this digraph
         private Bag<Aresta_Projeto>[] adj;    // adj[v] = adjacency list for vertex v
         private int[] indegree;             // indegree[v] = indegree of vertex v
+
+        public int[] positionsX;
+        public int[] positionsY;
 
         /**
          * Initializes an empty edge-weighted digraph with {@code V} vertices and 0 edges.
@@ -23,9 +30,17 @@ public class Grafo_Projeto {
             this.V = V;
             this.E = 0;
             this.indegree = new int[V];
+            positionsX = new int[V];
+            positionsY = new int[V];
             adj = (Bag<Aresta_Projeto>[]) new Bag[V];
             for (int v = 0; v < V; v++)
                 adj[v] = new Bag<Aresta_Projeto>();
+
+            for(int i=0; i<this.V(); i++){
+                Cache c= cacheST.get(UserAdmin.findIndexCacheName(grafoTS,i));
+                positionsX[i] = (int)c.x;
+                positionsY[i] = (int)c.y;
+            }
         }
 
         /**

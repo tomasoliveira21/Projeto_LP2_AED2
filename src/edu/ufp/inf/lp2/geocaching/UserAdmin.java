@@ -1,5 +1,6 @@
 package edu.ufp.inf.lp2.geocaching;
 
+import Graph.Aresta_Projeto;
 import Graph.Grafo_Projeto;
 import Graph.Grafos_Tabela_Simbolos;
 import edu.princeton.cs.algs4.In;
@@ -19,6 +20,8 @@ public class UserAdmin extends UserPremium {
     public static ST<String, Cache> cacheST = new ST<>();
 
     public static Grafos_Tabela_Simbolos grafoTS=new Grafos_Tabela_Simbolos();
+
+    public static Grafos_Tabela_Simbolos subGrafo=new Grafos_Tabela_Simbolos();
 
     /**
      * Construtor UserAdmin
@@ -783,8 +786,11 @@ public class UserAdmin extends UserPremium {
                 int size_cache=cacheST.size()-1;
                 grafoTS.st.put(cache.serialNumber,size_cache);
             }
+
+
         }
-        grafoTS.graph=new Grafo_Projeto(cacheST.size());
+        in.close();
+        //grafoTS.graph=new Grafo_Projeto(cacheST.size());
     }
 
     /**
@@ -1198,6 +1204,40 @@ public class UserAdmin extends UserPremium {
     }
 
     /**
+     * Método que guarda os edges do graph
+     */
+    public static void saveGraphEdges(){
+        Out out = new Out(".//data//EdgesGraph.txt");
+
+        for (int v = 0;v<grafoTS.graph.V();v++){
+            for (Aresta_Projeto edge : grafoTS.graph.adj(v)){
+                out.print(edge.from() + "-" + edge.to() + ";" + edge.km() + ";" + edge.getTime() + "\n");
+            }
+
+        }
+        out.close();
+    }
+
+    /**
+     * Método que le os edges do graph
+     */
+    public static void readGraphEdges(){
+        In in = new In(".//data//EdgesGraph.txt");
+        //grafoTS.graph=new Grafo_Projeto(grafoTS.st.size());
+        grafoTS.graph=new Grafo_Projeto(grafoTS.st.size());
+        while(in.hasNextLine()){
+            String line = in.readLine();
+            String []words = line.split(";");
+            String []edges = words[0].split("-");
+            Aresta_Projeto edge= new Aresta_Projeto(Integer.parseInt(edges[0]),Integer.parseInt(edges[1]),Double.parseDouble(words[1]),Double.parseDouble(words[2]));
+            grafoTS.graph.addEdge(edge);
+
+
+        }
+    in.close();
+    }
+
+    /**
      * Função que chama todas a funcoes save
      */
     public static void saveAll() {
@@ -1213,6 +1253,7 @@ public class UserAdmin extends UserPremium {
         saveTravelBugsHCaches();
         saveTravelBugsHUsers();
         saveTravelBugsLogs();
+        saveGraphEdges();
     }
 
     /**
@@ -1231,6 +1272,8 @@ public class UserAdmin extends UserPremium {
         readTravelBugsHCaches();
         readTravelBugsHUsers();
         readTravelBugsLogs();
+        readGraphEdges();
+
     }
 
 
@@ -1362,4 +1405,164 @@ public class UserAdmin extends UserPremium {
                 ", cachesVisitadas=" + cachesVisitadas +
                 '}';
     }
+
+
+
+  public static void SubGraphZona(String zona){
+        zona=zona.toLowerCase();
+
+      //caso seja zona invalida
+        if(!zona.equals("norte") && !zona.equals("centro") && !zona.equals("sul") ){
+            System.err.println("Zona invalida");
+        }
+        //caso zona for norte centro ou sul
+        else{
+            //Preencher ST do subgraph
+            subGrafo.st = new ST<>();
+            for(String key : cacheST.keys()){
+                Cache c = cacheST.get(key);
+                if(c.regiao.equals(zona))subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+            }
+
+            //Preencher Graph do subgraph
+            subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
+            for (String key : subGrafo.st){
+                int index = grafoTS.st.get(key);
+                for (Aresta_Projeto a : grafoTS.graph.adj(index)){
+                    if(cacheST.get(findIndexCacheName(grafoTS,a.to())).regiao.equals(zona)){
+                        int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
+                        int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
+                        subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+                    }
+                }
+            }
+
+
+
+        }
+  }
+
+    public static void SubGraphDificuldade(CacheDiff cacheDiff){
+            //Preencher ST do subgraph
+            subGrafo.st = new ST<>();
+            for(String key : cacheST.keys()){
+                Cache c = cacheST.get(key);
+                if(c.diff.equals(cacheDiff))subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+            }
+
+            //Preencher Graph do subgraph
+            subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
+            for (String key : subGrafo.st){
+                int index = grafoTS.st.get(key);
+                for (Aresta_Projeto a : grafoTS.graph.adj(index)){
+                    if(cacheST.get(findIndexCacheName(grafoTS,a.to())).diff.equals(cacheDiff)){
+                        int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
+                        int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
+                        subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+                    }
+                }
+            }
+
+
+
+        }
+
+    public static void SubGraphNrVisitasmaior(int visitas){
+        if(visitas<=0){
+            System.err.println("Nr visitas invalido.\n");
+            return;
+        }
+        //Preencher ST do subgraph
+        subGrafo.st = new ST<>();
+        for(String key : cacheST.keys()){
+            Cache c = cacheST.get(key);
+            if(c.hUsers.size()>=visitas)subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+        }
+
+        //Preencher Graph do subgraph
+        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
+        for (String key : subGrafo.st){
+            int index = grafoTS.st.get(key);
+            for (Aresta_Projeto a : grafoTS.graph.adj(index)){
+                if(cacheST.get(findIndexCacheName(grafoTS,a.to())).hUsers.size()>=visitas){
+                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
+                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
+                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+                }
+            }
+        }
+
+
+
+    }
+
+    public static void SubGraphNrVisitasmenor(int visitas){
+        if(visitas<=0){
+            System.err.println("Nr visitas invalido.\n");
+            return;
+        }
+        //Preencher ST do subgraph
+        subGrafo.st = new ST<>();
+        for(String key : cacheST.keys()){
+            Cache c = cacheST.get(key);
+
+            if(c.hUsers.size()<=visitas)subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+        }
+
+        //Preencher Graph do subgraph
+        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
+        for (String key : subGrafo.st){
+            int index = grafoTS.st.get(key);
+            for (Aresta_Projeto a : grafoTS.graph.adj(index)){
+                if(cacheST.get(findIndexCacheName(grafoTS,a.to())).hUsers.size()<=visitas){
+                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
+                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
+                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+                }
+            }
+        }
+
+
+
+    }
+
+    public static void SubGraphNrVisitasMenorMaior(int minVisitas,int maxVisitas){
+        if(minVisitas<=0 || maxVisitas<=0){
+            System.err.println("Nr visitas invalido.\n");
+            return;
+        }
+        //Preencher ST do subgraph
+        subGrafo.st = new ST<>();
+        for(String key : cacheST.keys()){
+            Cache c = cacheST.get(key);
+
+            if(c.hUsers.size()>=minVisitas &&c.hUsers.size()<=maxVisitas  )subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+        }
+
+        //Preencher Graph do subgraph
+        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
+        for (String key : subGrafo.st){
+            int index = grafoTS.st.get(key);
+            for (Aresta_Projeto a : grafoTS.graph.adj(index)){
+                if(cacheST.get(findIndexCacheName(grafoTS,a.to())).hUsers.size()>=minVisitas && cacheST.get(findIndexCacheName(grafoTS,a.to())).hUsers.size()<=maxVisitas ){
+                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
+                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
+                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+                }
+            }
+        }
+
+
+
+    }
+
+
+    public static String findIndexCacheName(Grafos_Tabela_Simbolos G,int index) {
+        for (String key : G.st) {
+            if (G.st.get(key).equals(index)) return key;
+        }
+        return null;
+    }
+
+
 }

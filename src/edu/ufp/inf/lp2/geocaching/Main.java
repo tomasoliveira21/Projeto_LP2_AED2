@@ -1,5 +1,9 @@
 package edu.ufp.inf.lp2.geocaching;
 
+import Graph.Aresta_Projeto;
+import Graph.DijkstraSP_Project;
+import edu.princeton.cs.algs4.StdOut;
+
 import java.io.IOException;
 
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.*;
@@ -355,18 +359,30 @@ public class Main {
         //UserAdmin.saveAll();
 
         */
-
+        System.out.println("\t\t\t\t\t\t\t\tGRAFO GERAL DAS CACHES\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
         System.out.println("\nGraph Geral:\n");
         UserAdmin.readGraphEdges();
         System.out.println(UserAdmin.grafoTS.graph.toString());
 
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\t\t\t\tGRAFO CACHES CENTRO\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
         System.out.println("\nGraph Centro:\n");
         UserAdmin.SubGraphZona("centro");
         System.out.println(subGrafo.graph.toString());
 
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\t\t\t\tGRAFO CACHES DIFICULDADE EASY\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+
         System.out.println("\nGraph Dif Easy:\n");
         UserAdmin.SubGraphDificuldade(CacheDiff.Easy);
         System.out.println(subGrafo.graph.toString());
+
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\t\t\t\tGRAFO CACHES NUMERO VISITAS\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
 
         System.out.println("\nGraph Visitas menor 2:\n");
         UserAdmin.SubGraphNrVisitasmenor(2);
@@ -381,6 +397,25 @@ public class Main {
         System.out.println(subGrafo.graph.toString());
 
 
+
+
+       DijkstraSP_Project sp = new DijkstraSP_Project(grafoTS.graph, 0);
+        int s=0;
+
+        // print shortest path
+        for (int t = 0; t < grafoTS.graph.V(); t++) {
+
+            if (sp.hasPathTo(t)) {
+                StdOut.printf("%d to %d (%.2f)  ", s, t, sp.distTo(t));
+                for (Aresta_Projeto e : sp.pathTo(t)) {
+                    StdOut.print(e + "   ");
+                }
+                StdOut.println();
+            }
+            else {
+                StdOut.printf("%d to %d         no path\n", s, t);
+            }
+        }
 
 
 

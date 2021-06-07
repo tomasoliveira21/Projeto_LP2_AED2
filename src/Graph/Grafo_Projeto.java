@@ -1,47 +1,74 @@
 package Graph;
 
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.Bag;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Stack;
+import edu.princeton.cs.algs4.StdRandom;
+import edu.ufp.inf.lp2.geocaching.AED2Class.Bag_AED2;
 import edu.ufp.inf.lp2.geocaching.Cache;
 import edu.ufp.inf.lp2.geocaching.UserAdmin;
 
+import java.io.Serializable;
 import java.util.NoSuchElementException;
 
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.*;
 
-public class Grafo_Projeto {
+public class Grafo_Projeto implements Serializable {
         private static final String NEWLINE = System.getProperty("line.separator");
 
         private int V;                // number of vertices in this digraph
         private int E;                      // number of edges in this digraph
-        private Bag<Aresta_Projeto>[] adj;    // adj[v] = adjacency list for vertex v
+        private Bag_AED2<Aresta_Projeto>[] adj;    // adj[v] = adjacency list for vertex v
         private int[] indegree;             // indegree[v] = indegree of vertex v
 
         public int[] positionsX;
         public int[] positionsY;
 
         /**
-         * Initializes an empty edge-weighted digraph with {@code V} vertices and 0 edges.
-         *
-         * @param  V the number of vertices
-         * @throws IllegalArgumentException if {@code V < 0}
-         */
-        public Grafo_Projeto(int V) {
-            if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be non-negative");
-            this.V = V;
-            this.E = 0;
-            this.indegree = new int[V];
-            positionsX = new int[V];
-            positionsY = new int[V];
-            adj = (Bag<Aresta_Projeto>[]) new Bag[V];
-            for (int v = 0; v < V; v++)
-                adj[v] = new Bag<Aresta_Projeto>();
+     * Initializes an empty edge-weighted digraph with {@code V} vertices and 0 edges.
+     *
+     * @param  V the number of vertices
+     * @throws IllegalArgumentException if {@code V < 0}
+     */
+    public Grafo_Projeto(int V , boolean graph) {
+        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be non-negative");
+        this.V = V;
+        this.E = 0;
+        this.indegree = new int[V];
+        positionsX = new int[V];
+        positionsY = new int[V];
+        adj = (Bag_AED2<Aresta_Projeto>[]) new Bag_AED2[V];
+        for (int v = 0; v < V; v++)
+            adj[v] = new Bag_AED2<Aresta_Projeto>();
 
-            for(int i=0; i<this.V(); i++){
-                Cache c= cacheST.get(UserAdmin.findIndexCacheName(grafoTS,i));
-                positionsX[i] = (int)c.x;
-                positionsY[i] = (int)c.y;
-            }
+        for(int i=0; i<this.V(); i++){
+            Cache c= new Cache();
+            if(graph)c=cacheST.get(UserAdmin.findIndexCacheName(grafoTS,i));
+            else c=cacheST.get(UserAdmin.findIndexCacheName(subGrafo,i));
+            positionsX[i] = (int)c.x;
+            positionsY[i] = (int)c.y;
         }
+    }
+
+    public Grafo_Projeto(int V) {
+        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be non-negative");
+        this.V = V;
+        this.E = 0;
+        this.indegree = new int[V];
+        positionsX = new int[V];
+        positionsY = new int[V];
+        adj = (Bag_AED2<Aresta_Projeto>[]) new Bag_AED2[V];
+        for (int v = 0; v < V; v++)
+            adj[v] = new Bag_AED2<Aresta_Projeto>();
+
+        for(int i=0; i<this.V(); i++){
+            Cache c=cacheST.get(UserAdmin.findIndexCacheName(grafoTS,i));
+            positionsX[i] = (int)c.x;
+            positionsY[i] = (int)c.y;
+        }
+    }
+
+
 
         /**
          * Initializes a random edge-weighted digraph with {@code V} vertices and <em>E</em> edges.
@@ -82,9 +109,9 @@ public class Grafo_Projeto {
                 this.V = in.readInt();
                 if (V < 0) throw new IllegalArgumentException("number of vertices in a Digraph must be non-negative");
                 indegree = new int[V];
-                adj = (Bag<Aresta_Projeto>[]) new Bag[V];
+                adj = (Bag_AED2<Aresta_Projeto>[]) new Bag_AED2[V];
                 for (int v = 0; v < V; v++) {
-                    adj[v] = new Bag<Aresta_Projeto>();
+                    adj[v] = new Bag_AED2<Aresta_Projeto>();
                 }
 
                 int E = in.readInt();

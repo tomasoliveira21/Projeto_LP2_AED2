@@ -23,6 +23,7 @@ public class Main {
 
         testeprojeto();         //TESTES PEDIDOS PELO PROF
         //testeprojeto2();
+        //testeBinarios();
     }
 
 
@@ -369,7 +370,7 @@ public class Main {
         System.out.println("\t\t\t\t\t\t\t\tGRAFO CACHES CENTRO\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
         System.out.println("\nGraph Centro:\n");
-        UserAdmin.SubGraphZona("centro");
+        UserAdmin.SubGraphZona("centro",false);
         System.out.println(subGrafo.graph.toString());
 
         System.out.println("\n---------------------------------------------------------------------------------\n");
@@ -377,7 +378,7 @@ public class Main {
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         System.out.println("\nGraph Dif Easy:\n");
-        UserAdmin.SubGraphDificuldade(CacheDiff.Easy);
+        UserAdmin.SubGraphDificuldade(CacheDiff.Easy,false);
         System.out.println(subGrafo.graph.toString());
 
         System.out.println("\n---------------------------------------------------------------------------------\n");
@@ -385,20 +386,22 @@ public class Main {
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         System.out.println("\nGraph Visitas menor 2:\n");
-        UserAdmin.SubGraphNrVisitasmenor(2);
+        UserAdmin.SubGraphNrVisitasmenor(2,false);
         System.out.println(subGrafo.graph.toString());
 
         System.out.println("\nGraph Visitas maior 2:\n");
-        UserAdmin.SubGraphNrVisitasmaior(2);
+        UserAdmin.SubGraphNrVisitasmaior(2,false);
         System.out.println(subGrafo.graph.toString());
 
         System.out.println("\nGraph Visitas entre 2 e 10:\n");
-        UserAdmin.SubGraphNrVisitasMenorMaior(2,10);
+        UserAdmin.SubGraphNrVisitasMenorMaior(2,10,false);
         System.out.println(subGrafo.graph.toString());
 
 
 
 
+
+        System.out.println("------------ GRAPH Geral----------------");
        DijkstraSP_Project sp = new DijkstraSP_Project(grafoTS.graph, 0);
         int s=0;
 
@@ -418,8 +421,83 @@ public class Main {
         }
 
 
+        System.out.println("\n-------------- SUBGRAPH NORTE ------\n");
+
+        UserAdmin.SubGraphZona("norte",true);
+        DijkstraSP_Project spnorte = new DijkstraSP_Project(subGrafo.graph, 0);
+        int snorte=0;
+
+        // print shortest path
+        for (int t = 0; t < subGrafo.graph.V(); t++) {
+
+            if (spnorte.hasPathTo(t)) {
+                StdOut.printf("%d to %d (%.2f)  ", snorte, t, spnorte.distTo(t));
+                for (Aresta_Projeto e : spnorte.pathTo(t)) {
+                    StdOut.print(e + "   ");
+                }
+                StdOut.println();
+            }
+            else {
+                StdOut.printf("%d to %d         no path\n", snorte, t);
+            }
+        }
+
+        System.out.println("\n-------------- SUBGRAPH HARD ------\n");
+
+        UserAdmin.SubGraphDificuldade(CacheDiff.Hard,true);
+        DijkstraSP_Project sphard = new DijkstraSP_Project(subGrafo.graph, 0);
+        int shard=0;
+
+        // print shortest path
+        for (int t = 0; t < subGrafo.graph.V(); t++) {
+
+            if (sphard.hasPathTo(t)) {
+                StdOut.printf("%d to %d (%.2f)  ", shard, t, sphard.distTo(t));
+                for (Aresta_Projeto e : sphard.pathTo(t)) {
+                    StdOut.print(e + "   ");
+                }
+                StdOut.println();
+            }
+            else {
+                StdOut.printf("%d to %d         no path\n", shard, t);
+            }
+        }
+
+
+
+
+
+
+        UserAdmin.saveUsersBin();
+        UserAdmin.saveCachesBin();
+        UserAdmin.saveGraphBin();
+
+
+
+
 
     }
+    /*
+    0 to 0 (0.00)
+0 to 1 (5.20)  0->1  5,20 - 60,00 |
+0 to 2 (8.20)  0->2  8,20 - 102,00 |
+0 to 3 (6.20)  0->3  6,20 - 70,00 |
+0 to 4 (4.20)  0->4  4,20 - 40,00 |
+0 to 5 (3.20)  0->5  3,20 - 35,00 |
+0 to 6 (5.20)  0->6  5,20 - 66,00 |
+0 to 7 (135.20)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |
+0 to 8 (142.40)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->8  7,20 - 72,00 |
+0 to 9 (139.90)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |
+0 to 10 (138.60)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->10  3,40 - 41,00 |
+0 to 11 (140.50)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->11  5,30 - 55,00 |
+0 to 12 (146.10)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |
+0 to 13 (148.70)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->13  2,60 - 31,00 |
+0 to 14 (150.60)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->14  4,50 - 51,00 |
+0 to 15 (149.90)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->15  3,80 - 45,00 |
+0 to 16 (150.30)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->16  4,20 - 51,00 |
+0 to 17 (148.90)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->17  2,80 - 32,00 |
+
+     */
 
     /**
      * Função teste de ler dos inputs
@@ -470,6 +548,18 @@ public class Main {
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printAllTravelBugsLogs();
+
+    }
+
+
+    public static  void testeBinarios(){
+        UserAdmin.readUsersBin();
+        UserAdmin.readCachesBin();
+        UserAdmin.readGraphBin();
+
+        UserAdmin.printUser();
+        UserAdmin.printCaches();
+        System.out.println(grafoTS.graph.toString());
 
     }
 

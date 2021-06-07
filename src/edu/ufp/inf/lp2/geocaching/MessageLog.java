@@ -1,7 +1,9 @@
 package edu.ufp.inf.lp2.geocaching;
 
 
-public class MessageLog {
+import java.io.Serializable;
+
+public class MessageLog implements Serializable {
 
  String mensagem;
 

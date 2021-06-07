@@ -2,8 +2,10 @@ package Graph;
 
 import edu.princeton.cs.algs4.*;
 
+import java.io.Serializable;
 
-public class DijkstraSP_Project {
+
+public class DijkstraSP_Project implements Serializable {
     private double[] distTo;          // distTo[v] = distance  of shortest s->v path
     private Aresta_Projeto[] edgeTo;    // edgeTo[v] = last edge on shortest s->v path
     private IndexMinPQ<Double> pq;    // priority queue of vertices

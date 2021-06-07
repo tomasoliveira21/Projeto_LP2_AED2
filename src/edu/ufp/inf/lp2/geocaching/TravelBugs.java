@@ -1,17 +1,18 @@
 package edu.ufp.inf.lp2.geocaching;
 
-import edu.princeton.cs.algs4.BST;
+import edu.ufp.inf.lp2.geocaching.AED2Class.BST_AED2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class TravelBugs extends  Objeto{
+public class TravelBugs extends  Objeto implements Serializable {
 
   public Cache cacheDestino;
 
   public ArrayList<TravelBugsLogs> historicoTravelBugsLogs = new ArrayList<>();
-  public BST<String,Cache> historicoCaches = new BST<>();
-  public BST<String,UserBasic> historicoUsers = new BST<>();
+  public BST_AED2<String,Cache> historicoCaches = new BST_AED2<>();
+  public BST_AED2<String,UserBasic> historicoUsers = new BST_AED2<>();
 
 
   /**

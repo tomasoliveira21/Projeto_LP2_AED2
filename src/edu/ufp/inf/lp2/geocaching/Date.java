@@ -1,6 +1,7 @@
 package edu.ufp.inf.lp2.geocaching;
 
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -9,7 +10,7 @@ import java.util.GregorianCalendar;
  */
 
 
-public class Date implements Comparable<Date> {
+public class Date implements Comparable<Date>, Serializable {
 
     public int day;
 
@@ -90,6 +91,9 @@ public class Date implements Comparable<Date> {
     }
     public String print() {
         return  "(" + day + "," + month + "," + year + ")";
+    }
+    public String print_upgrade() {
+        return   + day + "/" + month + "/" + year;
     }
 
     public void incrementDate() {

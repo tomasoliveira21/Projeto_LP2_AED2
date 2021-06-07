@@ -14,11 +14,11 @@ public class MainFX extends Application {
         try {
 
             UserAdmin.readAll();
-
             Parent root = FXMLLoader.load(getClass().getResource("JavaFX.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
 
 
         } catch(Exception e) {

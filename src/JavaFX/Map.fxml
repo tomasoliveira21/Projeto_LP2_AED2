@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #555;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFX.SceneController">
    <children>
-      <Button layoutX="33.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToMainMenu" prefWidth="100.0" text="Main Menu" />
-      <MenuBar layoutX="33.0" layoutY="60.0" prefHeight="25.0" prefWidth="100.0">
+      <Text fill="BLUEVIOLET" layoutX="984.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Basic" wrappingWidth="85.13671875">
+         <font>
+            <Font name="Berlin Sans FB" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="LIGHTGOLDENRODYELLOW" layoutX="984.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Premium" wrappingWidth="110.0">
+         <font>
+            <Font name="Berlin Sans FB" size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="33.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToMainMenu" prefHeight="25.0" prefWidth="110.0" text="Main Menu" />
+      <TextField fx:id="graphNvisitas" layoutX="33.0" layoutY="90.0" prefHeight="25.0" prefWidth="110.0" promptText="Nr visitas(Ex: 1-4)" />
+      <MenuBar layoutX="33.0" layoutY="60.0" prefHeight="25.0" prefWidth="110.0">
         <menus>
           <Menu mnemonicParsing="false" text="Graph">
             <items>
@@ -23,11 +34,18 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Dificuldade">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Facil" />
-                        <MenuItem mnemonicParsing="false" text="Medio" />
-                        <MenuItem mnemonicParsing="false" text="Difiicl" />
+                    <MenuItem mnemonicParsing="false" onAction="#GraphDifFacil" text="Facil" />
+                        <MenuItem mnemonicParsing="false" onAction="#GraphDifMedio" text="Medio" />
+                        <MenuItem mnemonicParsing="false" onAction="#GraphDifDificil" text="Difiicl" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Nr visitas">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#GraphDifNvisitasmaior" text="Nr visitas maior" />
+                        <MenuItem mnemonicParsing="false" onAction="#GraphDifNvisitasmenor" text="Nr visitas menor" />
+                        <MenuItem mnemonicParsing="false" onAction="#GraphDifNvisitasmenormaior" text="Nr visitas maior e menor" />
+                     </items>
+                  </Menu>
             </items>
           </Menu>
         </menus>

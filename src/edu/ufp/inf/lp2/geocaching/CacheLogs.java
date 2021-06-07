@@ -1,9 +1,11 @@
 package edu.ufp.inf.lp2.geocaching;
 
 
+import java.io.Serializable;
+
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
 
-public class CacheLogs {
+public class CacheLogs implements Serializable {
 
     Date data;
     String userID;

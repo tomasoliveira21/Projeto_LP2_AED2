@@ -1,6 +1,8 @@
 package edu.ufp.inf.lp2.geocaching;
 
-public class Objeto {
+import java.io.Serializable;
+
+public class Objeto implements Serializable {
 
 
   public String nameItem;

@@ -1,15 +1,18 @@
 package Graph;
 
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.In;
+import edu.ufp.inf.lp2.geocaching.AED2Class.ST_AED2;
 
-public class Grafos_Tabela_Simbolos {
+import java.io.Serializable;
+
+public class Grafos_Tabela_Simbolos implements Serializable {
   
-        public ST<String, Integer> st=new ST<>(); //  ID -> Index no Grafo
+        public ST_AED2<String, Integer> st=new ST_AED2<>(); //  ID -> Index no Grafo
         public Grafo_Projeto graph=new Grafo_Projeto();
 
         
         public Grafos_Tabela_Simbolos(String filename, String delimiter) {
-            st = new ST<String, Integer>();
+            st = new ST_AED2<>();
 
             // First pass builds the index by reading strings to associate
             // distinct strings with an index

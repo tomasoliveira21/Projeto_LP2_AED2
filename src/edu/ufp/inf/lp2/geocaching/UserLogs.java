@@ -1,6 +1,8 @@
 package edu.ufp.inf.lp2.geocaching;
 
-public class UserLogs {
+import java.io.Serializable;
+
+public class UserLogs implements Serializable {
 
     Date data;
     String serialNumber;

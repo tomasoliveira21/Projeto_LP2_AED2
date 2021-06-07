@@ -1,6 +1,8 @@
 package edu.ufp.inf.lp2.geocaching;
 
-public class AlreadyRegisteredObjectException extends Exception{
+import java.io.Serializable;
+
+public class AlreadyRegisteredObjectException extends Exception implements Serializable {
 
     /**
      * Não estamos a utilizar, mas seria uma exceção caso já existisse um objeto!

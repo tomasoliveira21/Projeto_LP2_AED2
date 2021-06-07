@@ -6,25 +6,25 @@ import Graph.Grafos_Tabela_Simbolos;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.ST;
+import edu.ufp.inf.lp2.geocaching.AED2Class.ST_AED2;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
-public class UserAdmin extends UserPremium {
+public class UserAdmin extends UserPremium  {
 
-    public static ST<String, UserBasic> userST = new ST<>();
+    public static ST_AED2<String, UserBasic> userST = new ST_AED2<>();
 
-    public static ST<String, Cache> cacheST = new ST<>();
+    public static ST_AED2<String, Cache> cacheST = new ST_AED2<>();
 
-    public static Grafos_Tabela_Simbolos grafoTS=new Grafos_Tabela_Simbolos();
+    public static Grafos_Tabela_Simbolos grafoTS = new Grafos_Tabela_Simbolos();
 
-    public static Grafos_Tabela_Simbolos subGrafo=new Grafos_Tabela_Simbolos();
+    public static Grafos_Tabela_Simbolos subGrafo = new Grafos_Tabela_Simbolos();
 
     /**
      * Construtor UserAdmin
+     *
      * @param name
      * @param id
      */
@@ -75,6 +75,7 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método que edita o Utilizador
+     *
      * @param user
      * @param name
      */
@@ -173,28 +174,30 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método que insere uma Cache na Symbol Table
+     *
      * @param cache
      */
     public void insertCache(Cache cache) {
         cacheST.put(cache.serialNumber, cache);
-        int size=cacheST.size()-1;
-        grafoTS.graph=new Grafo_Projeto(cacheST.size());
+        int size = cacheST.size() - 1;
+        grafoTS.graph = new Grafo_Projeto(cacheST.size());
         grafoTS.st.put(cache.serialNumber, size);
     }
 
     /**
      * Método que remove uma Cache da Symbol Table
+     *
      * @param cache
      * @throws IOException
      */
     public static void removeCache(Cache cache) throws IOException {
         UserAdmin.ficheiroRemoverCache(cache);
         cacheST.remove(cache.serialNumber);
-        int index_cache_rem=grafoTS.st.get(cache.serialNumber);
+        int index_cache_rem = grafoTS.st.get(cache.serialNumber);
         for (String nome : grafoTS.st.keys()) {
-            int index_cache_atual=grafoTS.st.get(nome);
+            int index_cache_atual = grafoTS.st.get(nome);
             if (!nome.equals(cache.serialNumber) && index_cache_atual > index_cache_rem) {
-                grafoTS.st.put(nome,index_cache_atual-1);
+                grafoTS.st.put(nome, index_cache_atual - 1);
             }
         }
         grafoTS.st.remove(cache.serialNumber);
@@ -206,7 +209,7 @@ public class UserAdmin extends UserPremium {
     public static void printCaches() {
         System.out.println("Lista Caches: ");
         for (String cacheName : cacheST.keys()) {
-            System.out.println("\t" +cacheST.get(cacheName));
+            System.out.println("\t" + cacheST.get(cacheName));
         }
         System.out.println("\n");
     }
@@ -218,7 +221,7 @@ public class UserAdmin extends UserPremium {
 
         System.out.println("Lista Utilizadores: ");
         for (String name : userST.keys()) {
-            System.out.println(userST.get(name).toString());
+            System.out.println("\t"+userST.get(name).toString());
         }
         System.out.println("\n");
     }
@@ -228,6 +231,7 @@ public class UserAdmin extends UserPremium {
      * Devem implementar-se diversas pesquisas sobre a base de informação como, por
      * exemplo, determinar:
      * a) Todas as caches visitadas por um utilizador. Global
+     *
      * @param userBasic
      */
     public void print_r8a_global(UserBasic userBasic) {
@@ -240,6 +244,7 @@ public class UserAdmin extends UserPremium {
      * Devem implementar-se diversas pesquisas sobre a base de informação como, por
      * exemplo, determinar:
      * a) Todas as caches visitadas por um utilizador. Região;
+     *
      * @param userBasic
      * @param regiao
      */
@@ -260,6 +265,7 @@ public class UserAdmin extends UserPremium {
      * Devem implementar-se diversas pesquisas sobre a base de informação como, por
      * exemplo, determinar:
      * b) Todas as caches não visitadas por um utilizador. Global
+     *
      * @param userBasic
      */
     public static void printr8b(UserBasic userBasic) {
@@ -287,6 +293,7 @@ public class UserAdmin extends UserPremium {
      * Devem implementar-se diversas pesquisas sobre a base de informação como, por
      * exemplo, determinar:
      * b) Todas as caches não visitadas por um utilizador. região;
+     *
      * @param userBasic
      * @param regiao
      */
@@ -315,6 +322,7 @@ public class UserAdmin extends UserPremium {
      * Devem implementar-se diversas pesquisas sobre a base de informação como, por
      * exemplo, determinar:
      * c) Todos os utilizadores que já visitaram uma dada cache;
+     *
      * @param cache
      */
     public void printr8c(Cache cache) {
@@ -349,6 +357,7 @@ public class UserAdmin extends UserPremium {
      * exemplo, determinar:
      * e) Top-5 de utilizadores que visitaram maior nº de caches num dado período
      * temporal;
+     *
      * @param dinicial
      * @param dfinal
      */
@@ -507,19 +516,20 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método para printar o Historico de Users da cache
+     *
      * @param cache
      */
     public static void printCaches_historicoUsers(String cache) {
 
-            Cache c = cacheST.get(cache);
-            if (c.hUsers.size() > 0) {
-                System.out.println("Historico de Utilizadores da Cache " + c.serialNumber +":\n");
-                System.out.println("\tCache " + c.serialNumber + " recebeu as visitas dos seguintes utilizadores:\n");
-                for (Date d : c.hUsers.keys()) {
-                    UserBasic user = c.hUsers.get(d);
-                    System.out.println("\t\tUser: " + user.name + " , no dia -> " + d.print() + "\n");
-                }
-            } else System.out.println("\tCache " + c.serialNumber + " nao recebeu as visitas.\n");
+        Cache c = cacheST.get(cache);
+        if (c.hUsers.size() > 0) {
+            System.out.println("Historico de Utilizadores da Cache " + c.serialNumber + ":\n");
+            System.out.println("\tCache " + c.serialNumber + " recebeu as visitas dos seguintes utilizadores:\n");
+            for (Date d : c.hUsers.keys()) {
+                UserBasic user = c.hUsers.get(d);
+                System.out.println("\t\tUser: " + user.name + " , no dia -> " + d.print() + "\n");
+            }
+        } else System.out.println("\tCache " + c.serialNumber + " nao recebeu as visitas.\n");
 
 
     }
@@ -543,6 +553,7 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método para printar os Logs de uma determinada Cache
+     *
      * @param c
      */
     public static void printCacheLogs(String c) {
@@ -576,6 +587,7 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método que printa as logs de um determinado User
+     *
      * @param u
      */
     public static void printUserLogs(String u) {
@@ -606,6 +618,7 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método que encontra um TravelBug
+     *
      * @param idTB
      * @return
      */
@@ -628,6 +641,7 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método que edita uma Cache
+     *
      * @param cache
      * @param serialNumber
      * @param type
@@ -677,10 +691,11 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método que printa todos os TravelBugs de um determinado User
+     *
      * @param puser
      * @param tb
      */
-    public void printAllTravelBugsLogs(UserPremium puser,String tb) {
+    public void printAllTravelBugsLogs(UserPremium puser, String tb) {
 
         TravelBugs travelBugs = puser.meusTravelBugs.get(tb);
         System.out.println("\t-> " + travelBugs.nameItem);
@@ -777,14 +792,14 @@ public class UserAdmin extends UserPremium {
             else if (words[2].equals("Hard")) cdif = CacheDiff.Hard;
 
             UserPremium creator = (UserPremium) userST.get(words[0]);
-            if(creator!=null){
+            if (creator != null) {
                 double x = Double.parseDouble(words[4]);
                 double y = Double.parseDouble(words[5]);
                 Cache cache = new Cache(words[3], cdif, ctype, creator, x, y, words[6]);
 
                 cacheST.put(cache.serialNumber, cache);
-                int size_cache=cacheST.size()-1;
-                grafoTS.st.put(cache.serialNumber,size_cache);
+                int size_cache = cacheST.size() - 1;
+                grafoTS.st.put(cache.serialNumber, size_cache);
             }
 
 
@@ -837,7 +852,7 @@ public class UserAdmin extends UserPremium {
                 UserPremium userCeator = (UserPremium) userST.get(words[3]);
                 Cache cacheAtual = cacheST.get(words[4]);
                 Cache cacheDestino = cacheST.get(words[5]);
-                if (cacheAtual != null && cacheDestino != null && userCeator!=null) {
+                if (cacheAtual != null && cacheDestino != null && userCeator != null) {
                     TravelBugs travelBugs = new TravelBugs(words[2], words[1], userCeator, cacheDestino);
                     travelBugs.cacheAtual = cacheAtual;
                     travelBugs.userAtual = null;
@@ -895,7 +910,7 @@ public class UserAdmin extends UserPremium {
                 UserPremium userCeator = (UserPremium) userST.get(words[3]);
                 UserPremium userAtual = (UserPremium) userST.get(words[4]);
                 Cache cacheDestino = cacheST.get(words[5]);
-                if(userCeator!=null && userAtual!=null && cacheDestino!=null){
+                if (userCeator != null && userAtual != null && cacheDestino != null) {
                     TravelBugs travelBugs = new TravelBugs(words[2], words[1], userCeator, cacheDestino);
                     travelBugs.cacheAtual = null;
                     travelBugs.userAtual = userAtual;
@@ -934,7 +949,7 @@ public class UserAdmin extends UserPremium {
             String[] words = line.split(",");
             Cache cache = cacheST.get(words[1]);
             UserBasic user = userST.get(words[0]);
-            if(cache !=null && user !=null){
+            if (cache != null && user != null) {
                 int day = Integer.parseInt(words[2]);
                 int month = Integer.parseInt(words[3]);
                 int year = Integer.parseInt(words[4]);
@@ -977,7 +992,7 @@ public class UserAdmin extends UserPremium {
             CacheLogs clogs = new CacheLogs(date, words[1], words[2], words[3]);
             if (clogs.objetoretirado.equals("null")) clogs.objetoretirado = null;
             if (clogs.objetocolocado.equals("null")) clogs.objetocolocado = null;
-            if(cache!=null) cache.cacheLogs.add(clogs);
+            if (cache != null) cache.cacheLogs.add(clogs);
         }
         in.close();
     }
@@ -1014,7 +1029,7 @@ public class UserAdmin extends UserPremium {
             UserLogs userLogs = new UserLogs(date, words[1], words[2], words[3]);
             if (userLogs.objetoretirado.equals("null")) userLogs.objetoretirado = null;
             if (userLogs.objetocolocado.equals("null")) userLogs.objetocolocado = null;
-            if(user!=null)user.userLogs.put(date, userLogs);
+            if (user != null) user.userLogs.put(date, userLogs);
         }
         in.close();
     }
@@ -1043,7 +1058,7 @@ public class UserAdmin extends UserPremium {
             String[] words = line.split(",");
             Cache cache = cacheST.get(words[0]);
             MessageLog messageLog = new MessageLog(words[1]);
-            if(cache!=null)cache.messageLogs.add(messageLog);
+            if (cache != null) cache.messageLogs.add(messageLog);
         }
         in.close();
     }
@@ -1083,7 +1098,7 @@ public class UserAdmin extends UserPremium {
             String[] words = line.split(",");
             TravelBugs travelBugs = UserAdmin.findTravelBug(words[0]);
             Cache cache = cacheST.get(words[1]);
-            if(cache!=null && travelBugs!=null){
+            if (cache != null && travelBugs != null) {
                 travelBugs.historicoCaches.put(cache.serialNumber, cache);
             }
 
@@ -1125,7 +1140,7 @@ public class UserAdmin extends UserPremium {
             String[] words = line.split(",");
             TravelBugs travelBugs = UserAdmin.findTravelBug(words[0]);
             UserPremium puser = (UserPremium) userST.get(words[1]);
-            if(travelBugs!=null && puser!=null){
+            if (travelBugs != null && puser != null) {
                 travelBugs.historicoUsers.put(puser.id, puser);
             }
 
@@ -1170,12 +1185,12 @@ public class UserAdmin extends UserPremium {
             String line = in.readLine();
             String[] words = line.split(",");
             UserPremium puser = (UserPremium) userST.get(words[0]);
-            if(puser!=null){
+            if (puser != null) {
                 TravelBugs tb = puser.meusTravelBugs.get(words[1]);
-                if(tb!=null){
+                if (tb != null) {
                     if (words[9].equals("CACHE")) {//logs esta numa cache
                         Cache cache = cacheST.get(words[7]);
-                        if(cache!=null){
+                        if (cache != null) {
                             int dia = Integer.parseInt(words[4]), mes = Integer.parseInt(words[5]), ano = Integer.parseInt(words[6]);
                             Date date = new Date(dia, mes, ano);
                             TravelBugsLogs tblogs = new TravelBugsLogs(words[3], words[2], cache, null, date);
@@ -1186,7 +1201,7 @@ public class UserAdmin extends UserPremium {
 
                     } else {//logs esta num user
                         UserPremium user = (UserPremium) userST.get(words[2]);
-                        if(user!=null){
+                        if (user != null) {
                             int dia = Integer.parseInt(words[4]), mes = Integer.parseInt(words[5]), ano = Integer.parseInt(words[6]);
                             Date date = new Date(dia, mes, ano);
                             TravelBugsLogs tblogs = new TravelBugsLogs(words[3], words[2], null, user, date);
@@ -1206,11 +1221,11 @@ public class UserAdmin extends UserPremium {
     /**
      * Método que guarda os edges do graph
      */
-    public static void saveGraphEdges(){
+    public static void saveGraphEdges() {
         Out out = new Out(".//data//EdgesGraph.txt");
 
-        for (int v = 0;v<grafoTS.graph.V();v++){
-            for (Aresta_Projeto edge : grafoTS.graph.adj(v)){
+        for (int v = 0; v < grafoTS.graph.V(); v++) {
+            for (Aresta_Projeto edge : grafoTS.graph.adj(v)) {
                 out.print(edge.from() + "-" + edge.to() + ";" + edge.km() + ";" + edge.getTime() + "\n");
             }
 
@@ -1221,21 +1236,63 @@ public class UserAdmin extends UserPremium {
     /**
      * Método que le os edges do graph
      */
-    public static void readGraphEdges(){
+
+    public static void readGraphEdges() {
         In in = new In(".//data//EdgesGraph.txt");
         //grafoTS.graph=new Grafo_Projeto(grafoTS.st.size());
-        grafoTS.graph=new Grafo_Projeto(grafoTS.st.size());
-        while(in.hasNextLine()){
+        grafoTS.graph = new Grafo_Projeto(grafoTS.st.size());
+        while (in.hasNextLine()) {
             String line = in.readLine();
-            String []words = line.split(";");
-            String []edges = words[0].split("-");
-            Aresta_Projeto edge= new Aresta_Projeto(Integer.parseInt(edges[0]),Integer.parseInt(edges[1]),Double.parseDouble(words[1]),Double.parseDouble(words[2]));
+            String[] words = line.split(";");
+            String[] edges = words[0].split("-");
+            Aresta_Projeto edge = new Aresta_Projeto(Integer.parseInt(edges[0]), Integer.parseInt(edges[1]), Double.parseDouble(words[1]), Double.parseDouble(words[2]));
             grafoTS.graph.addEdge(edge);
 
 
         }
-    in.close();
+        in.close();
     }
+
+
+    /**
+     * Método que guarda os edges do graph
+     */
+    public static void saver16(String info,Date d) throws IOException {
+        if(subGrafo.st.size()==0){
+            System.err.println("Erro subgrafo vazio.\n");
+            return;
+        }
+        FileWriter fileWriter = new FileWriter(".//data//r16.txt", true);
+        BufferedWriter out = new BufferedWriter(fileWriter);
+        out.write("Subgrafo -> " + info+"\n");
+        out.write("Guardado no dia : " +d.print_upgrade()+"\n");
+        out.write("Numero de Arestas: " +subGrafo.graph.E()+"\n");
+        for (int v = 0; v < subGrafo.graph.V(); v++) {
+            for (Aresta_Projeto edge : subGrafo.graph.adj(v)) {
+                out.write(edge.from() + "-" + edge.to() + ";" + edge.km() + ";" + edge.getTime() + "\n");
+            }
+
+        }
+        out.write("---------------------------------------------------------------------------\n");
+        out.close();
+    }
+
+    public static void readr16(String info) {
+        In in = new In(".//data//r16.txt");
+        //grafoTS.graph=new Grafo_Projeto(grafoTS.st.size());
+        grafoTS.graph = new Grafo_Projeto(grafoTS.st.size());
+        while (in.hasNextLine()) {
+            String line = in.readLine();
+            String[] words = line.split(";");
+            String[] edges = words[0].split("-");
+            Aresta_Projeto edge = new Aresta_Projeto(Integer.parseInt(edges[0]), Integer.parseInt(edges[1]), Double.parseDouble(words[1]), Double.parseDouble(words[2]));
+            grafoTS.graph.addEdge(edge);
+
+
+        }
+        in.close();
+    }
+
 
     /**
      * Função que chama todas a funcoes save
@@ -1279,117 +1336,117 @@ public class UserAdmin extends UserPremium {
 
     /**
      * Método para arquivar um utilizador num ficheiro de texto
+     *
      * @param user
      * @throws IOException
      */
     public static void ficheiroRemoverUser(UserBasic user) throws IOException {
-        FileWriter fileWriter = new FileWriter(".//data//UsersRemovidos.txt",true);
+        FileWriter fileWriter = new FileWriter(".//data//UsersRemovidos.txt", true);
         BufferedWriter ficheiro = new BufferedWriter(fileWriter);
 
         if (user.getClass().equals(UserBasic.class)) {
             ficheiro.write("(BASIC)Utilizador " + user.name +
-                    ", ID " + user.id +"\n");
-            if(user.myObjetos.size()>0){
+                    ", ID " + user.id + "\n");
+            if (user.myObjetos.size() > 0) {
                 ficheiro.write("\t- tinha os seguintes objetos:\n");
-                for (String obj : user.myObjetos.keys()){
+                for (String obj : user.myObjetos.keys()) {
                     Objeto objeto = user.myObjetos.get(obj);
                     ficheiro.write("\t\tObjeto " + objeto.nameItem + "\n");
                 }
-            }else{
+            } else {
                 ficheiro.write("\t- foi removido sem objetos objetos:\n");
             }
 
-            if(user.userLogs.size()>0){
+            if (user.userLogs.size() > 0) {
                 ficheiro.write("\t- visitou as seguintes caches :\n");
-                for (Date date : user.userLogs.keys()){
+                for (Date date : user.userLogs.keys()) {
                     UserLogs ulog = user.userLogs.get(date);
                     ficheiro.write("\t\t- visitou a cache " + ulog.serialNumber + "no dia " + date.print() +
-                            "obj retirado "+ulog.objetoretirado+ ",obj colocado " + ulog.objetocolocado + "\n");
+                            "obj retirado " + ulog.objetoretirado + ",obj colocado " + ulog.objetocolocado + "\n");
                 }
-            }else{
+            } else {
                 ficheiro.write("\t- foi removido sem visitar nenhuma cache:\n");
             }
 
-        }else{
+        } else {
             UserPremium new_user = (UserPremium) user;
-            if(user.getClass().equals(UserPremium.class)){
+            if (user.getClass().equals(UserPremium.class)) {
                 ficheiro.write("(PREMIUM)Utilizador " + user.name +
-                        ", ID " + user.id +"\n");
-            }else{
+                        ", ID " + user.id + "\n");
+            } else {
                 ficheiro.write("(ADMIN)Utilizador " + user.name +
-                        ", ID " + user.id +"\n");
+                        ", ID " + user.id + "\n");
             }
 
-            if(new_user.myObjetos.size()>0){
+            if (new_user.myObjetos.size() > 0) {
                 ficheiro.write("\t- tinha os seguintes objetos:\n");
-                for (String obj : new_user.myObjetos.keys()){
-                    Objeto objeto = new_user .myObjetos.get(obj);
+                for (String obj : new_user.myObjetos.keys()) {
+                    Objeto objeto = new_user.myObjetos.get(obj);
                     ficheiro.write("\t\tObjeto " + objeto.nameItem + "\n");
                 }
-            }else{
+            } else {
                 ficheiro.write("\t- foi removido sem objetos objetos:\n");
             }
 
-            if(new_user.userLogs.size()>0){
+            if (new_user.userLogs.size() > 0) {
                 ficheiro.write("\t- visitou as seguintes caches :\n");
-                for (Date date : new_user.userLogs.keys()){
+                for (Date date : new_user.userLogs.keys()) {
                     UserLogs ulog = new_user.userLogs.get(date);
                     ficheiro.write("\t\t- visitou a cache " + ulog.serialNumber + "no dia " + date.print() +
-                            "obj retirado "+ulog.objetoretirado+ ",obj colocado " + ulog.objetocolocado + "\n");
+                            "obj retirado " + ulog.objetoretirado + ",obj colocado " + ulog.objetocolocado + "\n");
                 }
-            }else{
+            } else {
                 ficheiro.write("\t- foi removido sem visitar nenhuma cache:\n");
             }
 
-            if(new_user.meusTravelBugs.size()>0){
+            if (new_user.meusTravelBugs.size() > 0) {
                 ficheiro.write("\t- tinha o seguintes TravelBugs :\n");
-                for (String key : new_user.meusTravelBugs.keys()){
+                for (String key : new_user.meusTravelBugs.keys()) {
                     TravelBugs tb = new_user.meusTravelBugs.get(key);
-                    ficheiro.write("\t\t- " + tb.nameItem +" ,ID" +  tb.id +",Cache destino" + tb.cacheDestino.serialNumber +"\n");
+                    ficheiro.write("\t\t- " + tb.nameItem + " ,ID" + tb.id + ",Cache destino" + tb.cacheDestino.serialNumber + "\n");
                 }
             }
         }
         ficheiro.write("--------------------------------------------------------------------------------\n");
-    ficheiro.close();
-    fileWriter.close();
+        ficheiro.close();
+        fileWriter.close();
 
 
     }
 
     /**
      * Método para arquivar uma cache num ficheiro de texto
+     *
      * @param cache
      * @throws IOException
      */
-    public static void ficheiroRemoverCache(Cache cache) throws IOException{
-        FileWriter fileWriter = new FileWriter(".//data//CacheRemovidos.txt",true);
+    public static void ficheiroRemoverCache(Cache cache) throws IOException {
+        FileWriter fileWriter = new FileWriter(".//data//CacheRemovidos.txt", true);
         BufferedWriter ficheiro = new BufferedWriter(fileWriter);
 
 
-
-            ficheiro.write("Cache " + cache.serialNumber + ",Tipo " + cache.type.name()+ ",Dificuldade " +
-                            cache.diff.name() +"\n");
-            if(cache.meusObjetos.size()>0){
-                ficheiro.write("\t- tinha os seguintes objetos:\n");
-                for (String obj : cache.meusObjetos.keys()){
-                    Objeto objeto = cache.meusObjetos.get(obj);
-                    ficheiro.write("\t\tObjeto " + objeto.nameItem + "\n");
-                }
-            }else{
-                ficheiro.write("\t- foi removido sem objetos objetos:\n");
+        ficheiro.write("Cache " + cache.serialNumber + ",Tipo " + cache.type.name() + ",Dificuldade " +
+                cache.diff.name() + "\n");
+        if (cache.meusObjetos.size() > 0) {
+            ficheiro.write("\t- tinha os seguintes objetos:\n");
+            for (String obj : cache.meusObjetos.keys()) {
+                Objeto objeto = cache.meusObjetos.get(obj);
+                ficheiro.write("\t\tObjeto " + objeto.nameItem + "\n");
             }
+        } else {
+            ficheiro.write("\t- foi removido sem objetos objetos:\n");
+        }
 
-            if(cache.cacheLogs.size()>0){
-                ficheiro.write("\t- recebeu as seguintes visitas :\n");
-                for (CacheLogs clogs : cache.cacheLogs){
-                    Date d = clogs.data;
-                    ficheiro.write("\t\t- recebeu o user " + userST.get(clogs.userID).name + " no dia " + d.print() +
-                            "obj retirado "+clogs.objetoretirado+ ",obj colocado " + clogs.objetocolocado + "\n");
-                }
-            }else{
-                ficheiro.write("\t- foi removido sem receber visitas:\n");
+        if (cache.cacheLogs.size() > 0) {
+            ficheiro.write("\t- recebeu as seguintes visitas :\n");
+            for (CacheLogs clogs : cache.cacheLogs) {
+                Date d = clogs.data;
+                ficheiro.write("\t\t- recebeu o user " + userST.get(clogs.userID).name + " no dia " + d.print() +
+                        "obj retirado " + clogs.objetoretirado + ",obj colocado " + clogs.objetocolocado + "\n");
             }
-
+        } else {
+            ficheiro.write("\t- foi removido sem receber visitas:\n");
+        }
 
 
         ficheiro.write("--------------------------------------------------------------------------------\n");
@@ -1407,157 +1464,252 @@ public class UserAdmin extends UserPremium {
     }
 
 
+    //////////////////////////////////////////////////////////   BINARIOS  //////////////////////////////////////////////////////////////////
 
-  public static void SubGraphZona(String zona){
-        zona=zona.toLowerCase();
+    public static void saveUsersBin() {
 
-      //caso seja zona invalida
-        if(!zona.equals("norte") && !zona.equals("centro") && !zona.equals("sul") ){
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(".//data//userBin.bin"))){
+            oos.writeObject(userST);
+            /*oos.writeInt(userST.size());
+            for (String key :userST.keys()){
+                UserBasic user = userST.get(key);
+                oos.writeObject(user);
+            }
+
+             */
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }
+
+    public static void readUsersBin(){
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(".//data//userBin.bin"));
+            userST=(ST_AED2<String, UserBasic>) ois.readObject();
+            /*int size = ois.readInt();
+            for(int i =0;i<size;i++){
+                UserBasic user = (UserBasic) ois.readObject();
+                userST.put(user.id,user);
+            }
+*/
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void saveCachesBin() {
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(".//data//cachesBin.bin"))){
+            oos.writeObject(cacheST);
+            /*oos.writeInt(cacheST.size());
+            for (String key : cacheST.keys()){
+                Cache c = cacheST.get(key);
+                oos.writeObject(c);
+            }
+
+             */
+        }catch(IOException e){
+            System.out.println(e);
+        }
+
+    }
+
+    public static void readCachesBin(){
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(".//data//cachesBin.bin"));
+            cacheST=(ST_AED2<String, Cache>) ois.readObject();
+            /*int size = ois.readInt();
+            for (int i =0;i<size;i++){
+                Cache c = (Cache) ois.readObject();
+                cacheST.put(c.serialNumber,c);
+            }
+
+             */
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+
+
+    public static void saveGraphBin() {
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(".//data//graphBin.bin"))){
+            oos.writeObject(grafoTS);
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }
+
+    public static void readGraphBin(){
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(".//data//graphBin.bin"));
+            grafoTS=(Grafos_Tabela_Simbolos) ois.readObject();
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+
+
+
+    //////////////////////////////////////////////////////////   GRAPHS //////////////////////////////////////////////////////////////////
+
+    public static void SubGraphZona(String zona,boolean writeFile) throws IOException {
+        zona = zona.toLowerCase();
+
+        //caso seja zona invalida
+        if (!zona.equals("norte") && !zona.equals("centro") && !zona.equals("sul")) {
             System.err.println("Zona invalida");
         }
         //caso zona for norte centro ou sul
-        else{
+        else {
             //Preencher ST do subgraph
-            subGrafo.st = new ST<>();
-            for(String key : cacheST.keys()){
+            subGrafo.st = new ST_AED2<>();
+            for (String key : cacheST.keys()) {
                 Cache c = cacheST.get(key);
-                if(c.regiao.equals(zona))subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+                if (c.regiao.equals(zona)) subGrafo.st.put(c.serialNumber, subGrafo.st.size());
             }
 
             //Preencher Graph do subgraph
-            subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
-            for (String key : subGrafo.st){
+            subGrafo.graph = new Grafo_Projeto(subGrafo.st.size(), false);
+            for (String key : subGrafo.st) {
                 int index = grafoTS.st.get(key);
-                for (Aresta_Projeto a : grafoTS.graph.adj(index)){
-                    if(cacheST.get(findIndexCacheName(grafoTS,a.to())).regiao.equals(zona)){
-                        int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
-                        int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
-                        subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+                for (Aresta_Projeto a : grafoTS.graph.adj(index)) {
+                    if (cacheST.get(findIndexCacheName(grafoTS, a.to())).regiao.equals(zona)) {
+                        int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS, a.from()));
+                        int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS, a.to()));
+                        subGrafo.graph.addEdge(new Aresta_Projeto(idx1, idx2, a.km(), a.getTime()));
                     }
                 }
             }
-
-
-
-        }
-  }
-
-    public static void SubGraphDificuldade(CacheDiff cacheDiff){
-            //Preencher ST do subgraph
-            subGrafo.st = new ST<>();
-            for(String key : cacheST.keys()){
-                Cache c = cacheST.get(key);
-                if(c.diff.equals(cacheDiff))subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+            if(writeFile){
+                StringBuilder info = new StringBuilder();
+                info.append("Zona:" + zona);
+                String aux = info.toString();
+                UserAdmin.saver16(aux,new Date());
             }
 
-            //Preencher Graph do subgraph
-            subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
-            for (String key : subGrafo.st){
-                int index = grafoTS.st.get(key);
-                for (Aresta_Projeto a : grafoTS.graph.adj(index)){
-                    if(cacheST.get(findIndexCacheName(grafoTS,a.to())).diff.equals(cacheDiff)){
-                        int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
-                        int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
-                        subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
-                    }
+        }
+    }
+
+    public static void SubGraphDificuldade(CacheDiff cacheDiff,boolean writeFile) throws IOException {
+        //Preencher ST do subgraph
+        subGrafo.st = new ST_AED2<>();
+        for (String key : cacheST.keys()) {
+            Cache c = cacheST.get(key);
+            if (c.diff.equals(cacheDiff)) subGrafo.st.put(c.serialNumber, subGrafo.st.size());
+        }
+
+        //Preencher Graph do subgraph
+        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size(), false);
+        for (String key : subGrafo.st) {
+            int index = grafoTS.st.get(key);
+            for (Aresta_Projeto a : grafoTS.graph.adj(index)) {
+                if (cacheST.get(findIndexCacheName(grafoTS, a.to())).diff.equals(cacheDiff)) {
+                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS, a.from()));
+                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS, a.to()));
+                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1, idx2, a.km(), a.getTime()));
                 }
             }
-
-
-
         }
+        if(writeFile){
+            String dif = "Easy";
+            if(cacheDiff.equals(CacheDiff.Medium))dif="Medium";
+            else if(cacheDiff.equals(CacheDiff.Hard))dif="Hard";
+            UserAdmin.saver16(dif,new Date());
+        }
+    }
 
-    public static void SubGraphNrVisitasmaior(int visitas){
-        if(visitas<=0){
+    public static void SubGraphNrVisitasmaior(int visitas,boolean writeFile) {
+        if (visitas <= 0) {
             System.err.println("Nr visitas invalido.\n");
             return;
         }
         //Preencher ST do subgraph
-        subGrafo.st = new ST<>();
-        for(String key : cacheST.keys()){
+        subGrafo.st = new ST_AED2<>();
+        for (String key : cacheST.keys()) {
             Cache c = cacheST.get(key);
-            if(c.hUsers.size()>=visitas)subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+            if (c.hUsers.size() >= visitas) subGrafo.st.put(c.serialNumber, subGrafo.st.size());
         }
 
         //Preencher Graph do subgraph
-        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
-        for (String key : subGrafo.st){
+        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size(), false);
+        for (String key : subGrafo.st) {
             int index = grafoTS.st.get(key);
-            for (Aresta_Projeto a : grafoTS.graph.adj(index)){
-                if(cacheST.get(findIndexCacheName(grafoTS,a.to())).hUsers.size()>=visitas){
-                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
-                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
-                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+            for (Aresta_Projeto a : grafoTS.graph.adj(index)) {
+                if (cacheST.get(findIndexCacheName(grafoTS, a.to())).hUsers.size() >= visitas) {
+                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS, a.from()));
+                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS, a.to()));
+                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1, idx2, a.km(), a.getTime()));
                 }
             }
         }
 
 
-
     }
 
-    public static void SubGraphNrVisitasmenor(int visitas){
-        if(visitas<=0){
+    public static void SubGraphNrVisitasmenor(int visitas,boolean writeFile) {
+        if (visitas <= 0) {
             System.err.println("Nr visitas invalido.\n");
             return;
         }
         //Preencher ST do subgraph
-        subGrafo.st = new ST<>();
-        for(String key : cacheST.keys()){
+        subGrafo.st = new ST_AED2<>();
+        for (String key : cacheST.keys()) {
             Cache c = cacheST.get(key);
 
-            if(c.hUsers.size()<=visitas)subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+            if (c.hUsers.size() <= visitas) subGrafo.st.put(c.serialNumber, subGrafo.st.size());
         }
 
         //Preencher Graph do subgraph
-        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
-        for (String key : subGrafo.st){
+        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size(), false);
+        for (String key : subGrafo.st) {
             int index = grafoTS.st.get(key);
-            for (Aresta_Projeto a : grafoTS.graph.adj(index)){
-                if(cacheST.get(findIndexCacheName(grafoTS,a.to())).hUsers.size()<=visitas){
-                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
-                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
-                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+            for (Aresta_Projeto a : grafoTS.graph.adj(index)) {
+                if (cacheST.get(findIndexCacheName(grafoTS, a.to())).hUsers.size() <= visitas) {
+                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS, a.from()));
+                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS, a.to()));
+                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1, idx2, a.km(), a.getTime()));
                 }
             }
         }
 
 
-
     }
 
-    public static void SubGraphNrVisitasMenorMaior(int minVisitas,int maxVisitas){
-        if(minVisitas<=0 || maxVisitas<=0){
+    public static void SubGraphNrVisitasMenorMaior(int minVisitas, int maxVisitas,boolean writeFile) {
+        if (minVisitas <= 0 || maxVisitas <= 0) {
             System.err.println("Nr visitas invalido.\n");
             return;
         }
         //Preencher ST do subgraph
-        subGrafo.st = new ST<>();
-        for(String key : cacheST.keys()){
+        subGrafo.st = new ST_AED2<>();
+        for (String key : cacheST.keys()) {
             Cache c = cacheST.get(key);
 
-            if(c.hUsers.size()>=minVisitas &&c.hUsers.size()<=maxVisitas  )subGrafo.st.put(c.serialNumber,subGrafo.st.size());
+            if (c.hUsers.size() >= minVisitas && c.hUsers.size() <= maxVisitas)
+                subGrafo.st.put(c.serialNumber, subGrafo.st.size());
         }
 
         //Preencher Graph do subgraph
-        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size());
-        for (String key : subGrafo.st){
+        subGrafo.graph = new Grafo_Projeto(subGrafo.st.size(), false);
+        for (String key : subGrafo.st) {
             int index = grafoTS.st.get(key);
-            for (Aresta_Projeto a : grafoTS.graph.adj(index)){
-                if(cacheST.get(findIndexCacheName(grafoTS,a.to())).hUsers.size()>=minVisitas && cacheST.get(findIndexCacheName(grafoTS,a.to())).hUsers.size()<=maxVisitas ){
-                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS,a.from()));
-                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS,a.to()));
-                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1,idx2,a.km(),a.getTime()));
+            for (Aresta_Projeto a : grafoTS.graph.adj(index)) {
+                if (cacheST.get(findIndexCacheName(grafoTS, a.to())).hUsers.size() >= minVisitas && cacheST.get(findIndexCacheName(grafoTS, a.to())).hUsers.size() <= maxVisitas) {
+                    int idx1 = subGrafo.st.get(findIndexCacheName(grafoTS, a.from()));
+                    int idx2 = subGrafo.st.get(findIndexCacheName(grafoTS, a.to()));
+                    subGrafo.graph.addEdge(new Aresta_Projeto(idx1, idx2, a.km(), a.getTime()));
                 }
             }
         }
 
 
-
     }
 
 
-    public static String findIndexCacheName(Grafos_Tabela_Simbolos G,int index) {
+    public static String findIndexCacheName(Grafos_Tabela_Simbolos G, int index) {
         for (String key : G.st) {
             if (G.st.get(key).equals(index)) return key;
         }

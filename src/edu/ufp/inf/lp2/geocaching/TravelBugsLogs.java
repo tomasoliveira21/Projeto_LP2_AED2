@@ -1,6 +1,8 @@
 package edu.ufp.inf.lp2.geocaching;
 
-public class TravelBugsLogs {
+import java.io.Serializable;
+
+public class TravelBugsLogs implements Serializable {
 
     String cache;
     String user;

@@ -1,11 +1,13 @@
 package edu.ufp.inf.lp2.geocaching;
 
-import edu.princeton.cs.algs4.RedBlackBST;
+import edu.ufp.inf.lp2.geocaching.AED2Class.RedBlackBST_AED2;
 
-public class UserPremium extends UserBasic {
+import java.io.Serializable;
+
+public class UserPremium extends UserBasic implements Serializable {
 
     public double cachesEscondidas;
-    public RedBlackBST<String,TravelBugs> meusTravelBugs = new RedBlackBST<>();
+    public RedBlackBST_AED2<String,TravelBugs> meusTravelBugs = new RedBlackBST_AED2<>();
 
     /**
      * Construtor do UserPremium

@@ -1,14 +1,15 @@
 package edu.ufp.inf.lp2.geocaching;
-import edu.princeton.cs.algs4.BST;
-import edu.princeton.cs.algs4.LinearProbingHashST;
-import edu.princeton.cs.algs4.SeparateChainingHashST;
+import edu.ufp.inf.lp2.geocaching.AED2Class.BST_AED2;
+import edu.ufp.inf.lp2.geocaching.AED2Class.LinearProbingHashST_AED2;
+import edu.ufp.inf.lp2.geocaching.AED2Class.SeparateChainingHashST_AED2;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.userST;
 
 
-public class UserBasic{
+public class UserBasic implements Serializable {
 
 
   public String name;
@@ -18,11 +19,11 @@ public class UserBasic{
   public double cachesVisitadas;
 
 
-  public BST<String,Objeto> myObjetos = new BST<>();
+  public BST_AED2<String,Objeto> myObjetos = new BST_AED2<>();
 
-  public LinearProbingHashST<Date , Cache> hCaches = new LinearProbingHashST<>();//sempre que um user visitar uma cache adiciono na Hcache
+  public LinearProbingHashST_AED2<Date , Cache> hCaches = new LinearProbingHashST_AED2<>();//sempre que um user visitar uma cache adiciono na Hcache
 
-  public SeparateChainingHashST<Date , UserLogs> userLogs = new SeparateChainingHashST<>();//sempre que um user visitar uma cache adiciono na Hcache
+  public SeparateChainingHashST_AED2<Date , UserLogs> userLogs = new SeparateChainingHashST_AED2<>();//sempre que um user visitar uma cache adiciono na Hcache
 
   /**
    * Construtor UserBasic

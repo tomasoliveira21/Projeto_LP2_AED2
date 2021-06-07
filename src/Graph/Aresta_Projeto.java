@@ -2,9 +2,11 @@ package Graph;
 
 import edu.ufp.inf.lp2.geocaching.UserAdmin;
 
+import java.io.Serializable;
+
 import static edu.ufp.inf.lp2.geocaching.UserAdmin.*;
 
-public class Aresta_Projeto {
+public class Aresta_Projeto implements Serializable {
         private  int v;
         private  int w;
         private  double km;

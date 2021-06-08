@@ -3,9 +3,11 @@ package edu.ufp.inf.lp2.geocaching;
 import Graph.Aresta_Projeto;
 import Graph.Grafo_Projeto;
 import Graph.Grafos_Tabela_Simbolos;
+import Graph.Prim_AED2;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.ST;
+import edu.princeton.cs.algs4.StdOut;
 import edu.ufp.inf.lp2.geocaching.AED2Class.ST_AED2;
 
 import java.io.*;
@@ -1709,10 +1711,38 @@ public class UserAdmin extends UserPremium  {
     }
 
 
+    public static void r18(double km){
+        System.out.println("r18 - Caixeiro viajante\n");
+        int index=0;
+        double totalkm=0.0;
+        Grafo_Projeto graph = grafoTS.graph;
+        for (int v =0;v<graph.V();v++){
+            System.out.println("Da cache " + findIndexCacheName(grafoTS,v) + " pode-se chegar com um total de " +km +" km as seguintes caches:\n");
+            Prim_AED2 prim = new Prim_AED2(graph,v,km);
+            boolean hasone= false;
+            for (Aresta_Projeto edge: prim.edges()){
+                hasone=true;
+                System.out.println("\t"+edge);
+            }
+            if(prim.weight()>totalkm){
+                totalkm=prim.weight();
+                index=v;
+            }
+            if(!hasone) System.out.println("Esta cache nao consegue ir para nenhuma outra cache.");
+            StdOut.printf("Caches percorridas com um total de km de %.3f\n",prim.weight());
+            System.out.println("----------------------------------");
+        }
+        String cache = findIndexCacheName(grafoTS,index);
+        System.out.println("\nA cache que percorreu mais km foi a " + cache + " com um total de km de :" + totalkm + "\n");
+
+    }
+
+
     public static String findIndexCacheName(Grafos_Tabela_Simbolos G, int index) {
         for (String key : G.st) {
             if (G.st.get(key).equals(index)) return key;
         }
+
         return null;
     }
 

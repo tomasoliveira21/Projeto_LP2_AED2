@@ -561,6 +561,8 @@ public class Main {
         UserAdmin.printCaches();
         System.out.println(grafoTS.graph.toString());
 
+       UserAdmin.r18(21.4);
+
     }
 
 }

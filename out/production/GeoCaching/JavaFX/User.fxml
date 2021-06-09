@@ -18,11 +18,12 @@
                 <RowConstraints maxHeight="485.0" minHeight="10.0" prefHeight="304.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="291.0" prefWidth="1007.0">
+                  <TableView fx:id="userTableView" prefHeight="291.0" prefWidth="1007.0">
                     <columns>
-                      <TableColumn prefWidth="94.0" text="ID" />
-                      <TableColumn prefWidth="163.0" text="Name" />
-                        <TableColumn prefWidth="748.0" text="visitedCaches" />
+                      <TableColumn fx:id="idUserTC" prefWidth="251.0" text="ID" />
+                      <TableColumn fx:id="nomeUserTC" prefWidth="251.0" text="Name" />
+                        <TableColumn fx:id="cache_visitadasUserTC" prefWidth="251.0" text="visitedCaches" />
+                        <TableColumn fx:id="typeUserTC" prefWidth="252.0" text="Type" />
                     </columns>
                   </TableView>
                </children>
@@ -67,5 +68,6 @@
             <Font name="Berlin Sans FB" size="42.0" />
          </font>
       </Text>
+      <Button layoutY="36.0" mnemonicParsing="false" onAction="#handleCarregarUsers" prefHeight="25.0" prefWidth="99.0" text="Carregar Users" />
    </children>
 </AnchorPane>

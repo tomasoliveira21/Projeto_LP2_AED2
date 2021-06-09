@@ -11,8 +11,6 @@ import static edu.ufp.inf.lp2.geocaching.UserAdmin.*;
 
 public class Main {
 
-
-
     /**
      * Método Main
      * @param args
@@ -21,8 +19,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        //InserirRemoverEditarUtilizadores();
         testeprojeto();         //TESTES PEDIDOS PELO PROF
-        //testeprojeto2();
         //testeBinarios();
     }
 
@@ -38,12 +36,14 @@ public class Main {
         UserAdmin.readCaches();
         UserAdmin.readObjetosCache();
 
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\tTAMANHO DAS ST DE USERS E CACHES AO LER DO FICHEIRO\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+
         System.out.println("Tamanho de users " + userST.size());
         System.out.println("Tamanho de caches " +cacheST.size());
 
-        //UserBasic manuel = userST.get("1");
         UserPremium manuel = (UserPremium) userST.get("1");
-        //UserBasic pedro = userST.get("2");
         UserPremium pedro = (UserPremium) userST.get("2");
         UserAdmin fernando = (UserAdmin) userST.get("3");
         UserBasic joana = userST.get("4");
@@ -95,8 +95,10 @@ public class Main {
         MessageLog logsMaria = new MessageLog("Logs do maria");
         MessageLog logsFilomena = new MessageLog("Logs do filomena");
 
-
-        System.out.println("Percuso do Manuel:");
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\t\t PERCURSO DO MANUEL\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
         //1, 2, 6, 8, 13, 16, 17
         manuel.visitarUmaCache(cache1,logsManuel,d1);
         manuel.visitarUmaCache_TirarTravelBug(cache2,logsManuel,d2,"tb2");
@@ -115,9 +117,11 @@ public class Main {
 
         filomena.printAllTravelBugsLogs(pedro,"tb2");
 
-        System.out.println("\n---------------------------------------------------------------------------------\n");
 
-        System.out.println("Percuso do Pedro:");
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\t\tPERCURSO DO PEDRO\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
         //18, 13, 8
         pedro.visitarUmaCache(cache18,logsPedro,d1);
         pedro.visitarUmaCache(cache13,logsPedro,d2);
@@ -128,10 +132,11 @@ public class Main {
         UserAdmin.printUserLogs("2");
 
 
-
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\t\tPERCURSO DO FERNANDO\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
-        System.out.println("Percurso do Fernando:");
         //o Fernando visita as geocaches 12, 11, 10, 8, 9, 5, 6, 4, 3, 2, 1, 7, 15, 17, 18, 13.
         // Ao passar na geocache1 tirou o travelbug1. Ao passar na geocache 15 deixou ficar o travelbug1.
 
@@ -160,11 +165,10 @@ public class Main {
 
 
 
-
-
+        System.out.println("\n");
         System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        System.out.println("Percurso da Joana:");
+        System.out.println("\t\t\t\t\t\tPERCURSO DA JOANA\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
         //a Joana visita as geocaches 14, 15, 18, 17, 13
 
         joana.visitarUmaCache(cache14,logsJoana,d1);
@@ -176,9 +180,10 @@ public class Main {
         UserAdmin.printUserLogs("4");
 
 
+        System.out.println("\n");
         System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        System.out.println("Percurso da Maria:");
+        System.out.println("\t\t\t\t\t\tPERCURSO DA MARIA\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
         //a Maria visita as geocaches 3, 8, 9, 10, 16, 11, 12.
         // Ao passar na geocache 3 tirou o travelbug3. Ao passar na geocache12 deixou ficar o travelbug3.
 
@@ -190,6 +195,8 @@ public class Main {
         maria.visitarUmaCache(cache11,logsMaria,d6);
         maria.visitarUmaCache_deixarTravelBug(cache12,logsMaria,d7,"tb3");
 
+        //filomena.visitarUmaCache_TirarTravelBug(cache12,logsMaria,d4,"tb3");
+        //filomena.visitarUmaCache_deixarTravelBug(cache10,logsMaria,d5,"tb3");
 
         UserAdmin.printCacheLogs("geocache3");
 
@@ -199,9 +206,10 @@ public class Main {
 
 
 
+        System.out.println("\n");
         System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        System.out.println("Percurso da Filomena:");
+        System.out.println("\t\t\t\t\t\tPERCURSO DA FILOMENA\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
         //a Filomena visita as geocaches 5, 6, 7, 3, 2, 1, 8, 13
 
         filomena.visitarUmaCache(cache5,logsFilomena,d1);
@@ -216,43 +224,87 @@ public class Main {
         UserAdmin.printUserLogs("6");
 
 
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\t\tLISTA DE CACHES\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printCaches();
 
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\tLISTA DE OBJETOS DAS CACHES\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printObjetosAllCaches();
 
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\t\t\tLISTA DE UTILIZADORES\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printUser();
 
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\tPRINT HISTORICO DE CACHES DE TODOS OS UTILIZADORES GLOBAL E POR REGIÃO\t\t");
+        System.out.println("\t\t\t\t\t\tREQUISITO 8a\t\t\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printhCachesAllUsers();
+        fernando.print_r8a_regiao(joana, "sul");
 
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\tPRINT DE TODAS AS CACHES NAO VISITAS POR UM DETERMINADO USER\t\t");
+        System.out.println("\t\tPRINT DE TODAS AS CACHES NAO VISITAS POR UM DETERMINADO USER NUMA REGIÃO\t\t");
+        System.out.println("\t\t\t\t\t\tREQUISITO 8b\t\t\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printr8b(pedro);
 
         UserAdmin.print_r8b_regiao(pedro,"centro");
 
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\tPRINT HISTORICO DE UTILIZADORES NUMA DETERMINADA CACHE\t\t");
+        System.out.println("\t\t\t\t\t\tREQUISITO 8c\t\t\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printCaches_historicoUsers("geocache6");
 
+
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\tPRINT TODAS AS CACHES PREMIUM QUE TEM PELO MENOS UM OBJETO\t\t");
+        System.out.println("\t\t\t\t\t\tREQUISITO 8d\t\t\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printr8d();
 
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\tPRINT TOP 5 USERS QUE VISITARAM MAIOR Nº DE CACHES NUM DADO PERIODO TEMPORAL \t");
+        System.out.println("\t\t\t\t\t\tREQUISITO 8e\t\t\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printr8e(d1,d16);
 
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\tPRINT TRAVEL BUGS COM MAIOR NUMERO DE LOCALIZACOES PERCORRIDAS NO SEU HISTORICO \t");
+        System.out.println("\t\t\t\t\t\tREQUISITO 8f\t\t\t\t");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+
+        UserAdmin.printr8f();
+
+        System.out.println("\n");
+        System.out.println("\n---------------------------------------------------------------------------------\n");
+        System.out.println("\t\t\tPRINT TODOS OS TRAVEL BUG LOGS\t\t");
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printAllTravelBugsLogs();
+
 
         System.out.println("\n---------------------------------------------------------------------------------\n");
         int index_1=grafoTS.st.get("geocache1");
@@ -464,90 +516,14 @@ public class Main {
         }
 
 
-
-
-
-
+/*UserAdmin.saveAll();
         UserAdmin.saveUsersBin();
         UserAdmin.saveCachesBin();
         UserAdmin.saveGraphBin();
+ */
 
 
-
-
-
-    }
-    /*
-    0 to 0 (0.00)
-0 to 1 (5.20)  0->1  5,20 - 60,00 |
-0 to 2 (8.20)  0->2  8,20 - 102,00 |
-0 to 3 (6.20)  0->3  6,20 - 70,00 |
-0 to 4 (4.20)  0->4  4,20 - 40,00 |
-0 to 5 (3.20)  0->5  3,20 - 35,00 |
-0 to 6 (5.20)  0->6  5,20 - 66,00 |
-0 to 7 (135.20)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |
-0 to 8 (142.40)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->8  7,20 - 72,00 |
-0 to 9 (139.90)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |
-0 to 10 (138.60)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->10  3,40 - 41,00 |
-0 to 11 (140.50)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->11  5,30 - 55,00 |
-0 to 12 (146.10)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |
-0 to 13 (148.70)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->13  2,60 - 31,00 |
-0 to 14 (150.60)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->14  4,50 - 51,00 |
-0 to 15 (149.90)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->15  3,80 - 45,00 |
-0 to 16 (150.30)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->16  4,20 - 51,00 |
-0 to 17 (148.90)  0->6  5,20 - 66,00 |    6->7 130,00 - 1500,00 |    7->9  4,70 - 51,00 |    9->12  6,20 - 67,00 |    12->17  2,80 - 32,00 |
-
-     */
-
-    /**
-     * Função teste de ler dos inputs
-     */
-    public static void testeprojeto2(){
-
-        UserAdmin.readAll();
-        UserPremium manuel = (UserPremium) userST.get("1");
-
-        Date d1 = new Date(1,1,2021);
-        Date d16 = new Date(16,1,2021);
-
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printCaches();
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printObjetosAllCaches();
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printUser();
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printhCachesAllUsers();
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printr8b(manuel);
-
-        UserAdmin.print_r8b_regiao(manuel,"centro");
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printCaches_historicoUsers("geocache6");
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printr8d();
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printr8e(d1,d16);
-
-        System.out.println("\n---------------------------------------------------------------------------------\n");
-
-        UserAdmin.printAllTravelBugsLogs();
+        filomena.now();
 
     }
 
@@ -561,7 +537,40 @@ public class Main {
         UserAdmin.printCaches();
         System.out.println(grafoTS.graph.toString());
 
-       UserAdmin.r18(21.4);
+        UserAdmin.r18(21.4);
+    }
+
+    public static void InserirRemoverEditarUtilizadores(){
+        //---------[Criação de utilizadores]---------
+        UserBasic manuel= new UserBasic("Manuel", "1");
+        UserBasic pedro= new UserBasic("Pedro", "2");
+        UserAdmin fernando= new UserAdmin("Fernando", "3");
+        UserBasic joana= new UserBasic("Joana", "4");
+        UserPremium maria= new UserPremium("Maria", "5");
+        UserAdmin filomena = new UserAdmin("Filomena", "6");
+
+        //---------[Inserção de Utilizadores na ST]--------
+
+        manuel.insertUser();
+        pedro.insertUser();
+        fernando.insertUser();
+        joana.insertUser();
+        maria.insertUser();
+        filomena.insertUser();
+
+        //---------[Print Utilizadores]---------
+
+        UserAdmin.printUser();
+
+
+        //---------[Editar Utilizador da ST]---------
+        fernando.editarUser("LeticiaEditada","0000");
+        UserAdmin.printUser();
+
+        //---------[Remover Utilizador]---------
+        filomena.removerUser("4");
+        UserAdmin.printUser();
+
 
     }
 

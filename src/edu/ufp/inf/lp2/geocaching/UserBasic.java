@@ -21,9 +21,9 @@ public class UserBasic implements Serializable {
 
   public BST_AED2<String,Objeto> myObjetos = new BST_AED2<>();
 
-  public LinearProbingHashST_AED2<Date , Cache> hCaches = new LinearProbingHashST_AED2<>();//sempre que um user visitar uma cache adiciono na Hcache
+  public LinearProbingHashST_AED2<Date , Cache> hCaches = new LinearProbingHashST_AED2<>(); //so podemos mandar uma key por hash
 
-  public SeparateChainingHashST_AED2<Date , UserLogs> userLogs = new SeparateChainingHashST_AED2<>();//sempre que um user visitar uma cache adiciono na Hcache
+  public SeparateChainingHashST_AED2<Date , UserLogs> userLogs = new SeparateChainingHashST_AED2<>();
 
   /**
    * Construtor UserBasic
@@ -311,5 +311,37 @@ public class UserBasic implements Serializable {
             ", id='" + id + '\'' +
             ", cachesVisitadas=" + cachesVisitadas +
             '}';
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getCachesVisitadas() {
+    return ""+cachesVisitadas;
+  }
+
+
+  public String getTipo() {
+    String tipo = "Baisc";
+    if(this.getClass().equals(UserPremium.class))tipo="Premium";
+    else if(this.getClass().equals(UserAdmin.class))tipo="Admin";
+    return tipo;
+  }
+
+  public void setCachesVisitadas(double cachesVisitadas) {
+    this.cachesVisitadas = cachesVisitadas;
   }
 }

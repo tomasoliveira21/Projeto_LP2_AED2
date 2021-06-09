@@ -70,10 +70,5 @@ public class Aresta_Projeto implements Serializable {
 
         }
 
-        /**
-         * Unit tests the {@code DirectedEdge} data type.
-         *
-         * @param args the command-line arguments
-         */
 
     }

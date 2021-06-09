@@ -9,7 +9,11 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -32,8 +36,24 @@ public class SceneController {
     public Group graphGroup;
     public TextField graphNvisitas;
 
-    public ArrayList<UserBasic> users;
-    public ArrayList<Cache> cache;
+    public ArrayList<UserBasic> users = new ArrayList<>();
+    public ArrayList<Cache> cache = new ArrayList<>();
+
+    public TableView<Cache> cacheTableView = new TableView<>();
+    public TableColumn<Cache,String> userCreatorTC = new TableColumn<>();
+    public TableColumn<Cache,String> difficultyrTC=new TableColumn<>();
+    public TableColumn<Cache,String> typeTC = new TableColumn<>();
+    public TableColumn<Cache,String> serialNumberCol = new TableColumn<>();
+    public TableColumn<Cache,String> coordenadasTC = new TableColumn<>();
+    public TableColumn<Cache,String> regiaoCol = new TableColumn<>();
+
+
+    public TableView<UserBasic> userTableView = new TableView<>();
+    public TableColumn<Cache,String> idUserTC = new TableColumn<>();
+    public TableColumn<Cache,String> nomeUserTC=new TableColumn<>();
+    public TableColumn<Cache,String> cache_visitadasUserTC = new TableColumn<>();
+    public TableColumn<Cache,String> typeUserTC = new TableColumn<>();
+
 
     private final int RADIO=20;
 
@@ -64,11 +84,65 @@ public class SceneController {
     }
 
     public void switchToGeoCaches(ActionEvent event) throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("GeoCaches.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+
+    }
+
+    public void handleCarregarCaches(ActionEvent actionEvent){
+        cacheTableView.getItems().clear();
+
+        userCreatorTC.setCellValueFactory(new PropertyValueFactory<>("userCreator"));
+        userCreatorTC.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        difficultyrTC.setCellValueFactory(new PropertyValueFactory<>("diff"));
+        difficultyrTC.setCellFactory(TextFieldTableCell.forTableColumn());
+        typeTC.setCellValueFactory(new PropertyValueFactory<>("type"));
+        typeTC.setCellFactory(TextFieldTableCell.forTableColumn());
+        coordenadasTC.setCellValueFactory(new PropertyValueFactory<>("coordenadas"));
+        coordenadasTC.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        serialNumberCol.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
+        serialNumberCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        regiaoCol.setCellValueFactory(new PropertyValueFactory<>("regiao"));
+        regiaoCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        //String serialNumber, CacheDiff diff ,CacheType type, UserPremium userCreator , double x, double y, String regiao) {
+
+        cache.clear();
+        for (String key : cacheST.keys()){
+            Cache c = cacheST.get(key);
+            cache.add(c);
+        }
+        cacheTableView.getItems().addAll(cache);
+
+    }
+
+
+    public void handleCarregarUsers(ActionEvent actionEvent){
+        userTableView.getItems().clear();
+
+        idUserTC.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idUserTC.setCellFactory(TextFieldTableCell.forTableColumn());
+        nomeUserTC.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nomeUserTC.setCellFactory(TextFieldTableCell.forTableColumn());
+        cache_visitadasUserTC.setCellValueFactory(new PropertyValueFactory<>("cachesVisitadas"));
+        cache_visitadasUserTC.setCellFactory(TextFieldTableCell.forTableColumn());
+        typeUserTC.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        typeUserTC.setCellFactory(TextFieldTableCell.forTableColumn());
+
+
+        users.clear();
+        for (String key : userST.keys()){
+            UserBasic u = userST.get(key);
+            users.add(u);
+        }
+        userTableView.getItems().addAll(users);
+
     }
 
     public void switchToMap(ActionEvent event) throws IOException {
@@ -78,7 +152,6 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-
 
 
     public void GraphGeral(ActionEvent actionEvent){
@@ -609,7 +682,6 @@ public class SceneController {
         }
 
     }
-
 
 
 }

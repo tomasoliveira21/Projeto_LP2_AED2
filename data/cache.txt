@@ -9,7 +9,7 @@
 6,Basic,Medium,geocache9,300,-8,centro
 5,Premium,Hard,geocache10,190,70,centro
 6,Basic,Easy,geocache11,-20,90,centro
-5,Premium,Easy,geocache12,-300,40,centro
+5,Premium,Easy,geocache12,-300,-7,centro
 5,Basic,Easy,geocache13,270,160,sul
 6,Basic,Medium,geocache14,224,230,sul
 5,Premium,Hard,geocache15,-190,200,sul

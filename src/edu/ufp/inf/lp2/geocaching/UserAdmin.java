@@ -43,21 +43,20 @@ public class UserAdmin extends UserPremium  {
         for (String key : meusTravelBugs.keys()) {
             TravelBugs travelBugs = meusTravelBugs.get(key);
             System.out.println("\tTravel bug -> " + travelBugs.nameItem + " ja esteve nas seguintes localizacoes:");
-            int size = travelBugs.historicoTravelBugsLogs.size() - 1;
+            int size = travelBugs.historicoTravelBugsLogs.size() - 1; //o size fica com o indice da ultima posição do historico travel bugs logs
             if (travelBugs.historicoTravelBugsLogs.size() > 0) {
                 while (size >= 0) {
-                    if (size == travelBugs.historicoTravelBugsLogs.size() - 1) {
+                    if (size == travelBugs.historicoTravelBugsLogs.size() - 1) { //se for a ultima localizacao, so entra 1x
                         TravelBugsLogs tblog = travelBugs.historicoTravelBugsLogs.get(size);
-                        if (tblog.p == null) {
+                        if (tblog.p == null) { //se o tb nao esta no bolso, está na cache
                             System.out.println("\t\tEncontra se neste moemnto na cache " + tblog.c.serialNumber + " e foi la deixada pelo user "
                                     + userST.get(tblog.user).name + " no dia " + tblog.date.print());
-                        } else {
+                        } else { //se não esta na cache, está no bolso
                             System.out.println("\t\tEncontra se neste moemnto com o o user  " + userST.get(tblog.user).name + " e retirado da cache "
                                     + tblog.cache + " no dia " + tblog.date.print());
                         }
 
-                    } else {
-                        if (size == travelBugs.historicoTravelBugsLogs.size() - 1) {
+                    } else { //se nao estiver na ultima posicao
                             TravelBugsLogs tblog = travelBugs.historicoTravelBugsLogs.get(size);
                             if (tblog.p == null) {
                                 System.out.println("\t\tEsteve na cache " + tblog.c.serialNumber + " e foi la deixada pelo user "
@@ -67,8 +66,6 @@ public class UserAdmin extends UserPremium  {
                                         + tblog.cache + " no dia " + tblog.date.print());
                             }
                         }
-
-                    }
                     size--;
                 }
             }
@@ -343,7 +340,7 @@ public class UserAdmin extends UserPremium  {
      * d) Todas as caches premium que têm pelo menos um objecto;
      */
     public static void printr8d() {//Todas as caches premium que têm pelo menos um objecto;
-        System.out.println("Caches primium que tem objetos:");
+        System.out.println("Caches premium que tem objetos:");
         for (String key : cacheST) {
             Cache cache = cacheST.get(key);
             if (cache.type.equals(CacheType.Premium) && cache.meusObjetos.size() > 0) {
@@ -371,22 +368,23 @@ public class UserAdmin extends UserPremium  {
                 //se visitou entre as datas
                 if (clogs.data.afterDate(dinicial) && clogs.data.beforeDate(dfinal) || clogs.data.equals(dinicial) || clogs.data.equals(dfinal)) {
                     String userid = clogs.userID;
-                    if (totalvisitas.contains(userid)) {//se ser ja estiver na bst
+                    if (totalvisitas.contains(userid)) {//se o user ja estiver na st
                         totalvisitas.put(userid, totalvisitas.get(userid) + 1);//incremento 1 visita
                     } else totalvisitas.put(userid, 1);//se nao visitas = 1
                 }
             }
         }
 
-        int top5 = 0, topvisiter = 0, lastvisiter = 0;
-        String user = "", lastusername = "";
+        int top5 = 0, topvisiter = 0;
+        String user = "";
         while (top5 < 5 && totalvisitas.size() > 0) {//caso nao haja mais que 5
             for (String id : totalvisitas.keys()) {
 
                 if (top5 == 0 && totalvisitas.get(id) >= topvisiter) {
                     topvisiter = totalvisitas.get(id);
                     user = id;
-                } else if (top5 > 0 && totalvisitas.get(id) > topvisiter && totalvisitas.get(id) <= lastvisiter && !lastusername.equals(id)) {
+                }
+                else if (top5 > 0 && totalvisitas.get(id) > topvisiter ) {
                     topvisiter = totalvisitas.get(id);
                     user = id;
                 }
@@ -394,8 +392,7 @@ public class UserAdmin extends UserPremium  {
             }
             if (top5 == 0) System.out.println("Top 5 utilizadores mais ativos:");
             System.out.println("Top " + (top5 + 1) + "-> " + userST.get(user).name + " com um total de visitas de: " + topvisiter);
-            lastusername = user;
-            lastvisiter = topvisiter;
+
             topvisiter = 0;
             top5++;
             totalvisitas.delete(user);
@@ -410,7 +407,7 @@ public class UserAdmin extends UserPremium  {
      * exemplo, determinar:
      * f) travel bugs com maior número de localizações percorridas no seu histórico
      */
-    public void printr8f() {
+    public static void printr8f() {
         ArrayList<TravelBugs> travelBugs = new ArrayList<>();
         for (String id : userST) {
             if (userST.get(id).getClass().equals(UserPremium.class) || userST.get(id).getClass().equals(UserAdmin.class)) {
@@ -958,6 +955,7 @@ public class UserAdmin extends UserPremium  {
                 Date date = new Date(day, month, year);
                 cache.hUsers.put(date, user);
                 user.hCaches.put(date, cache);
+                user.cachesVisitadas++;
             }
 
         }
@@ -1313,6 +1311,8 @@ public class UserAdmin extends UserPremium  {
         saveTravelBugsHUsers();
         saveTravelBugsLogs();
         saveGraphEdges();
+
+
     }
 
     /**

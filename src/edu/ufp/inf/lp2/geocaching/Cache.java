@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Cache implements Serializable {
 
-  //public int nUtilizadores;
   public ST_AED2<Date, UserBasic> hUsers= new ST_AED2<>();
   public ArrayList<MessageLog> messageLogs = new ArrayList<>();
   public ArrayList<CacheLogs> cacheLogs = new ArrayList<>();
@@ -39,19 +38,22 @@ public class Cache implements Serializable {
     this.type=type;
   }
 
+
   /**
    * Método que cria um Objeto inserindo-o na BST dos meusObjetos
    * @param id
    * @param nameItem
    * @param creatorID
    */
-  public void criarObjeto(String id , String nameItem,UserBasic creatorID){
+   public void criarObjeto(String id , String nameItem,UserBasic creatorID){
     Objeto objeto = new Objeto(id,nameItem,creatorID);
     objeto.criadorObjeto=creatorID;
     meusObjetos.put(objeto.id,objeto);
     objeto.cacheAtual=this;
     objeto.userAtual=null;
   }
+
+
 
   public Cache() {
 
@@ -80,16 +82,54 @@ public class Cache implements Serializable {
             ", regiao='" + regiao + '\'' +
             '}';
   }
+
+
+
+
+
+
+
+  public String getUserCreator() {
+    String userCreator = this.userCreator.name;
+    return userCreator;
+  }
+
+  public String getDiff() {
+    String diff = "Easy";
+    if(this.diff.equals(CacheDiff.Medium))diff = "Medium";
+    else if(this.diff.equals(CacheDiff.Hard))diff = "Hard";
+    return diff;
+  }
+
+  public String getType() {
+    String type = "Basic";
+    if(this.type.equals(CacheType.Premium))type = "Premium";
+    return type;
+  }
+
+
+
+  public String getCoordenadas(){
+    String coordenadas = x + " | " + y;
+    return coordenadas;
+  }
+
+  public String getSerialNumber() {
+    return serialNumber;
+  }
+
+  public void setSerialNumber(String serialNumber) {
+    this.serialNumber = serialNumber;
+  }
+
+  public String getRegiao() {
+    return regiao;
+  }
+
+  public void setRegiao(String regiao) {
+    this.regiao = regiao;
+  }
 }
-
-
-
-
-
-
-
-
-
 
 
 //codigo antigo (Prof.Diogo Machado)

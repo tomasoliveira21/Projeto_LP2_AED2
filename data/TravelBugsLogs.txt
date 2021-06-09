@@ -1,3 +1,5 @@
+2,tb2,1,geocache2,2,1,2021,1,false,USER
+2,tb2,1,geocache17,7,1,2021,geocache17,true,CACHE
 5,tb1,3,geocache1,11,1,2021,3,false,USER
 5,tb1,3,geocache15,13,1,2021,geocache15,true,CACHE
 6,tb3,5,geocache3,1,1,2021,5,false,USER

@@ -18,14 +18,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="cacheTableView" depthTest="DISABLE" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="120.0" text="userCreator" />
-                      <TableColumn prefWidth="201.0" text="difficulty" />
-                        <TableColumn prefWidth="135.0" text="type" />
-                        <TableColumn prefWidth="141.0" text="serialNumber" />
-                        <TableColumn prefWidth="189.0" text="coordinates" />
-                        <TableColumn prefWidth="209.0" text="region" />
+                        <TableColumn fx:id="userCreatorTC" prefWidth="166.0" text="Creator" />
+                        <TableColumn fx:id="serialNumberCol" prefWidth="166.0" text="serialNumber" />
+                        <TableColumn fx:id="regiaoCol" prefWidth="166.0" text="Regiao" />
+                        <TableColumn fx:id="difficultyrTC" prefWidth="166.0" text="Dificuldade" />
+                        <TableColumn fx:id="typeTC" prefWidth="166.0" text="Tipo" />
+                        <TableColumn fx:id="coordenadasTC" prefWidth="166.0" text="Coordenadas" />
                     </columns>
                   </TableView>
                </children>
@@ -45,5 +45,6 @@
             <Font name="Berlin Sans FB" size="46.0" />
          </font>
       </Text>
+      <Button layoutX="36.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleCarregarCaches" text="Carregar Cache" />
    </children>
 </AnchorPane>

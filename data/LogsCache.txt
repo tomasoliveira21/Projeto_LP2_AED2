@@ -23,6 +23,9 @@ geocache17,4,null,null,4,1,2021
 geocache18,2,null,null,1,1,2021
 geocache18,3,null,null,15,1,2021
 geocache18,4,null,null,3,1,2021
+geocache2,1,null,travelbug2,2,1,2021
+geocache2,3,null,null,10,1,2021
+geocache2,6,null,null,5,1,2021
 geocache3,3,null,null,9,1,2021
 geocache3,5,null,travelbug3,1,1,2021
 geocache3,6,null,null,4,1,2021

@@ -1,6 +1,6 @@
-Manuel,1,0.0,PREMIUM
-Pedro,2,0.0,PREMIUM
-Fernando,3,0.0,ADMIN
-Joana,4,0.0,BASIC
-Maria,5,0.0,PREMIUM
-Filomena,6,0.0,ADMIN
+Manuel,1,7.0,PREMIUM
+Pedro,2,3.0,PREMIUM
+Fernando,3,16.0,ADMIN
+Joana,4,5.0,BASIC
+Maria,5,7.0,PREMIUM
+Filomena,6,8.0,ADMIN

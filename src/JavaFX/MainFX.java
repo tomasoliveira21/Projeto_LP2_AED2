@@ -13,7 +13,14 @@ public class MainFX extends Application {
     public void start(Stage stage) {
         try {
 
-            UserAdmin.readAll();
+            //UserAdmin.readAll();
+
+            UserAdmin.readUsersBin();
+            UserAdmin.readCachesBin();
+            UserAdmin.readGraphBin();
+
+
+
             Parent root = FXMLLoader.load(getClass().getResource("JavaFX.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);

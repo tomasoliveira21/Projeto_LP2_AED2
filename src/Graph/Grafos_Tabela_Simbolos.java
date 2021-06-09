@@ -26,8 +26,6 @@ public class Grafos_Tabela_Simbolos implements Serializable {
                 }
             }
 
-            
-           
 
             // second pass builds the graph by connecting first vertex on each
             // line to all others

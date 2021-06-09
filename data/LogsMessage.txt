@@ -23,6 +23,9 @@ geocache17,Logs do joana
 geocache18,Logs do pedro
 geocache18,Logs do fernando
 geocache18,Logs do joana
+geocache2,Logs do manuel
+geocache2,Logs do fernando
+geocache2,Logs do filomena
 geocache3,Logs do fernando
 geocache3,Logs do maria
 geocache3,Logs do filomena

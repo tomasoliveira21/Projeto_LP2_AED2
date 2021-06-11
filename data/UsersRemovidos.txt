@@ -1,10 +1,4 @@
-(PREMIUM)Utilizador Pedro, ID 2
-	- tinha os seguintes objetos:
-		Objeto capa
-	- visitou as seguintes caches :
-		- visitou a cache geocache8no dia (3,1,2021)obj retirado ob13,obj colocado null
-		- visitou a cache geocache13no dia (2,1,2021)obj retirado null,obj colocado null
-		- visitou a cache geocache18no dia (1,1,2021)obj retirado null,obj colocado null
-	- tinha o seguintes TravelBugs :
-		- travelbug2 ,IDtb2,Cache destinogeocache17
+(BASIC)Utilizador Pedro, ID 2
+	- foi removido sem objetos objetos:
+	- foi removido sem visitar nenhuma cache:
 --------------------------------------------------------------------------------

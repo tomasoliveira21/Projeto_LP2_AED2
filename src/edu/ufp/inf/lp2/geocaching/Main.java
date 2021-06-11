@@ -252,6 +252,7 @@ public class Main {
         System.out.println("\n---------------------------------------------------------------------------------\n");
 
         UserAdmin.printhCachesAllUsers();
+        //fernando.print_r8a_global(joana);
         fernando.print_r8a_regiao(joana, "sul");
 
         System.out.println("\n");
@@ -523,7 +524,8 @@ public class Main {
  */
 
 
-        filomena.now();
+       // filomena.now();
+        // filomena.now();
 
     }
 
@@ -540,7 +542,7 @@ public class Main {
         UserAdmin.r18(21.4);
     }
 
-    public static void InserirRemoverEditarUtilizadores(){
+    public static void InserirRemoverEditarUtilizadores() throws IOException {
         //---------[Criação de utilizadores]---------
         UserBasic manuel= new UserBasic("Manuel", "1");
         UserBasic pedro= new UserBasic("Pedro", "2");
@@ -568,7 +570,7 @@ public class Main {
         UserAdmin.printUser();
 
         //---------[Remover Utilizador]---------
-        filomena.removerUser("4");
+        pedro.removerUser();
         UserAdmin.printUser();
 
 
